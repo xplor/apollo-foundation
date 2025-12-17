@@ -1,16 +1,26 @@
 {
   "color": {
     "accent": {
-      "green": {"value": "{color.green.200.value}"},
-      "yellow": {"value": "{color.yellow.200.value}"},
-      "pink": {"value": "{color.pink.300.value}"},
-      "purple": {"value": "{color.purple.300.value}"},
+      "green": {
+        "value": "{color.green.200.value}"
+      },
+      "yellow": {
+        "value": "{color.yellow.200.value}"
+      },
+      "pink": {
+        "value": "{color.pink.300.value}"
+      },
+      "purple": {
+        "value": "{color.purple.300.value}"
+      },
       "blue": {
-        "lm": {"value": "{color.blue.500.value}"},
-        "dm": {"value": "{color.blue.200.value}"}
+        "lm": {
+          "value": "{color.blue.500.value}"
+        },
+        "dm": {
+          "value": "{color.blue.200.value}"
+        }
       }
     }
   }
 }
-
-

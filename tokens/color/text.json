@@ -2,28 +2,54 @@
   "color": {
     "text": {
       "primary": {
-        "lm": {"value": "{color.gray.900.value}"},
-        "dm": {"value": "{color.gray.0.value}"}
+        "lm": {
+          "value": "{color.gray.900.value}"
+        },
+        "dm": {
+          "value": "{color.gray.0.value}"
+        }
       },
       "secondary": {
-        "lm": {"value": "{color.gray.600.value}"},
-        "dm": {"value": "{color.gray.500.value}"}
+        "lm": {
+          "value": "{color.gray.600.value}"
+        },
+        "dm": {
+          "value": "{color.gray.500.value}"
+        }
       },
       "reverse": {
-        "lm": {"value": "{color.gray.0.value}"},
-        "dm": {"value": "{color.gray.1000.value}"}
+        "lm": {
+          "value": "{color.gray.0.value}"
+        },
+        "dm": {
+          "value": "{color.gray.1000.value}"
+        }
       },
       "warning": {
-        "lm": {"value": "{color.red.700.value}"},
-        "dm": {"value": "{color.red.300.value}"}
+        "lm": {
+          "value": "{color.red.700.value}"
+        },
+        "dm": {
+          "value": "{color.red.300.value}"
+        }
       },
       "action": {
-        "lm": {"value": "{color.primary.lm.value}","comment": "uses themable token"},
-        "dm": {"value": "{color.primary.dm.value}","comment": "uses themable token"}
+        "lm": {
+          "value": "{color.primary.lm.value}",
+          "comment": "uses themable token"
+        },
+        "dm": {
+          "value": "{color.primary.dm.value}",
+          "comment": "uses themable token"
+        }
       },
       "reverse": {
-        "lm": {"value": "{color.gray.0.value}"},
-        "dm": {"value": "{color.gray.1000.value}"}
+        "lm": {
+          "value": "{color.gray.0.value}"
+        },
+        "dm": {
+          "value": "{color.gray.1000.value}"
+        }
       }
     }
   }

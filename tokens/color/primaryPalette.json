@@ -1,45 +1,104 @@
 {
   "color": {
-        "foreground": {
-          "lm": {"value": "{color.gray.0.value}"},
-          "dm": {"value": "{color.gray.1000.value}"}
-        },
-        "background": {
-          "lm": {"value": "{color.gray.50.value}"},
-          "dm": {"value": "{color.gray.1200.value}"}
-        },
-        "background-2": {
-          "lm": {"value": "{color.gray.100.value}"},
-          "dm": {"value": "{color.gray.1100.value}"}
-        },
-        "navigation": {
-          "lm": {"value": "{color.gray.1000.value}"},
-          "dm": {"value": "{color.gray.1000.value}"}
-        },
-        "stroke": {
-          "lm": {"value": "{color.gray.400.value}"},
-          "dm": {"value": "{color.gray.600.value}"}
-        },
-        "primary": {
-          "lm": {"value": "{color.orange.600.value}", "themable": true, "comment": "themable"},
-          "dm": {"value": "{color.orange.400.value}", "themable": true, "comment": "themable"}
-        },
-        "primary-bg": {
-          "lm": {"value": "{color.orange.50.value}", "themable": true, "comment": "themable"},
-          "dm": {"value": "{color.gray.900.value}", "themable": true, "comment": "themable"}
-        },
-        "secondary": {
-          "lm": {"value": "{color.purple.700.value}", "themable": true, "comment": "themable"},
-          "dm": {"value": "{color.purple.300.value}", "themable": true, "comment": "themable"}
-        },
-        "secondary-hover": {
-          "lm": {"value": "{color.purple.800.value}", "themable": true, "comment": "themable"},
-          "dm": {"value": "{color.purple.400.value}", "themable": true, "comment": "themable"}
-        },
-        "secondary-bg": {
-          "lm": {"value": "{color.purple.50.value}", "themable": true, "comment": "themable"},
-          "dm": {"value": "{color.gray.900.value}", "themable": true, "comment": "themable"}
-        }
+    "foreground": {
+      "lm": {
+        "value": "{color.gray.0.value}"
+      },
+      "dm": {
+        "value": "{color.gray.1000.value}"
+      }
+    },
+    "background": {
+      "lm": {
+        "value": "{color.gray.50.value}"
+      },
+      "dm": {
+        "value": "{color.gray.1200.value}"
+      }
+    },
+    "background-2": {
+      "lm": {
+        "value": "{color.gray.100.value}"
+      },
+      "dm": {
+        "value": "{color.gray.1100.value}"
+      }
+    },
+    "navigation": {
+      "lm": {
+        "value": "{color.gray.1000.value}"
+      },
+      "dm": {
+        "value": "{color.gray.1000.value}"
+      }
+    },
+    "stroke": {
+      "lm": {
+        "value": "{color.gray.400.value}"
+      },
+      "dm": {
+        "value": "{color.gray.600.value}"
+      }
+    },
+    "primary": {
+      "lm": {
+        "value": "{color.orange.600.value}",
+        "themable": true,
+        "comment": "themable"
+      },
+      "dm": {
+        "value": "{color.orange.400.value}",
+        "themable": true,
+        "comment": "themable"
+      }
+    },
+    "primary-bg": {
+      "lm": {
+        "value": "{color.orange.50.value}",
+        "themable": true,
+        "comment": "themable"
+      },
+      "dm": {
+        "value": "{color.gray.900.value}",
+        "themable": true,
+        "comment": "themable"
+      }
+    },
+    "secondary": {
+      "lm": {
+        "value": "{color.purple.700.value}",
+        "themable": true,
+        "comment": "themable"
+      },
+      "dm": {
+        "value": "{color.purple.300.value}",
+        "themable": true,
+        "comment": "themable"
+      }
+    },
+    "secondary-hover": {
+      "lm": {
+        "value": "{color.purple.800.value}",
+        "themable": true,
+        "comment": "themable"
+      },
+      "dm": {
+        "value": "{color.purple.400.value}",
+        "themable": true,
+        "comment": "themable"
+      }
+    },
+    "secondary-bg": {
+      "lm": {
+        "value": "{color.purple.50.value}",
+        "themable": true,
+        "comment": "themable"
+      },
+      "dm": {
+        "value": "{color.gray.900.value}",
+        "themable": true,
+        "comment": "themable"
+      }
     }
   }
-
+}

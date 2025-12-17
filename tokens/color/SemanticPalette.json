@@ -2,126 +2,156 @@
   "color": {
     "positive": {
       "lm": {
-        "value": "{color.green.500.value}"
+        "value": "{color.green.500}",
+        "type": "color"
       },
       "dm": {
-        "value": "{color.green.300.value}"
+        "value": "{color.green.300}",
+        "type": "color"
       }
     },
     "positive-bg": {
       "lm": {
-        "value": "{color.green.100.value}"
+        "value": "{color.green.100}",
+        "type": "color"
       },
       "dm": {
-        "value": "{color.transparent.value}"
+        "value": "{color.transparent}",
+        "type": "color"
       }
     },
     "negative": {
       "lm": {
-        "value": "{color.red.600.value}"
+        "value": "{color.red.600}",
+        "type": "color"
       },
       "dm": {
-        "value": "{color.red.300.value}"
+        "value": "{color.red.300}",
+        "type": "color"
       }
     },
     "negative-bg": {
       "lm": {
-        "value": "{color.red.100.value}"
+        "value": "{color.red.100}",
+        "type": "color"
       },
       "dm": {
-        "value": "{color.transparent.value}"
+        "value": "{color.transparent}",
+        "type": "color"
       }
     },
     "highlight": {
       "lm": {
-        "value": "{color.yellow.500.value}"
+        "value": "{color.yellow.500}",
+        "type": "color"
       },
       "dm": {
-        "value": "{color.yellow.200.value}"
+        "value": "{color.yellow.200}",
+        "type": "color"
       }
     },
     "highlight-bg": {
       "lm": {
-        "value": "{color.yellow.200.value}"
+        "value": "{color.yellow.200}",
+        "type": "color"
       },
       "dm": {
-        "value": "{color.transparent.value}"
+        "value": "{color.transparent}",
+        "type": "color"
       }
     },
     "information": {
       "lm": {
-        "value": "{color.secondary.lm.value}",
+        "value": "{color.secondary.lm}",
+        "type": "color",
         "comment": "uses themable token"
       },
       "dm": {
-        "value": "{color.secondary.dm.value}",
+        "value": "{color.secondary.dm}",
+        "type": "color",
         "comment": "uses themable token"
       }
     },
     "information-bg": {
       "lm": {
-        "value": "{color.secondary-bg.lm.value}",
+        "value": "{color.secondary-bg.lm}",
+        "type": "color",
         "comment": "uses themable token"
       },
       "dm": {
-        "value": "{color.transparent.value}"
+        "value": "{color.transparent}",
+        "type": "color"
       }
     },
     "trivial": {
       "lm": {
-        "value": "{color.gray.600.value}"
+        "value": "{color.gray.600}",
+        "type": "color"
       },
       "dm": {
-        "value": "{color.gray.500.value}"
+        "value": "{color.gray.500}",
+        "type": "color"
       }
     },
     "trivial-bg": {
       "lm": {
-        "value": "{color.gray.400.value}"
+        "value": "{color.gray.400}",
+        "type": "color"
       },
       "dm": {
-        "value": "{color.transparent.value}"
+        "value": "{color.transparent}",
+        "type": "color"
       }
     },
     "action": {
       "primary": {
         "lm": {
-          "value": "{color.purple.700.value}"
+          "value": "{color.purple.700}",
+          "type": "color"
         },
         "dm": {
-          "value": "{color.purple.300.value}"
+          "value": "{color.purple.300}",
+          "type": "color"
         }
       },
       "primary.hover": {
         "lm": {
-          "value": "{color.purple.800.value}"
+          "value": "{color.purple.800}",
+          "type": "color"
         },
         "dm": {
-          "value": "{color.purple.400.value}"
+          "value": "{color.purple.400}",
+          "type": "color"
         }
       },
       "disabled": {
         "lm": {
-          "value": "{color.gray.100.value}"
+          "value": "{color.gray.100}",
+          "type": "color"
         },
         "dm": {
-          "value": "{color.gray.800.value}"
+          "value": "{color.gray.800}",
+          "type": "color"
         }
       },
       "warning": {
         "lm": {
-          "value": "{color.red.700.value}"
+          "value": "{color.red.700}",
+          "type": "color"
         },
         "dm": {
-          "value": "{color.red.300.value}"
+          "value": "{color.red.300}",
+          "type": "color"
         }
       },
       "warning.hover": {
         "lm": {
-          "value": "{color.red.800.value}"
+          "value": "{color.red.800}",
+          "type": "color"
         },
         "dm": {
-          "value": "{color.red.400.value}"
+          "value": "{color.red.400}",
+          "type": "color"
         }
       }
     }

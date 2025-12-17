@@ -2,22 +2,27 @@
   "size": {
     "radius": {
       "none": {
-        "value": "0"
+        "value": "0",
+        "type": "dimension"
       },
       "small": {
-        "value": ".25"
+        "value": ".25",
+        "type": "dimension"
       },
       "default": {
-        "value": ".5"
+        "value": ".5",
+        "type": "dimension"
       },
       "large": {
-        "value": ".75"
+        "value": ".75",
+        "type": "dimension"
       },
       "full": {
-        "value": "999"
+        "value": "999",
+        "type": "dimension"
       },
       "button": {
-        "value": "{size.radius.full.value}",
+        "value": "{size.radius.full}",
         "themable": true,
         "comment": "themable"
       }

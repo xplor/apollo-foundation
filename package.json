@@ -4,7 +4,7 @@
   "description": "The design tokens for Xplor and Xplor's Apollo design library",
   "main": "index.js",
   "scripts": {
-    "build": "style-dictionary build"
+    "build": "tsx build.ts"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/xplor/Apollo-Foundation#readme",
   "devDependencies": {
-    "style-dictionary": "^3.9.2"
+    "style-dictionary": "^5.1.1",
+    "tsx": "^4.21.0"
   },
   "files": [
     "build"

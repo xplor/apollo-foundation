@@ -31,6 +31,7 @@ env:
 jobs:
   release:
     runs-on: ubuntu-latest
+    environment: release
 
     steps:
       - name: 🛠 Setting Up Checkout
@@ -75,4 +76,8 @@ jobs:
         uses: eregon/publish-release@v1
         with:
           release_id: ${{ inputs.id }}
+
+      - name: 🚀 Publish to NPM
+        if: ${{ inputs.IS_DRYRUN == false }}
+        run: npm publish --provenance
 

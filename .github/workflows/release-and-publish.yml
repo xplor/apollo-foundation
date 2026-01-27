@@ -79,5 +79,5 @@ jobs:
 
       - name: 🚀 Publish to NPM
         if: ${{ inputs.IS_DRYRUN == false }}
-        run: npm publish --provenance
+        run: npm publish
 

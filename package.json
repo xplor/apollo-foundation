@@ -1,6 +1,6 @@
 {
   "name": "@xplortech/apollo-foundation",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0",
   "description": "The design tokens for Xplor and Xplor's Apollo design library",
   "main": "index.js",
   "scripts": {

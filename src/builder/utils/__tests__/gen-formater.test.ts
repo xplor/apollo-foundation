@@ -16,7 +16,7 @@ function loadFixtureTokens(): TransformedToken[] {
         original: { value: item.value, key: item.name },
         attributes: { category: 'color' },
         comment: item.comment,
-    })) as TransformedToken[];
+    })) as unknown as TransformedToken[];
 }
 
 describe('genFormatter', () => {
@@ -32,6 +32,7 @@ describe('genFormatter', () => {
         });
 
         const result = await formatFn({
+            // @ts-expect-error: Typescript complains this text fixture doesn't satisfy the requirements for formatFn but its fine
             dictionary: { allTokens, tokens: {}, unfilteredTokens: [] },
             file: { destination: 'variables.css' },
             options: { outputReferences: false },
@@ -58,7 +59,12 @@ describe('genFormatter', () => {
         });
 
         const result = await formatFn({
-            dictionary: { allTokens, tokens: {}, unfilteredTokens: [] },
+            dictionary: {
+                allTokens,
+                tokens: {},
+                // @ts-expect-error: Typescript is a little overzealous in this instance
+                unfilteredTokens: []
+            },
             file: { destination: 'variables-media.css' },
             options: { outputReferences: false },
         });

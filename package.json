@@ -4,7 +4,10 @@
   "description": "The design tokens for Xplor and Xplor's Apollo design library",
   "type": "module",
   "scripts": {
-    "build": "tsx build.ts"
+    "build": "tsx build.ts",
+    "clean": "rm -rf ./build/",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "repository": {
     "type": "git",
@@ -19,9 +22,11 @@
   "devDependencies": {
     "@tsconfig/node24": "^24.0.3",
     "@types/node": "^25.0.3",
+    "@vitest/coverage-v8": "^4.0.18",
     "style-dictionary": "^5.3.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
   },
   "files": [
     "build"

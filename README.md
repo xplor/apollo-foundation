@@ -1,48 +1,143 @@
 # Apollo Foundation
 
-This repo and NPM package contain the design tokens for Xplor's [Apollo UI framework](https://github.com/xplor/apollo). Design tokens are low-level variables such as color values, fonts/typefaces, and text styles that help to ensure visual consistency across interfaces and products.
+This repo and NPM package contain the design tokens for Xplor's [Apollo UI framework](https://github.com/xplor/apollo). Design tokens are low-level variables such as color values, fonts/typefaces, and text styles that help to ensure visual consistency across interfaces and products. **Tokens are built per brand and per platform** — the package supports the **Apollo** and **Field Edge** brands and outputs CSS, SCSS, JavaScript/TypeScript, Android, and iOS artifacts.
 
-While Xplor recommends the use of Apollo components whenever possible, you may also find it useful to use Apollo Foundation's design tokens directly in your UI to allow for more custom development than Apollo components afford. Read on to learn how to do this!
+While Xplor recommends the use of Apollo components whenever possible, you may also use Apollo Foundation's design tokens directly in your UI for more custom development. The sections below describe how to install the package and set up tokens for each platform.
 
-## Usage
-
-First, download the latest version of this package with NPM:
+## Installation
 
 ```bash
 npm install @xplortech/apollo-foundation
 ```
 
-Depending on how you prefer to import design variables, there are two recommended methods for a web project &mdash; 1) CSS variables or 2) JavaScript variables (it is possible to use both!)
+The package publishes a pre-built `build/` directory. Import paths are **brand-based**: use `apollo` or `field-edge` in the path depending on which brand you use.
 
-### 1. CSS Variables
+## Usage
 
-You can either `@import` the variables in a CSS file in your project, or reference it as a `<link>` in the `<head>` of your document.
+### Web (CSS)
 
-```css
-@import "@xplortech/apollo-foundation/build/css/variables.css";
-```
+Use CSS variables in stylesheets or link them in HTML. Variables are namespaced with `--xpl-` (kebab-case) to avoid conflicts.
+
+**Option A — Link in HTML**
 
 ```html
-<link rel="stylesheet" href="@xplortech/apollo-foundation/build/css/variables.css">
+<link rel="stylesheet" href="node_modules/@xplortech/apollo-foundation/build/apollo/css/variables.css">
 ```
 
-Including the CSS variables by one of these two methods will add all the design tokens to the global scope of your CSS. Each variable is namespaced with `--xpl` (to attempt to prevent conflicts with other global CSS variables). The variables take the form `--xpl-{category}-{class}-{modifier}-{value}-{mode}`. Categories are things like `color` and `size`, classes are things like `red` and `spacing`. There may be 0, 1, 2, or more modifiers (such as `success` or `warning`). Values are usually numeric (e.g. `0`, lightest, through `900`, darkest, for color values), but can also be strings (`bold` for font weight). Finally, if there is a mode, it is always either `lm` for light mode, or `dm` for dark mode.
+**Option B — Import in CSS**
 
-### 2. JS Variables
+```css
+@import "@xplortech/apollo-foundation/apollo/css/variables.css";
+```
 
-Import the type of variables you wish to reference:
+For brands with light/dark mode (e.g. Apollo), two files are built:
+
+- **`variables.css`** — Class-based: `:root` for light and `.dark { ... }` for dark. Add a `.dark` class on a parent (e.g. `<html>`) to switch.
+- **`variables-media.css`** — Media-query based: uses `@media (prefers-color-scheme: dark)`. Use this if you prefer system-driven dark mode.
+
+Use the same paths with `field-edge` for the Field Edge brand (e.g. `field-edge/css/variables.css`).
+
+### Web (SCSS)
+
+Import the SCSS variables into your Sass/SCSS. For brands with light/dark mode you get `_variables.scss` (class-based) and `_variables-media.scss` (media-query).
+
+```scss
+// Class-based light/dark (use .dark on a parent to toggle)
+@import "@xplortech/apollo-foundation/apollo/scss/variables";
+
+// Or media-query based
+@import "@xplortech/apollo-foundation/apollo/scss/variables-media";
+```
+
+Then use the variables in your styles:
+
+```scss
+.my-component {
+  background: $xpl-color-background-primary;
+  padding: $xpl-size-spacing-md;
+}
+```
+
+For Field Edge, use `field-edge/scss` in the import path (e.g. `@import "@xplortech/apollo-foundation/field-edge/scss/variables";`).
+
+### Web (JavaScript / TypeScript)
+
+Import color and font token objects from the brand’s JS build. TypeScript declarations (`.d.ts`) are included.
 
 ```js
-import { color } from "@xplortech/apollo-foundation/build/js/colors.js";
-import { font } from "@xplortech/apollo-foundation/build/js/font.js"; 
+import { color } from "@xplortech/apollo-foundation/apollo/js/colors.js";
+import { font } from "@xplortech/apollo-foundation/apollo/js/font.js";
 ```
 
-`color` and `font` are both deeply nested JavaScript objects (roughly following the pattern described above for CSS variables). For example, to reference the `red-700` color value, you would write:
+With light/dark mode, color tokens expose `value.light` and `value.dark`:
 
 ```js
-const red_700 = color.red["700"].value;
+// Single value (no mode)
+const spacing = font.size.spacing.md.value;
+
+// With mode (e.g. background primary)
+const bgLight = color.background.primary.value.light;
+const bgDark = color.background.primary.value.dark;
 ```
 
-## More Info
+For Field Edge, use `field-edge/js` in the import path (e.g. `@xplortech/apollo-foundation/field-edge/js/colors.js`).
 
-The design tokens included in this package should match the Figma documentation provided [**here**](https://www.figma.com/file/qRzFFgT4Fy8p9GpUmV0g5E/Apollo-Foundation?node-id=2609%3A67938).
+### Android (Apollo brand)
+
+The Apollo brand builds Android resources and a Kotlin theme. Output is under `build/apollo/android/` (not exposed as a package export; use the path inside `node_modules` or copy the files).
+
+**Setup:**
+
+1. Copy (or link) the built files from `node_modules/@xplortech/apollo-foundation/build/apollo/android/` into your app:
+   - **`colors.xml`** → `app/src/main/res/values/colors.xml`
+   - **`values-night/colors.xml`** → `app/src/main/res/values-night/colors.xml` (dark mode)
+   - **`dimens.xml`** → `app/src/main/res/values/dimens.xml`
+   - **`Theme.kt`** → your Kotlin source (e.g. `com.xplor.apollo.design` package)
+
+2. In your app theme, reference the color and dimension resources (e.g. `@color/xpl_*`, `@dimen/xpl_*`) or use `Theme.kt` (e.g. `ApolloTheme.colors.backgroundPrimary`) in code.
+
+Field Edge does not produce Android output (it targets React Native); use the web or iOS outputs for Field Edge.
+
+### iOS (Apollo and Field Edge)
+
+The build outputs Swift files under `build/{brand}/ios/`. Apollo also gets legacy `StyleDictionaryColor.swift` and `StyleDictionaryFont.swift`; all brands get **`Theme.swift`** with a nested token structure and light/dark support.
+
+**Setup:**
+
+1. Copy the Swift files from `node_modules/@xplortech/apollo-foundation/build/apollo/ios/` (or `build/field-edge/ios/`) into your Xcode project.
+2. Add the files to your app target so they compile with your project.
+3. Use the `Theme` enum (and, for Apollo, `StyleDictionaryColor` / `StyleDictionarySize`) in Swift:
+
+```swift
+// Theme (all brands)
+view.backgroundColor = Theme.color.background.primary.value
+
+// Apollo legacy
+label.textColor = StyleDictionaryColor.red700
+```
+
+## Variable naming
+
+CSS and SCSS variables use the prefix `--xpl-` (or `$xpl-` in SCSS) and kebab-case. The pattern is `--xpl-{category}-{path}`, e.g. `--xpl-color-background-primary`, `--xpl-size-spacing-md`. For full token semantics and structure, see the [Figma documentation](https://www.figma.com/file/qRzFFgT4Fy8p9GpUmV0g5E/Apollo-Foundation?node-id=2609%3A67938).
+
+## For contributors
+
+### Scripts
+
+- **`npm run build`** — Build all tokens for all brands and platforms.
+- **`npm run dev`** — Watch `src/tokens` and rebuild on changes.
+- **`npm run clean`** — Remove the `build/` directory.
+- **`npm run test`** — Run tests.
+- **`npm run test:coverage`** — Run tests with coverage.
+
+### Token source layout
+
+- **`src/tokens/global/`** — Shared tokens (color palettes, font, size, etc.) used across brands.
+- **`src/tokens/brands/{brand}/`** — Brand-specific tokens (e.g. `apollo/color/light`, `apollo/color/dark`, `apollo/font`). Light/dark directories under `color` enable mode-specific CSS/SCSS/JS and native outputs.
+- **`src/tokens/platforms/{platform}/`** — Platform-specific overrides or additions (e.g. `css/`, `scss/`, `js/`, `android/`, `ios/`).
+
+The builder uses [Style Dictionary](https://style-dictionary.io/) and runs once per brand and per platform; mode detection (light/dark) is inferred from the presence of `brands/{brand}/color/light` and `color/dark`.
+
+## More info
+
+Design tokens in this package align with the [Apollo Foundation Figma documentation](https://www.figma.com/file/qRzFFgT4Fy8p9GpUmV0g5E/Apollo-Foundation?node-id=2609%3A67938).

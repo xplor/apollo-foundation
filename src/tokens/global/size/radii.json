@@ -1,0 +1,31 @@
+{
+  "size": {
+    "radius": {
+      "none": {
+        "value": "0",
+        "type": "dimension"
+      },
+      "small": {
+        "value": "2",
+        "type": "dimension"
+      },
+      "default": {
+        "value": "8",
+        "type": "dimension"
+      },
+      "large": {
+        "value": "16",
+        "type": "dimension"
+      },
+      "full": {
+        "value": "999",
+        "type": "dimension"
+      },
+      "button": {
+        "value": "{size.radius.full}",
+        "themable": true,
+        "comment": "themable"
+      }
+    }
+  }
+}

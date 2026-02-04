@@ -1,0 +1,125 @@
+{
+  "size": {
+    "font": {
+      "Title 1": {
+        "value": "{size.175}",
+        "type": "fontSize",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "Title 2": {
+        "value": "{size.150}",
+        "type": "fontSize",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "Title 3": {
+        "value": "{size.125}",
+        "type": "fontSize",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "Title 4": {
+        "value": "{size.100}",
+        "type": "fontSize",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "Title 5": {
+        "value": "{size.0875}",
+        "type": "fontSize",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "Body": {
+        "value": "{size.0875}",
+        "type": "fontSize",
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "Callout": {
+        "value": "{size.075}",
+        "type": "fontSize",
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "Caption": {
+        "value": "{size.0625}",
+        "type": "fontSize",
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      }
+    }
+  },
+  "font": {
+    "size": {
+      "display": {
+        "1": {
+          "value": "{size.350}",
+          "type": "fontSize",
+          "scope": "Font Size",
+          "comment": "Title size typography"
+        },
+        "2": {
+          "value": "{size.300}",
+          "type": "fontSize",
+          "scope": "Font Size",
+          "comment": "Title size typography"
+        },
+        "3": {
+          "value": "{size.250}",
+          "type": "fontSize",
+          "scope": "Font Size",
+          "comment": "Title size typography"
+        }
+      },
+      "title": {
+        "1": {
+          "value": "{size.200}",
+          "type": "fontSize",
+          "scope": "Font Size",
+          "comment": "Title size typography"
+        },
+        "2": {
+          "value": "{size.150}",
+          "type": "fontSize",
+          "scope": "Font Size",
+          "comment": "Title size typography"
+        },
+        "3": {
+          "value": "{size.125}",
+          "type": "fontSize",
+          "scope": "Font Size",
+          "comment": "Title size typography"
+        },
+        "4": {
+          "value": "{size.100}",
+          "type": "fontSize",
+          "scope": "Font Size",
+          "comment": "Title size typography"
+        },
+        "5": {
+          "value": "{size.0875}",
+          "type": "fontSize",
+          "scope": "Font Size",
+          "comment": "Smallest Title size typography"
+        }
+      },
+      "body": {
+        "value": "{size.0875}",
+        "type": "fontSize",
+        "scope": "Font Size",
+        "comment": "Default body size typography"
+      },
+      "callout": {
+        "value": "{size.075}",
+        "type": "fontSize",
+        "scope": "Font Size",
+        "comment": "Callout size typography"
+      },
+      "caption": {
+        "value": "{size.0625}",
+        "type": "fontSize",
+        "scope": "Font Size",
+        "comment": "Caption size typography"
+      }
+    }
+  }
+}

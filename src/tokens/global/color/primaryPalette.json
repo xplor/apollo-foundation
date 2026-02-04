@@ -1,0 +1,164 @@
+{
+  "color": {
+    "foreground": {
+      "lm": {
+        "value": "{color.neutral.0}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "dm": {
+        "value": "{color.neutral.1000}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      }
+    },
+    "background": {
+      "lm": {
+        "value": "{color.neutral.50}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "dm": {
+        "value": "{color.neutral.1200}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      }
+    },
+    "background-2": {
+      "lm": {
+        "value": "{color.neutral.100}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "dm": {
+        "value": "{color.neutral.1100}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      }
+    },
+    "navigation": {
+      "lm": {
+        "value": "{color.neutral.1000}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "dm": {
+        "value": "{color.neutral.1000}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      }
+    },
+    "stroke": {
+      "lm": {
+        "value": "{color.neutral.400}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      },
+      "dm": {
+        "value": "{color.neutral.600}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0."
+      }
+    },
+    "primary": {
+      "lm": {
+        "value": "{color.orange.600}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0.",
+        "themable": true,
+        "comment": "themable"
+      },
+      "dm": {
+        "value": "{color.orange.400}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0.",
+        "themable": true,
+        "comment": "themable"
+      }
+    },
+    "primary-bg": {
+      "lm": {
+        "value": "{color.orange.50}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0.",
+        "themable": true,
+        "comment": "themable"
+      },
+      "dm": {
+        "value": "{color.neutral.900}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0.",
+        "themable": true,
+        "comment": "themable"
+      }
+    },
+    "secondary": {
+      "lm": {
+        "value": "{color.purple.700}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0.",
+        "themable": true,
+        "comment": "themable"
+      },
+      "dm": {
+        "value": "{color.purple.300}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0.",
+        "themable": true,
+        "comment": "themable"
+      }
+    },
+    "secondary-hover": {
+      "lm": {
+        "value": "{color.purple.800}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0.",
+        "themable": true,
+        "comment": "themable"
+      },
+      "dm": {
+        "value": "{color.purple.400}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0.",
+        "themable": true,
+        "comment": "themable"
+      }
+    },
+    "secondary-bg": {
+      "lm": {
+        "value": "{color.purple.50}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0.",
+        "themable": true,
+        "comment": "themable"
+      },
+      "dm": {
+        "value": "{color.neutral.900}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0.",
+        "themable": true,
+        "comment": "themable"
+      }
+    }
+  }
+}

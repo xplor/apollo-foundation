@@ -1,0 +1,42 @@
+{
+  "font": {
+    "weight": {
+      "normal": {
+        "value": "400",
+        "type": "fontWeight",
+        "scope": "Text Content, Font Style",
+        "comment": "Bold type, used in Title typography styles"
+      },
+      "medium": {
+        "value": "500",
+        "type": "fontWeight",
+        "scope": "Text Content, Font Style",
+        "comment": "Semibold type, used in Display typography styles"
+      },
+      "semibold": {
+        "value": "600",
+        "type": "fontWeight",
+        "scope": "Text Content, Font Style",
+        "comment": "Medium type, used in Caption typography styles"
+      },
+      "bold": {
+        "value": "700",
+        "type": "fontWeight",
+        "scope": "Text Content, Font Style",
+        "comment": "Default type weight, used in body and caption typography styles"
+      },
+      "labelDefault": {
+        "value": "{font.weight.normal}",
+        "type": "fontWeight",
+        "scope": "Text Content, Font Style",
+        "comment": "Default weight labels, typically on forms"
+      },
+      "labelStrong": {
+        "value": "{font.weight.medium}",
+        "type": "fontWeight",
+        "scope": "Text Content, Font Style",
+        "comment": "Bold weight labels, typically on forms"
+      }
+    }
+  }
+}

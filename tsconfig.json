@@ -1,0 +1,21 @@
+{
+  "extends": "@tsconfig/node24/tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ESNext",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "lib": [ "esnext" ],
+    "types": [ "node" ],
+    "baseUrl": "./"
+  },
+  "exclude": [ "node_modules" ],
+  "include": [
+    "src/**/*.ts",
+    "*.ts"
+  ]
+}

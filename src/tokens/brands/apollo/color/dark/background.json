@@ -1,0 +1,444 @@
+{
+  "dark": {
+    "background": {
+      "surface": {
+        "default": {
+          "value": "{color.neutral.1000}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "The default surface for pages and containers"
+        },
+        "subtlest": {
+          "value": "{color.neutral.900}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for the subtlest surfaces"
+        },
+        "subtle": {
+          "value": "{color.neutral.1200}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for subtle surfaces"
+        },
+        "bold": {
+          "value": "{color.neutral.200}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for bold dark surfaces"
+        },
+        "backdrop": {
+          "value": "{color.transparent.neutral.75}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use on transparent backdrops; eg. behind a modal"
+        },
+        "inverse_on_light": {
+          "value": "{color.neutral.1000}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for inverse surfaces on light surfaces where mode switching is not needed"
+        },
+        "inverse_on_dark": {
+          "value": "{color.neutral.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for inverse surfaces on dark surfaces where mode switching is not needed"
+        },
+        "information": {
+          "value": "{color.neutral.700}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for informational surfaces"
+        },
+        "information_bold": {
+          "value": "{color.neutral.600}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for informational surfaces where a bold weight is needed"
+        },
+        "positive": {
+          "value": "{color.green.300}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for positive sentiment surfaces"
+        },
+        "negative": {
+          "value": "{color.red.300}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for negative sentiment surfaces"
+        },
+        "transparent": {
+          "0": {
+            "value": "{color.transparent.0}",
+            "type": "color",
+            "scope": "All Scopes",
+            "comment": "Use for transparent surfaces"
+          },
+          "5": {
+            "value": "{color.transparent.neutral.5}",
+            "type": "color",
+            "scope": "All Scopes",
+            "comment": "Use for elevation shadows and overlays"
+          },
+          "10": {
+            "value": "{color.transparent.neutral.10}",
+            "type": "color",
+            "scope": "All Scopes",
+            "comment": "Use for elevation shadows and overlays"
+          },
+          "25": {
+            "value": "{color.transparent.neutral.25}",
+            "type": "color",
+            "scope": "All Scopes",
+            "comment": "Use for elevation shadows and overlays"
+          },
+          "50": {
+            "value": "{color.transparent.neutral.50}",
+            "type": "color",
+            "scope": "All Scopes",
+            "comment": "Use for elevation shadows and overlays"
+          },
+          "75": {
+            "value": "{color.transparent.neutral.75}",
+            "type": "color",
+            "scope": "All Scopes",
+            "comment": "Use for elevation shadows and overlays"
+          }
+        }
+      },
+      "action": {
+        "disabled": {
+          "value": "{color.neutral.800}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for disabled action states"
+        },
+        "primary": {
+          "default": {
+            "value": "{color.purple.300}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for primary action default state"
+          },
+          "hover": {
+            "value": "{color.purple.400}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for primary action hover state"
+          },
+          "active": {
+            "value": "{color.purple.400}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for primary action active state"
+          },
+          "focus": {
+            "value": "{color.purple.300}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for primary action focus state"
+          }
+        },
+        "secondary": {
+          "default": {
+            "value": "{color.neutral.1000}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for secondary action default state"
+          },
+          "hover": {
+            "value": "{color.neutral.1000}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for secondary action hover state"
+          },
+          "active": {
+            "value": "{color.neutral.1000}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for secondary action active state"
+          },
+          "focus": {
+            "value": "{color.neutral.1000}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for secondary action focus state"
+          }
+        },
+        "tertiary": {
+          "default": {
+            "value": "{color.transparent.0}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for tertiary action default state"
+          },
+          "hover": {
+            "value": "{color.neutral.800}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for tertiary action hover state"
+          },
+          "active": {
+            "value": "{color.neutral.700}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for tertiary action active state"
+          },
+          "focus": {
+            "value": "{color.neutral.1000}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for tertiary action focus state"
+          }
+        },
+        "positive": {
+          "default": {
+            "value": "{color.green.300}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for positive actions default state"
+          },
+          "hover": {
+            "value": "{color.green.400}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for positive actions hover state"
+          },
+          "active": {
+            "value": "{color.green.400}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for positive actions active state"
+          },
+          "focus": {
+            "value": "{color.green.300}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for positive actions focused state"
+          }
+        },
+        "negative": {
+          "default": {
+            "value": "{color.red.300}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for negative actions default state"
+          },
+          "hover": {
+            "value": "{color.red.400}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for negative actions hover state"
+          },
+          "active": {
+            "value": "{color.red.400}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for negative actions active state"
+          },
+          "focus": {
+            "value": "{color.red.300}",
+            "type": "color",
+            "scope": "Frame Fill, Shape Fill",
+            "comment": "Use for negative actions focused state"
+          }
+        }
+      },
+      "accent": {
+        "default": {
+          "value": "{color.purple.300}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for default accent backgrounds"
+        },
+        "pink": {
+          "value": "{color.pink.300}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for pink accent backgrounds"
+        },
+        "highlight": {
+          "value": "{color.yellow.200}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for highlighted accent backgrounds"
+        },
+        "positive": {
+          "value": "{color.green.700}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for positive sentiment accents"
+        },
+        "positive_bold": {
+          "value": "{color.green.400}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for positive sentiments when a bold weight is needed"
+        },
+        "negative": {
+          "value": "{color.red.300}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for negative sentiments"
+        },
+        "negative_bold": {
+          "value": "{color.red.600}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for negative sentiments when a bold weight is needed"
+        },
+        "alternative": {
+          "value": "{color.blue.200}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Alternative accent color"
+        },
+        "alternative_bold": {
+          "value": "{color.blue.300}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Alternative accent color in a bold weight"
+        },
+        "brand": {
+          "value": "{color.orange.400}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for brand color accents"
+        },
+        "brand_subtle": {
+          "value": "{color.orange.500}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for subtle brand accents"
+        },
+        "neutral": {
+          "value": "{color.neutral.600}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for neutral accents"
+        },
+        "neutral_bold": {
+          "value": "{color.neutral.400}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Use for neutral accents that need a bolder weight"
+        }
+      },
+      "brand": {
+        "primary": {
+          "value": "{color.orange.200}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Primary brand color. Used for logos and brand accents"
+        },
+        "primary_surface": {
+          "value": "{color.orange.900}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Primary brand surface color"
+        },
+        "secondary": {
+          "value": "{color.purple.300}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Secondary brand color"
+        },
+        "secondary_surface": {
+          "value": "{color.purple.900}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Secondary brand surface color"
+        },
+        "tertiary": {
+          "value": "{color.brand.primary.starwhite}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Brand tertiary color. Used primarily for surfaces"
+        }
+      },
+      "badge": {
+        "default": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Default Badge surface"
+        },
+        "yellow": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Neutral sentiment Toast surface"
+        },
+        "green": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Neutral sentiment Toast surface"
+        },
+        "red": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Neutral sentiment Toast surface"
+        },
+        "grey": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Positive sentiment toast surface"
+        },
+        "blue": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Positive sentiment toast surface"
+        }
+      },
+      "messaging": {
+        "information": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Negative sentiment Toast surface"
+        },
+        "warning": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Negative sentiment Toast surface"
+        },
+        "warning_bold": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Yellow Badge surface"
+        },
+        "positive": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Green badge surface"
+        },
+        "positive_bold": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Red Badge surface"
+        },
+        "negative": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Grey Badge surface"
+        },
+        "negative_bold": {
+          "value": "{background.surface.transparent.0}",
+          "type": "color",
+          "scope": "Frame Fill, Shape Fill",
+          "comment": "Blue badge surface"
+        }
+      }
+    }
+  }
+}

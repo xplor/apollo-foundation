@@ -5,38 +5,38 @@
         "value": "{color.green.200}",
         "type": "color",
         "deprecated": true,
-        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-green-200."
       },
       "yellow": {
         "value": "{color.yellow.200}",
         "type": "color",
         "deprecated": true,
-        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-yellow-200."
       },
       "pink": {
         "value": "{color.pink.300}",
         "type": "color",
         "deprecated": true,
-        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-pink-300."
       },
       "purple": {
         "value": "{color.purple.300}",
         "type": "color",
         "deprecated": true,
-        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-purple-300."
       },
       "blue": {
         "lm": {
           "value": "{color.blue.500}",
           "type": "color",
           "deprecated": true,
-          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-blue-500."
         },
         "dm": {
           "value": "{color.blue.200}",
           "type": "color",
           "deprecated": true,
-          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-blue-200."
         }
       }
     }

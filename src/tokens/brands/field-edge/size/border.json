@@ -1,0 +1,60 @@
+{
+  "border": {
+    "none": {
+      "value": "{size.0}",
+      "type": "dimension",
+      "scope": "Stroke Float",
+      "comment": ""
+    },
+    "small": {
+      "value": "1px",
+      "type": "dimension",
+      "scope": "Stroke Float",
+      "comment": ""
+    },
+    "large": {
+      "value": "{size.0125}",
+      "type": "dimension",
+      "scope": "Stroke Float",
+      "comment": ""
+    },
+    "radius": {
+      "none": {
+        "value": "{size.0}",
+        "type": "dimension",
+        "scope": "Corner Radius",
+        "comment": ""
+      },
+      "small": {
+        "value": "{size.050}",
+        "type": "dimension",
+        "scope": "Corner Radius",
+        "comment": ""
+      },
+      "default": {
+        "value": "{size.050}",
+        "type": "dimension",
+        "scope": "Corner Radius",
+        "comment": ""
+      },
+      "large": {
+        "value": "{size.100}",
+        "type": "dimension",
+        "scope": "Corner Radius",
+        "comment": ""
+      },
+      "full": {
+        "value": "9999px",
+        "type": "dimension",
+        "scope": "Corner Radius",
+        "comment": ""
+      },
+      "button": {
+        "value": "{border.radius.full}",
+        "type": "dimension",
+        "scope": "Corner Radius",
+        "comment": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "path": ["color", "background", "primary"],
+    "name": "xpl-color-background-primary",
+    "value": "#ffffff",
+    "comment": "Light background primary"
+  },
+  {
+    "path": ["color", "dark", "background", "primary"],
+    "name": "xpl-color-background-primary-dark",
+    "value": "#111111",
+    "comment": "Dark background primary"
+  },
+  {
+    "path": ["color", "background", "transparent", "0"],
+    "name": "xpl-color-transparent-0",
+    "value": "transparent",
+    "comment": "Transparent for legacy alias"
+  }
+]

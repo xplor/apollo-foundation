@@ -7,20 +7,23 @@ import {
 } from './android';
 import { cssVariablesClassMode, cssVariablesMediaMode } from './css';
 import { debug } from './debug';
-import { scssVariablesClassMode, scssVariablesMediaMode } from './scss';
 import { javascriptUmdWithModes, typescriptDeclarations } from './js';
+import { iosSwiftEnumWithModes, iosSwiftEnumWithModesLegacy } from './ios';
+import { scssVariablesClassMode, scssVariablesMediaMode } from './scss';
 
 export default [
-    androidResourcesWithModes,
-    androidResourcesLight,
-    androidResourcesDark,
-    androidKotlinTheme,
     androidDimens,
+    androidKotlinTheme,
+    androidResourcesDark,
+    androidResourcesLight,
+    androidResourcesWithModes,
     cssVariablesClassMode,
     cssVariablesMediaMode,
     debug,
+    iosSwiftEnumWithModes,
+    iosSwiftEnumWithModesLegacy,
+    javascriptUmdWithModes,
     scssVariablesClassMode,
     scssVariablesMediaMode,
-    javascriptUmdWithModes,
     typescriptDeclarations,
 ];

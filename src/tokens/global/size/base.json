@@ -1,0 +1,154 @@
+{
+  "size": {
+    "0": {
+      "value": 0,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "0px/0rem"
+    },
+    "0125": {
+      "value": 2,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "2px/0.125rem"
+    },
+    "025": {
+      "value": 4,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "4px/0.25rem"
+    },
+    "0375": {
+      "value": 6,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "6px/0.375rem"
+    },
+    "050": {
+      "value": 8,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "8px/0.5rem"
+    },
+    "0625": {
+      "value": 10,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "10px/0.625rem"
+    },
+    "075": {
+      "value": 12,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "12px/0.75rem"
+    },
+    "0875": {
+      "value": 14,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "14px/0.875rem"
+    },
+    "100": {
+      "value": 16,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "16px/1rem (base value)"
+    },
+    "1125": {
+      "value": 18,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "18px/1.125 (base value)"
+    },
+    "125": {
+      "value": 20,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "20px/1.25rem"
+    },
+    "150": {
+      "value": 24,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "24px/1.5rem"
+    },
+    "175": {
+      "value": 28,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "28px/1.75rem"
+    },
+    "200": {
+      "value": 32,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "32px/2rem"
+    },
+    "225": {
+      "value": 36,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "36px/2.25rem"
+    },
+    "250": {
+      "value": 40,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "40px/2.5rem"
+    },
+    "300": {
+      "value": 48,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "48px/3rem"
+    },
+    "350": {
+      "value": 56,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "56px/3.5rem"
+    },
+    "400": {
+      "value": 64,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "64px/4rem"
+    },
+    "450": {
+      "value": 72,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "72px/4.5rem"
+    },
+    "500": {
+      "value": 80,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "80px/5rem"
+    },
+    "600": {
+      "value": 96,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "96px/6rem"
+    },
+    "700": {
+      "value": 112,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "112px/7rem"
+    },
+    "800": {
+      "value": 128,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "128px/8rem"
+    },
+    "900": {
+      "value": 144,
+      "type": "dimension",
+      "scope": "All",
+      "comment": "144px/9rem"
+    }
+  }
+}

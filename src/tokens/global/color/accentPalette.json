@@ -1,0 +1,44 @@
+{
+  "color": {
+    "accent": {
+      "green": {
+        "value": "{color.green.200}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+      },
+      "yellow": {
+        "value": "{color.yellow.200}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+      },
+      "pink": {
+        "value": "{color.pink.300}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+      },
+      "purple": {
+        "value": "{color.purple.300}",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+      },
+      "blue": {
+        "lm": {
+          "value": "{color.blue.500}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+        },
+        "dm": {
+          "value": "{color.blue.200}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-transparent."
+        }
+      }
+    }
+  }
+}

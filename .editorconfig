@@ -28,7 +28,7 @@ space_after_anonymous_functions = true
 spaces_in_brackets = false
 
 # No Standard.  Please document a standard if different from .js
-[*.css]
+[{*.css,*.scss}]
 trim_trailing_whitespace = true
 indent_size = 2
 

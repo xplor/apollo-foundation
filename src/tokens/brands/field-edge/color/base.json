@@ -1,0 +1,650 @@
+{
+  "color": {
+    "brand": {
+      "primary": {
+        "green": {
+          "value": "#47AF4BFF",
+          "type": "color",
+          "scope": "All Scopes",
+          "comment": ""
+        }
+      },
+      "secondary": {
+        "gray": {
+          "value": "{color.neutral.900}",
+          "type": "color",
+          "scope": "All Scopes",
+          "comment": ""
+        }
+      }
+    },
+    "neutral": {
+      "0": {
+        "value": "#FFFFFFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "50": {
+        "value": "#F5F5F5FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "100": {
+        "value": "#E0E0E0FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "200": {
+        "value": "#CCCCCCFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "300": {
+        "value": "#B8B8B8FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "400": {
+        "value": "#A3A3A3FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "500": {
+        "value": "#8F8F8FFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "600": {
+        "value": "#7A7A7AFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "700": {
+        "value": "#666666FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "800": {
+        "value": "#525252FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "900": {
+        "value": "#3D3D3DFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "1000": {
+        "value": "#222222FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "1100": {
+        "value": "#0E0E0EFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      }
+    },
+    "green": {
+      "50": {
+        "value": "#F4FFF4FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "100": {
+        "value": "#DBFFDCFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "200": {
+        "value": "#C2FFC4FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "300": {
+        "value": "#A9FFABFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "400": {
+        "value": "#91FF93FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "500": {
+        "value": "#77EA7AFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "600": {
+        "value": "#5AC85DFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "700": {
+        "value": "#41A643FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "800": {
+        "value": "#2C842EFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "900": {
+        "value": "#1B621DFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "1000": {
+        "value": "#134614FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "1100": {
+        "value": "#0B2C0CFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      }
+    },
+    "blue": {
+      "50": {
+        "value": "#E9F2FFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "100": {
+        "value": "#C2DCFFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "200": {
+        "value": "#9BC5FFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "300": {
+        "value": "#73AFFFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "400": {
+        "value": "#4C98FFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "500": {
+        "value": "#2582FFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "600": {
+        "value": "#0E64D8FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "700": {
+        "value": "#004BAFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "800": {
+        "value": "#003986FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "900": {
+        "value": "#00285EFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      }
+    },
+    "teal": {
+      "50": {
+        "value": "#EAFBFFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "100": {
+        "value": "#BCF1FFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "200": {
+        "value": "#8EE8FFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "300": {
+        "value": "#60DEFFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "400": {
+        "value": "#31CFF8FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "500": {
+        "value": "#1DB0D6FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "600": {
+        "value": "#0D92B4FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "700": {
+        "value": "#017492FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "800": {
+        "value": "#005970FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "900": {
+        "value": "#003E4EFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      }
+    },
+    "purple": {
+      "50": {
+        "value": "#F5E8FFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "100": {
+        "value": "#E4BEFFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "200": {
+        "value": "#D294FFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "300": {
+        "value": "#C16AFFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "400": {
+        "value": "#AF40FFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "500": {
+        "value": "#9E16FFFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "600": {
+        "value": "#7D00D6FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "700": {
+        "value": "#6500ADFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "800": {
+        "value": "#4D0085FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "900": {
+        "value": "#36005CFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      }
+    },
+    "pink": {
+      "50": {
+        "value": "#FFE5F0FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "100": {
+        "value": "#FFB7D6FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "200": {
+        "value": "#FF8ABCFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "300": {
+        "value": "#FF5CA2FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "400": {
+        "value": "#FF2E88FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "500": {
+        "value": "#FF006EFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "600": {
+        "value": "#D6005DFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "700": {
+        "value": "#AD004BFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "800": {
+        "value": "#850039FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "900": {
+        "value": "#5C0028FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      }
+    },
+    "red": {
+      "50": {
+        "value": "#FFE8EBFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "100": {
+        "value": "#FFBEC6FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "200": {
+        "value": "#FF95A2FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "300": {
+        "value": "#FF6C7DFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "400": {
+        "value": "#FF4259FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "500": {
+        "value": "#F91833FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "600": {
+        "value": "#D0021BFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "700": {
+        "value": "#A70014FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "800": {
+        "value": "#7E000FFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "900": {
+        "value": "#56000AFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      }
+    },
+    "orange": {
+      "50": {
+        "value": "#FFEEE8FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "100": {
+        "value": "#FFD1BEFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "200": {
+        "value": "#FFB395FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "300": {
+        "value": "#FF956CFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "400": {
+        "value": "#FF7842FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "500": {
+        "value": "#F95818FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "600": {
+        "value": "#D03E05FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "700": {
+        "value": "#A72F00FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "800": {
+        "value": "#7E2400FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "900": {
+        "value": "#561800FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      }
+    },
+    "yellow": {
+      "50": {
+        "value": "#FFF8E6FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "100": {
+        "value": "#FFEDBAFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "200": {
+        "value": "#FFE18FFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "300": {
+        "value": "#FFD563FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "400": {
+        "value": "#FFC937FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "500": {
+        "value": "#FFBE0BFF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "600": {
+        "value": "#D69D00FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "700": {
+        "value": "#AD7F00FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "800": {
+        "value": "#856100FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "900": {
+        "value": "#5C4300FF",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      }
+    },
+    "transparent": {
+      "0": {
+        "value": "#FFFFFF00",
+        "type": "color",
+        "scope": "All Scopes",
+        "comment": ""
+      },
+      "neutral": {
+        "5": {
+          "value": "#3D3D3D0D",
+          "type": "color",
+          "scope": "All Scopes",
+          "comment": ""
+        },
+        "10": {
+          "value": "#3D3D3D1A",
+          "type": "color",
+          "scope": "All Scopes",
+          "comment": ""
+        },
+        "25": {
+          "value": "#3D3D3D40",
+          "type": "color",
+          "scope": "All Scopes",
+          "comment": ""
+        },
+        "50": {
+          "value": "#3D3D3D80",
+          "type": "color",
+          "scope": "All Scopes",
+          "comment": ""
+        },
+        "75": {
+          "value": "#3D3D3DBF",
+          "type": "color",
+          "scope": "All Scopes",
+          "comment": ""
+        }
+      }
+    }
+  }
+}

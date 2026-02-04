@@ -1,0 +1,116 @@
+{
+"text": {
+    "strong": {
+      "value": "{color.neutral.1100}",
+      "type": "color",
+      "scope": "Text Fill",
+      "comment": "Bold text color, use for display text styles, page headings"
+    },
+    "default": {
+      "value": "{color.neutral.900}",
+      "type": "color",
+      "scope": "Text Fill",
+      "comment": "Use for primary text color such as body or titles in sentence case"
+    },
+    "subdued": {
+      "value": "{color.neutral.700}",
+      "type": "color",
+      "scope": "Text Fill",
+      "comment": "Use for subdued text such as descriptions and details"
+    },
+    "inverse": {
+      "value": "{color.neutral.0}",
+      "type": "color",
+      "scope": "Text Fill",
+      "comment": "Use on inverse surfaces (light on dark surface, dark on light surface)"
+    },
+    "inverse-on-light": {
+      "value": "{color.neutral.1000}",
+      "type": "color",
+      "scope": "Text Fill",
+      "comment": "Use on a light surface that does not mode switch"
+    },
+    "inverse-on-dark": {
+      "value": "{color.neutral.0}",
+      "type": "color",
+      "scope": "Text Fill",
+      "comment": "Use on text on a dark surface that does not mode switch"
+    },
+    "positive": {
+      "value": "{color.green.800}",
+      "type": "color",
+      "scope": "Text Fill",
+      "comment": "Use on positive sentiment text"
+    },
+    "negative": {
+      "value": "{color.red.600}",
+      "type": "color",
+      "scope": "Text Fill",
+      "comment": "Use on negative sentiment text"
+    },
+    "disabled": {
+      "value": "{color.neutral.500}",
+      "type": "color",
+      "scope": "Text Fill",
+      "comment": "Use on disabled text"
+    },
+    "link": {
+      "default": {
+        "value": "{color.green.800}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use for link text"
+      },
+      "hovered": {
+        "value": "{color.orange.900}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use for default badge text"
+      },
+      "visited": {
+        "value": "{color.yellow.900}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use for yellow badge text"
+      }
+    },
+    "badge": {
+      "default": {
+        "value": "{color.green.1100}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use for green badge text"
+      },
+      "yellow": {
+        "value": "{color.red.900}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use for red badge text"
+      },
+      "green": {
+        "value": "{color.neutral.700}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use for gray badge text"
+      },
+      "red": {
+        "value": "{color.blue.900}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use for blue badge text"
+      },
+      "gray": {
+        "value": "{color.green.900}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use on link hover states"
+      },
+      "blue": {
+        "value": "{color.green.600}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use on links that have been visited"
+      }
+    }
+  }
+}

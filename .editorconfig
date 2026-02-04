@@ -16,7 +16,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 
 # Standard at: https://github.com/felixge/node-style-guide
-[*.{json}]
+[*.json]
 trim_trailing_whitespace = true
 indent_style = space
 indent_size = 2
@@ -26,6 +26,11 @@ spaces_around_operators = true
 space_after_control_statements = true
 space_after_anonymous_functions = true
 spaces_in_brackets = false
+
+# No Standard.  Please document a standard if different from .js
+[*.css]
+trim_trailing_whitespace = true
+indent_size = 2
 
 [*.yml]
 trim_trailing_whitespace = true

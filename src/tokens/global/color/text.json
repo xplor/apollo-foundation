@@ -1,0 +1,78 @@
+{
+  "color": {
+    "text": {
+      "primary": {
+        "lm": {
+          "value": "{color.gray.900}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-gray-900."
+        },
+        "dm": {
+          "value": "{color.gray.0}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-gray-0."
+        }
+      },
+      "secondary": {
+        "lm": {
+          "value": "{color.gray.600}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-gray-600."
+        },
+        "dm": {
+          "value": "{color.gray.500}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-gray-500."
+        }
+      },
+      "reverse": {
+        "lm": {
+          "value": "{color.gray.0}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-gray-0."
+        },
+        "dm": {
+          "value": "{color.gray.1000}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-gray-1000."
+        }
+      },
+      "warning": {
+        "lm": {
+          "value": "{color.red.700}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-red-700."
+        },
+        "dm": {
+          "value": "{color.red.300}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-red-300."
+        }
+      },
+      "action": {
+        "lm": {
+          "value": "{color.primary.lm}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-primary-lm.",
+          "comment": "uses themable token"
+        },
+        "dm": {
+          "value": "{color.primary.dm}",
+          "type": "color",
+          "deprecated": true,
+          "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --xpl-color-primary-dm.",
+          "comment": "uses themable token"
+        }
+      }
+    }
+  }
+}

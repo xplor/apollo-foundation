@@ -1,0 +1,798 @@
+{
+  "color": {
+    "brand": {
+      "primary": {
+        "xplorange": {
+          "value": "{color.orange.600}",
+          "type": "color",
+          "scope": "All",
+          "comment": "Primary Xplor brand orange"
+        },
+        "deepspace": {
+          "value": "#220021FF",
+          "type": "color",
+          "scope": "All",
+          "comment": "Primary Xplor brand deep purple"
+        },
+        "starwhite": {
+          "value": "{color.orange.50}",
+          "type": "color",
+          "scope": "All",
+          "comment": "Used for brand colored surfaces"
+        }
+      },
+      "secondary": {
+        "sunray": {
+          "value": "{color.yellow.200}",
+          "type": "color",
+          "scope": "All",
+          "comment": "Secondary Xplor yellow typically used for highlights and infographics"
+        },
+        "supernova": {
+          "value": "{color.green.200}",
+          "type": "color",
+          "scope": "All",
+          "comment": "Secondary Xplor green typically used for highlights and infographics"
+        },
+        "neptune": {
+          "value": "{color.purple.600}",
+          "type": "color",
+          "scope": "All",
+          "comment": "Secondary Xplor purple typically used for UI elements and active states, highlights and infographics"
+        },
+        "pinkplanet": {
+          "value": "{color.pink.300}",
+          "type": "color",
+          "scope": "All",
+          "comment": "Secondary Xplor pink typically used for highlights and infographics"
+        },
+        "skyblue": {
+          "value": "{color.blue.200}",
+          "type": "color",
+          "scope": "All",
+          "comment": "Secondary Xplor blue typically used for highlights and infographics"
+        }
+      }
+    },
+    "neutral": {
+      "0": {
+        "value": "#FFFFFFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Pure white, base neutral color"
+      },
+      "50": {
+        "value": "#F8F9FAFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "100": {
+        "value": "#F3F4F6FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "200": {
+        "value": "#EEEFF3FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "300": {
+        "value": "#EAEBEFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "400": {
+        "value": "#E1E2E8FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "500": {
+        "value": "#999BA8FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "600": {
+        "value": "#6A6D7DFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "700": {
+        "value": "#3C3847FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "800": {
+        "value": "#363240FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "900": {
+        "value": "#302D3BFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "1000": {
+        "value": "#292632FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "1100": {
+        "value": "#201E29FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      },
+      "1200": {
+        "value": "#18161FFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base neutral color"
+      }
+    },
+    "gray": {
+      "0": {
+        "value": "#FFFFFFFF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-0."
+      },
+      "50": {
+        "value": "#F8F9FAFF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-50."
+      },
+      "100": {
+        "value": "#F3F4F6FF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-100."
+      },
+      "200": {
+        "value": "#EEEFF3FF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-200."
+      },
+      "300": {
+        "value": "#EAEBEFFF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-300."
+      },
+      "400": {
+        "value": "#E1E2E8FF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-400."
+      },
+      "500": {
+        "value": "#999BA8FF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-500."
+      },
+      "600": {
+        "value": "#6A6D7DFF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-600."
+      },
+      "700": {
+        "value": "#3C3847FF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-700."
+      },
+      "800": {
+        "value": "#363240FF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-800."
+      },
+      "900": {
+        "value": "#302D3BFF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-900."
+      },
+      "1000": {
+        "value": "#292632FF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-1000."
+      },
+      "1100": {
+        "value": "#201E29FF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-1100."
+      },
+      "1200": {
+        "value": "#18161FFF",
+        "type": "color",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --color-neutral-1200."
+      }
+    },
+    "purple": {
+      "50": {
+        "value": "#F4F2FFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base purple color"
+      },
+      "100": {
+        "value": "#EBE5FFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base purple color"
+      },
+      "200": {
+        "value": "#DDD1FFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base purple color"
+      },
+      "300": {
+        "value": "#C3ADFFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base purple color"
+      },
+      "400": {
+        "value": "#A480FFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base purple color"
+      },
+      "500": {
+        "value": "#8857FAFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base purple color"
+      },
+      "600": {
+        "value": "#793EF7FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base purple color"
+      },
+      "700": {
+        "value": "#6923F4FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base purple color"
+      },
+      "800": {
+        "value": "#4D1AB2FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base purple color"
+      },
+      "900": {
+        "value": "#330D80FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base purple color"
+      }
+    },
+    "orange": {
+      "50": {
+        "value": "#FEF7F3FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base orange color"
+      },
+      "100": {
+        "value": "#FEEDE4FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base orange color"
+      },
+      "200": {
+        "value": "#FFDCCCFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base orange color"
+      },
+      "300": {
+        "value": "#FFBDA8FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base orange color"
+      },
+      "400": {
+        "value": "#F99170FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base orange color"
+      },
+      "500": {
+        "value": "#F76D43FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base orange color"
+      },
+      "600": {
+        "value": "#F44E27FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base orange color"
+      },
+      "700": {
+        "value": "#CC4121FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base orange color"
+      },
+      "800": {
+        "value": "#A6361AFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base orange color"
+      },
+      "900": {
+        "value": "#7A2714FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base orange color"
+      }
+    },
+    "blue": {
+      "50": {
+        "value": "#E8FCFFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base blue color"
+      },
+      "100": {
+        "value": "#D1F9FFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base blue color"
+      },
+      "200": {
+        "value": "#BAF6FFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base blue color"
+      },
+      "300": {
+        "value": "#9FDAF5FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base blue color"
+      },
+      "400": {
+        "value": "#85BFEBFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base blue color"
+      },
+      "500": {
+        "value": "#6AA3E0FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base blue color"
+      },
+      "600": {
+        "value": "#5088D6FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base blue color"
+      },
+      "700": {
+        "value": "#356CCCFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base blue color"
+      },
+      "800": {
+        "value": "#2253B3FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base blue color"
+      },
+      "900": {
+        "value": "#0F3999FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base blue color"
+      }
+    },
+    "green": {
+      "50": {
+        "value": "#EBFFF8FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base green color"
+      },
+      "100": {
+        "value": "#C4FFEDFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base green color"
+      },
+      "200": {
+        "value": "#74FBD0FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base green color"
+      },
+      "300": {
+        "value": "#52EBBAFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base green color"
+      },
+      "400": {
+        "value": "#4AD4A8FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base green color"
+      },
+      "500": {
+        "value": "#37B88FFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base green color"
+      },
+      "600": {
+        "value": "#2E9977FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base green color"
+      },
+      "700": {
+        "value": "#24785DFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base green color"
+      },
+      "800": {
+        "value": "#1D614BFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base green color"
+      },
+      "900": {
+        "value": "#154737FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base green color"
+      }
+    },
+    "yellow": {
+      "50": {
+        "value": "#FFF8E6FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base yellow color"
+      },
+      "100": {
+        "value": "#FFEDBAFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base yellow color"
+      },
+      "200": {
+        "value": "#FFE18FFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base yellow color"
+      },
+      "300": {
+        "value": "#FFD563FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base yellow color"
+      },
+      "400": {
+        "value": "#FFC937FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base yellow color"
+      },
+      "500": {
+        "value": "#FFBE0BFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base yellow color"
+      },
+      "600": {
+        "value": "#D69D00FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base yellow color"
+      },
+      "700": {
+        "value": "#AD7F00FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base yellow color"
+      },
+      "800": {
+        "value": "#856100FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base yellow color"
+      },
+      "900": {
+        "value": "#5C4300FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base yellow color"
+      }
+    },
+    "pink": {
+      "50": {
+        "value": "#FFF0FEFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base pink color"
+      },
+      "100": {
+        "value": "#FFD9FBFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base pink color"
+      },
+      "200": {
+        "value": "#FFB8F9FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base pink color"
+      },
+      "300": {
+        "value": "#FF8DF4FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base pink color"
+      },
+      "400": {
+        "value": "#F26DDCFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base pink color"
+      },
+      "500": {
+        "value": "#E550C8FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base pink color"
+      },
+      "600": {
+        "value": "#CC3399FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base pink color"
+      },
+      "700": {
+        "value": "#BF1D7BFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base pink color"
+      },
+      "800": {
+        "value": "#990F54FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base pink color"
+      },
+      "900": {
+        "value": "#730B3FFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base pink color"
+      }
+    },
+    "red": {
+      "50": {
+        "value": "#FEF7F3FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base red color"
+      },
+      "100": {
+        "value": "#FED9D5FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base red color"
+      },
+      "200": {
+        "value": "#FEC5BEFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base red color"
+      },
+      "300": {
+        "value": "#FF9387FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base red color"
+      },
+      "400": {
+        "value": "#F87263FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base red color"
+      },
+      "500": {
+        "value": "#F24F3DFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base red color"
+      },
+      "600": {
+        "value": "#DB321FFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base red color"
+      },
+      "700": {
+        "value": "#C2210FFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base red color"
+      },
+      "800": {
+        "value": "#961305FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base red color"
+      },
+      "900": {
+        "value": "#731409FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base red color"
+      }
+    },
+    "transparent": {
+      "0": {
+        "value": "#FFFFFF00",
+        "type": "color",
+        "scope": "All",
+        "comment": "Clear transparent color"
+      },
+      "light": {
+        "5": {
+          "value": "#FFFFFF0D",
+          "type": "color",
+          "scope": "All",
+          "comment": "Light transparent color @ 5% opacity."
+        },
+        "10": {
+          "value": "#FFFFFF1A",
+          "type": "color",
+          "scope": "All",
+          "comment": "Light transparent color @ 10% opacity."
+        },
+        "25": {
+          "value": "#FFFFFF40",
+          "type": "color",
+          "scope": "All",
+          "comment": "Light transparent color @ 25% opacity."
+        },
+        "50": {
+          "value": "#FFFFFF80",
+          "type": "color",
+          "scope": "All",
+          "comment": "Light transparent color @ 50% opacity."
+        },
+        "75": {
+          "value": "#FFFFFFBF",
+          "type": "color",
+          "scope": "All",
+          "comment": "Light transparent color @ 75% opacity."
+        }
+      },
+      "neutral": {
+        "5": {
+          "value": "#302D3B0D",
+          "type": "color",
+          "scope": "All",
+          "comment": "Neutral transparent color @ 5% opacity"
+        },
+        "10": {
+          "value": "#302D3B1A",
+          "type": "color",
+          "scope": "All",
+          "comment": "Neutral transparent color @ 10% opacity"
+        },
+        "25": {
+          "value": "#302D3B40",
+          "type": "color",
+          "scope": "All",
+          "comment": "Neutral transparent color @ 25% opacity"
+        },
+        "50": {
+          "value": "#302D3B80",
+          "type": "color",
+          "scope": "All",
+          "comment": "Neutral transparent color @ 50% opacity"
+        },
+        "75": {
+          "value": "#302D3BBF",
+          "type": "color",
+          "scope": "All",
+          "comment": "Neutral transparent color @ 75% opacity"
+        }
+      }
+    },
+    "teal": {
+      "50": {
+        "value": "#EAFBFFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base teal color"
+      },
+      "100": {
+        "value": "#BCF1FFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base teal color"
+      },
+      "200": {
+        "value": "#8EE8FFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base teal color"
+      },
+      "300": {
+        "value": "#60DEFFFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base teal color"
+      },
+      "400": {
+        "value": "#31CFF8FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base teal color"
+      },
+      "500": {
+        "value": "#1DB0D6FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base teal color"
+      },
+      "600": {
+        "value": "#0D92B4FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base teal color"
+      },
+      "700": {
+        "value": "#017492FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base teal color"
+      },
+      "800": {
+        "value": "#005970FF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base teal color"
+      },
+      "900": {
+        "value": "#003E4EFF",
+        "type": "color",
+        "scope": "All",
+        "comment": "Base teal color"
+      }
+    }
+  }
+}

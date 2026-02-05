@@ -106,7 +106,7 @@
         "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-32"
       },
       "36": {
-        "value": "36px.25",
+        "value": "36",
         "type": "dimension",
         "comment": "36px/2.25rem",
         "scope": "All",
@@ -197,124 +197,112 @@
   },
   "space": {
     "0": {
-      "value": "{size.0}",
+      "value": "0",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "0px/0rem"
     },
     "2": {
-      "value": "{size.0125}",
+      "value": "2",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "2px/0.125rem"
     },
     "4": {
-      "value": "{size.025}",
+      "value": "4",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "4px/0.25rem"
     },
     "6": {
-      "value": "{size.0375}",
+      "value": "6",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "6px/0.375rem"
     },
     "8": {
-      "value": "{size.050}",
+      "value": "8",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "8px/0.5rem"
     },
     "10": {
-      "value": "{size.0625}",
+      "value": "10",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "10px/0.625rem"
     },
     "12": {
-      "value": "{size.075}",
+      "value": "12",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "12px/0.75rem"
     },
     "16": {
-      "value": "{size.100}",
+      "value": "16",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
-    },
-    "18": {
-      "value": "{size.100}",
-      "type": "dimension",
-      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
-    },
-    "20": {
-      "value": "{size.100}",
-      "type": "dimension",
-      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "16px/1rem"
     },
     "24": {
-      "value": "{size.150}",
+      "value": "24",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "24px/1.5rem"
     },
     "32": {
-      "value": "{size.200}",
+      "value": "32",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "32px/2rem"
     },
     "40": {
-      "value": "{size.250}",
+      "value": "40",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "40px/2.5rem"
     },
     "48": {
-      "value": "{size.300}",
+      "value": "48",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "48px/3rem"
     },
     "56": {
-      "value": "{size.350}",
+      "value": "56",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "56px/3.5rem"
     },
     "64": {
-      "value": "{size.400}",
+      "value": "64",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "64px/4rem"
     },
     "72": {
-      "value": "{size.450}",
+      "value": "72",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "72px/4.5rem"
     },
     "80": {
-      "value": "{size.500}",
+      "value": "80",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "80px/5rem"
     },
     "112": {
-      "value": "{size.700}",
+      "value": "112",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "112px/7rem"
     },
     "144": {
-      "value": "{size.900}",
+      "value": "144",
       "type": "dimension",
       "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
-      "comment": ""
+      "comment": "144px/8.75rem"
     }
   }
 }

@@ -76,31 +76,31 @@
             "comment": "Use for transparent surfaces"
           },
           "5": {
-            "value": "{color.transparent.neutral.5}",
+            "value": "{color.transparent.light.5}",
             "type": "color",
             "scope": "All Scopes",
             "comment": "Use for elevation shadows and overlays"
           },
           "10": {
-            "value": "{color.transparent.neutral.10}",
+            "value": "{color.transparent.light.10}",
             "type": "color",
             "scope": "All Scopes",
             "comment": "Use for elevation shadows and overlays"
           },
           "25": {
-            "value": "{color.transparent.neutral.25}",
+            "value": "{color.transparent.light.25}",
             "type": "color",
             "scope": "All Scopes",
             "comment": "Use for elevation shadows and overlays"
           },
           "50": {
-            "value": "{color.transparent.neutral.50}",
+            "value": "{color.transparent.light.50}",
             "type": "color",
             "scope": "All Scopes",
             "comment": "Use for elevation shadows and overlays"
           },
           "75": {
-            "value": "{color.transparent.neutral.75}",
+            "value": "{color.transparent.light.75}",
             "type": "color",
             "scope": "All Scopes",
             "comment": "Use for elevation shadows and overlays"

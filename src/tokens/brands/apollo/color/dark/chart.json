@@ -1,0 +1,650 @@
+{
+  "dark": {
+    "chart": {
+      "theme": {
+        "vibrant": {
+          "1": {
+            "value": "{chart.purple.bolder}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Vibrant theme color for the 1st data point"
+          },
+          "2": {
+            "value": "{chart.orange.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Vibrant theme color for the 2nd data point"
+          },
+          "3": {
+            "value": "{chart.pink.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Vibrant theme color for the 3rd data point"
+          },
+          "4": {
+            "value": "{chart.yellow.light}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Vibrant theme color for the 4th data point"
+          },
+          "5": {
+            "value": "{chart.purple.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Vibrant theme color for the 5th data point"
+          },
+          "6": {
+            "value": "{chart.green.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Vibrant theme color for the 6th data point"
+          },
+          "7": {
+            "value": "{chart.pink.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Vibrant theme color for the 7th data point"
+          },
+          "8": {
+            "value": "{chart.teal.light}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Vibrant theme color for the 8th data point"
+          }
+        },
+        "sunset": {
+          "1": {
+            "value": "{chart.purple.bolder}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Sunset theme color for the 1st data point"
+          },
+          "2": {
+            "value": "{chart.purple.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Sunset theme color for the 2nd data point"
+          },
+          "3": {
+            "value": "{chart.orange.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Sunset theme color for the 3rd data point"
+          },
+          "4": {
+            "value": "{chart.orange.light}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Sunset theme color for the 4th data point"
+          },
+          "5": {
+            "value": "{chart.yellow.light}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Sunset theme color for the 5th data point"
+          },
+          "6": {
+            "value": "{chart.green.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Sunset theme color for the 6th data point"
+          },
+          "7": {
+            "value": "{chart.blue.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Sunset theme color for the 7th data point"
+          },
+          "8": {
+            "value": "{chart.blue.bolder}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Sunset theme color for the 8th data point"
+          }
+        },
+        "warm": {
+          "1": {
+            "value": "{chart.purple.bolder}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Warm theme color for the 1st data point"
+          },
+          "2": {
+            "value": "{chart.purple.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Warm theme color for the 2th data point"
+          },
+          "3": {
+            "value": "{chart.pink.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Warm theme color for the 3th data point"
+          },
+          "4": {
+            "value": "{chart.pink.light}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Warm theme color for the 4th data point"
+          },
+          "5": {
+            "value": "{color.orange.500}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Warm theme color for the 5th data point"
+          },
+          "6": {
+            "value": "{chart.orange.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Warm theme color for the 6th data point"
+          },
+          "7": {
+            "value": "{chart.yellow.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Warm theme color for the 7th data point"
+          },
+          "8": {
+            "value": "{chart.yellow.bolder}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Warm theme color for the 8th data point"
+          }
+        },
+        "cool": {
+          "1": {
+            "value": "{chart.purple.boldest}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Cool theme color for the 1st data point"
+          },
+          "2": {
+            "value": "{chart.teal.lighter}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Cool theme color for the 2nd data point"
+          },
+          "3": {
+            "value": "{chart.purple.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Cool theme color for the 3rd data point"
+          },
+          "4": {
+            "value": "{chart.teal.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Cool theme color for the 4th data point"
+          },
+          "5": {
+            "value": "{chart.purple.bolder}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Cool theme color for the 5th data point"
+          },
+          "6": {
+            "value": "{chart.blue.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Cool theme color for the 6th data point"
+          },
+          "7": {
+            "value": "{chart.purple.light}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Cool theme color for the 7th data point"
+          },
+          "8": {
+            "value": "{chart.blue.boldest}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Cool theme color for the 8th data point"
+          }
+        },
+        "fun": {
+          "1": {
+            "value": "{chart.blue.boldest}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Fun theme color for the 1st data point"
+          },
+          "2": {
+            "value": "{chart.teal.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Fun theme color for the 2nd data point"
+          },
+          "3": {
+            "value": "{chart.green.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Fun theme color for the 3th data point"
+          },
+          "4": {
+            "value": "{chart.purple.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Fun theme color for the 4th data point"
+          },
+          "5": {
+            "value": "{chart.purple.light}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Fun theme color for the 5th data point"
+          },
+          "6": {
+            "value": "{chart.pink.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Fun theme color for the 6th data point"
+          },
+          "7": {
+            "value": "{chart.orange.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Fun theme color for the 7th data point"
+          },
+          "8": {
+            "value": "{chart.teal.light}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Fun theme color for the 8th data point"
+          }
+        },
+        "twilight": {
+          "1": {
+            "value": "{chart.purple.boldest}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Twilight theme color for the 1st data point"
+          },
+          "2": {
+            "value": "{chart.purple.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Twilight theme color for the 2nd data point"
+          },
+          "3": {
+            "value": "{chart.purple.light}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Twilight theme color for the 3rd data point"
+          },
+          "4": {
+            "value": "{chart.pink.light}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Twilight theme color for the 4th data point"
+          },
+          "5": {
+            "value": "{chart.pink.normal}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Twilight theme color for the 5th data point"
+          },
+          "6": {
+            "value": "{chart.orange.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Twilight theme color for the 6th data point"
+          },
+          "7": {
+            "value": "{chart.yellow.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Twilight theme color for the 7th data point"
+          },
+          "8": {
+            "value": "{chart.green.bold}",
+            "type": "color",
+            "scope": "All",
+            "comment": "Twilight theme color for the 8th data point"
+          }
+        }
+      },
+      "neutral": {
+        "lighter": {
+          "value": "{color.neutral.700}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "light": {
+          "value": "{color.neutral.600}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "normal": {
+          "value": "{color.neutral.500}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bold": {
+          "value": "{color.neutral.400}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bolder": {
+          "value": "{color.neutral.200}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "boldest": {
+          "value": "{color.neutral.50}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        }
+      },
+      "orange": {
+        "lighter": {
+          "value": "{color.orange.800}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "light": {
+          "value": "{color.orange.600}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "normal": {
+          "value": "{color.orange.400}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bold": {
+          "value": "{color.orange.300}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bolder": {
+          "value": "{color.orange.200}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "boldest": {
+          "value": "{color.orange.100}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        }
+      },
+      "purple": {
+        "lighter": {
+          "value": "{color.purple.800}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "light": {
+          "value": "{color.purple.600}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "normal": {
+          "value": "{color.purple.400}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bold": {
+          "value": "{color.purple.300}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bolder": {
+          "value": "{color.purple.200}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "boldest": {
+          "value": "{color.purple.100}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        }
+      },
+      "green": {
+        "lighter": {
+          "value": "{color.green.700}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "light": {
+          "value": "{color.green.600}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "normal": {
+          "value": "{color.green.400}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bold": {
+          "value": "{color.green.300}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bolder": {
+          "value": "{color.green.200}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "boldest": {
+          "value": "{color.green.100}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        }
+      },
+      "yellow": {
+        "lighter": {
+          "value": "{color.yellow.700}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "light": {
+          "value": "{color.yellow.500}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "normal": {
+          "value": "{color.yellow.400}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bold": {
+          "value": "{color.yellow.300}",
+          "type": "color",
+          "scope": "All Fills",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bolder": {
+          "value": "{color.yellow.200}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "boldest": {
+          "value": "{color.yellow.100}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        }
+      },
+      "red": {
+        "lighter": {
+          "value": "{color.red.800}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "light": {
+          "value": "{color.red.700}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "normal": {
+          "value": "{color.red.500}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bold": {
+          "value": "{color.red.300}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bolder": {
+          "value": "{color.red.200}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "boldest": {
+          "value": "{color.red.100}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        }
+      },
+      "pink": {
+        "lighter": {
+          "value": "{color.pink.800}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "light": {
+          "value": "{color.pink.600}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "normal": {
+          "value": "{color.pink.400}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bold": {
+          "value": "{color.pink.200}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bolder": {
+          "value": "{color.pink.100}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "boldest": {
+          "value": "{color.pink.50}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        }
+      },
+      "blue": {
+        "lighter": {
+          "value": "{color.blue.800}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "light": {
+          "value": "{color.blue.700}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "normal": {
+          "value": "{color.blue.600}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bold": {
+          "value": "{color.blue.500}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bolder": {
+          "value": "{color.blue.400}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "boldest": {
+          "value": "{color.blue.300}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        }
+      },
+      "teal": {
+        "lighter": {
+          "value": "{color.teal.700}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "light": {
+          "value": "{color.teal.600}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "normal": {
+          "value": "{color.teal.500}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bold": {
+          "value": "{color.teal.400}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "bolder": {
+          "value": "{color.teal.200}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        },
+        "boldest": {
+          "value": "{color.teal.100}",
+          "type": "color",
+          "scope": "All Fills, Stroke Color",
+          "comment": "Use for monochromatic charts where color weight is the differentiator"
+        }
+      }
+    }
+  }
+}

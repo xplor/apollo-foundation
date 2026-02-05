@@ -1,0 +1,18 @@
+{
+  "font": {
+    "weight": {
+      "labelDefault": {
+        "value": "{font.weight.medium}",
+        "type": "fontWeight",
+        "scope": "Text Content, Font Style",
+        "comment": "Default weight labels, typically on forms"
+      },
+      "labelStrong": {
+        "value": "{font.weight.bold}",
+        "type": "fontWeight",
+        "scope": "Text Content, Font Style",
+        "comment": "Bold weight labels, typically on forms"
+      }
+    }
+  }
+}

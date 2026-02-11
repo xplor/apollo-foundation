@@ -46,7 +46,9 @@
       "value": 14,
       "type": "dimension",
       "scope": "All",
-      "comment": "14px/0.875rem"
+      "comment": "14px/0.875rem",
+      "deprecated": true,
+      "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to either --size-075 or --size-100"
     },
     "100": {
       "value": 16,
@@ -76,7 +78,9 @@
       "value": 28,
       "type": "dimension",
       "scope": "All",
-      "comment": "28px/1.75rem"
+      "comment": "28px/1.75rem",
+      "deprecated": true,
+      "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to either --size-150 or --size-200"
     },
     "200": {
       "value": 32,
@@ -88,7 +92,9 @@
       "value": 36,
       "type": "dimension",
       "scope": "All",
-      "comment": "36px/2.25rem"
+      "comment": "36px/2.25rem",
+      "deprecated": true,
+      "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to either --size-150 or --size-200"
     },
     "250": {
       "value": 40,
@@ -130,7 +136,9 @@
       "value": 96,
       "type": "dimension",
       "scope": "All",
-      "comment": "96px/6rem"
+      "comment": "96px/6rem",
+      "deprecated": true,
+      "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please remove this value from your codebase."
     },
     "700": {
       "value": 112,
@@ -142,13 +150,17 @@
       "value": 128,
       "type": "dimension",
       "scope": "All",
-      "comment": "128px/8rem"
+      "comment": "128px/8rem",
+      "deprecated": true,
+      "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please remove this value from your codebase."
     },
     "900": {
       "value": 144,
       "type": "dimension",
       "scope": "All",
-      "comment": "144px/9rem"
+      "comment": "144px/9rem",
+      "deprecated": true,
+      "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please remove this value from your codebase."
     }
   }
 }

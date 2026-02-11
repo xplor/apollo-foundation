@@ -23,7 +23,7 @@
       },
       "secondary": {
         "sunray": {
-          "value": "{color.yellow.200}",
+          "value": "#ECFD91FF",
           "type": "color",
           "scope": "All",
           "comment": "Secondary Xplor yellow typically used for highlights and infographics"

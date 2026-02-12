@@ -75,41 +75,47 @@
       }
     },
     "badge": {
-      "default": {
-        "value": "{color.green.1100}",
+      "yellow": {
+        "value": "{color.yellow.800}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use for yellow badge text"
+      },
+      "orange": {
+        "value": "{color.orange.700}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use for orange badge text"
+      },
+      "green": {
+        "value": "{color.green.900}",
         "type": "color",
         "scope": "Text Fill",
         "comment": "Use for green badge text"
       },
-      "yellow": {
-        "value": "{color.red.900}",
+      "red": {
+        "value": "{color.red.700}",
         "type": "color",
         "scope": "Text Fill",
         "comment": "Use for red badge text"
       },
-      "green": {
+      "gray": {
         "value": "{color.neutral.700}",
         "type": "color",
         "scope": "Text Fill",
-        "comment": "Use for gray badge text"
-      },
-      "red": {
-        "value": "{color.blue.900}",
-        "type": "color",
-        "scope": "Text Fill",
-        "comment": "Use for blue badge text"
-      },
-      "gray": {
-        "value": "{color.green.900}",
-        "type": "color",
-        "scope": "Text Fill",
-        "comment": "Use on link hover states"
+        "comment": "Use on grey badge text"
       },
       "blue": {
-        "value": "{color.green.600}",
+        "value": "{color.blue.800}",
         "type": "color",
         "scope": "Text Fill",
-        "comment": "Use on links that have been visited"
+        "comment": "Use on blue badge text"
+      },
+      "purple": {
+        "value": "{color.purple.800}",
+        "type": "color",
+        "scope": "Text Fill",
+        "comment": "Use on purple badge text"
       }
     }
   }

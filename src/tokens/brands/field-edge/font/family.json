@@ -2,7 +2,7 @@
   "font": {
     "family": {
       "default": {
-        "value": "Roboto, sans-serif",
+        "value": "Roboto, apple-system, system-ui,'Segoe UI', Arial, Helvetica, sans-serif",
         "type": "fontFamily",
         "scope": "Text Content, Font Family",
         "comment": "Default font"

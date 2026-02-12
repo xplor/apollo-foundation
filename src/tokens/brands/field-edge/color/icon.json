@@ -68,7 +68,7 @@
     },
     "badge": {
       "default": {
-        "value": "{color.orange.400}",
+        "value": "{color.orange.500}",
         "type": "color",
         "scope": "All",
         "comment": ""
@@ -99,6 +99,12 @@
       },
       "blue": {
         "value": "{color.blue.500}",
+        "type": "color",
+        "scope": "All",
+        "comment": ""
+      },
+      "purple": {
+        "value": "{color.purple.600}",
         "type": "color",
         "scope": "All",
         "comment": ""

@@ -44,13 +44,13 @@
         "comment": "Use for inverse surfaces on dark surfaces where mode switching is not needed"
       },
       "information": {
-        "value": "{color.green.50}",
+        "value": "{color.neutral.0}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Use for informational surfaces"
       },
       "information_bold": {
-        "value": "{color.green.100}",
+        "value": "{color.neutral.50}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Use for informational surfaces where a bold weight is needed"
@@ -357,82 +357,88 @@
       }
     },
     "badge": {
-      "default": {
-        "value": "{color.orange.50}",
+      "orange": {
+        "value": "{color.orange.700}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Default Badge surface"
       },
       "yellow": {
-        "value": "{background.surface.information}",
+        "value": "{color.yellow.800}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Neutral sentiment Toast surface"
       },
       "green": {
-        "value": "{color.yellow.100}",
+        "value": "{color.green.900}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Neutral sentiment Toast surface"
       },
       "red": {
-        "value": "{color.yellow.500}",
+        "value": "{color.red.700}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Neutral sentiment Toast surface"
       },
       "grey": {
-        "value": "{background.surface.positive}",
+        "value": "{color.neutral.700}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Positive sentiment toast surface"
       },
       "blue": {
-        "value": "{background.accent.positive_bold}",
+        "value": "{color.blue.800}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Positive sentiment toast surface"
+      },
+      "purple": {
+        "value": "{color.purple.800}",
+        "type": "color",
+        "scope": "Frame Fill, Shape Fill",
+        "comment": "Purple badge surface"
       }
     },
     "messaging": {
       "information": {
-        "value": "{background.surface.negative}",
+        "value": "{background.surface.information}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Negative sentiment Toast surface"
       },
       "warning": {
-        "value": "{background.accent.negative_bold}",
+        "value": "{color.yellow.100}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Negative sentiment Toast surface"
       },
       "warning_bold": {
-        "value": "{color.yellow.100}",
+        "value": "{color.yellow.500}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Yellow Badge surface"
       },
       "positive": {
-        "value": "{color.green.100}",
+        "value": "{background.surface.positive}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Green badge surface"
       },
       "positive_bold": {
-        "value": "{color.red.50}",
+        "value": "{background.surface.positive_bold}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Red Badge surface"
       },
       "negative": {
-        "value": "{color.neutral.100}",
+        "value": "{background.surface.negative}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Grey Badge surface"
       },
       "negative_bold": {
-        "value": "{color.blue.100}",
+        "value": "{background.surface.negative_bold}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Blue badge surface"

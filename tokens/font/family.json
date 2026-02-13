@@ -1,10 +1,7 @@
 {
   "font": {
     "family": {
-      "default": {
-        "value": "apple-system, system-ui, 'Segoe UI', Arial, Helvetica, Roboto, sans-serif",
-        "type": "fontFamily"
-      }
+      "default": { "value": "apple-system, system-ui, 'Segoe UI', Arial, Helvetica, Roboto, sans-serif", "type": "fontFamily" }
     }
   }
 }

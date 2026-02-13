@@ -1,22 +1,10 @@
 {
   "font": {
     "weight": {
-      "Bold": {
-        "value": "700",
-        "type": "fontWeight"
-      },
-      "Semibold": {
-        "value": "600",
-        "type": "fontWeight"
-      },
-      "Medium": {
-        "value": "500",
-        "type": "fontWeight"
-      },
-      "Normal": {
-        "value": "400",
-        "type": "fontWeight"
-      }
+      "Bold": { "value": "700", "type": "fontWeight" },
+      "Semibold": { "value": "600", "type": "fontWeight" },
+      "Medium": { "value": "500", "type": "fontWeight" },
+      "Normal": { "value": "400", "type": "fontWeight" }
     }
   }
 }

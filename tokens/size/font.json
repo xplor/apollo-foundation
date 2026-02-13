@@ -1,38 +1,14 @@
 {
   "size": {
     "font": {
-      "Title 1": {
-        "value": "1.875",
-        "type": "fontSize"
-      },
-      "Title 2": {
-        "value": "1.5",
-        "type": "fontSize"
-      },
-      "Title 3": {
-        "value": "1.25",
-        "type": "fontSize"
-      },
-      "Title 4": {
-        "value": "1",
-        "type": "fontSize"
-      },
-      "Title 5": {
-        "value": "0.875",
-        "type": "fontSize"
-      },
-      "Body": {
-        "value": "0.875",
-        "type": "fontSize"
-      },
-      "Callout": {
-        "value": "0.75",
-        "type": "fontSize"
-      },
-      "Caption": {
-        "value": "0.625",
-        "type": "fontSize"
-      }
+      "Title 1": { "value": "1.875", "type": "fontSize" },
+      "Title 2": { "value": "1.5", "type": "fontSize" },
+      "Title 3": { "value": "1.25", "type": "fontSize" },
+      "Title 4": { "value": "1", "type": "fontSize" },
+      "Title 5": { "value": "0.875", "type": "fontSize" },
+      "Body": { "value": "0.875", "type": "fontSize" },
+      "Callout": { "value": "0.75", "type": "fontSize" },
+      "Caption": { "value": "0.625", "type": "fontSize" }
     }
   }
 }

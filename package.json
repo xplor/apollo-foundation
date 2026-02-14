@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/xplor/Apollo-Foundation#readme",
   "devDependencies": {
-    "style-dictionary": "^3.9.2"
+    "style-dictionary": "^5.3.0"
   },
   "files": [
     "build"

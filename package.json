@@ -2,9 +2,9 @@
   "name": "@xplortech/apollo-foundation",
   "version": "0.1.0",
   "description": "The design tokens for Xplor and Xplor's Apollo design library",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "build": "style-dictionary build"
+    "build": "tsx build.ts"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/xplor/Apollo-Foundation#readme",
   "devDependencies": {
-    "style-dictionary": "^3.9.2"
+    "@tsconfig/node24": "^24.0.3",
+    "@types/node": "^25.0.3",
+    "style-dictionary": "^5.3.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   },
   "files": [
     "build"

@@ -27,7 +27,7 @@ yarn-error.log
 *.sublime-workspace
 
 # Generated Files
-build
+/build
 
 
 # Visual Studio Code

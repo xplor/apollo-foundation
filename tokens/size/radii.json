@@ -1,13 +1,12 @@
 {
-    "size": {
-      "radius": {
-        "none" : {"value": "0"},
-        "small" : {"value": ".25"},
-        "default": {"value": ".5"},
-        "large": {"value": ".75"},
-        "full": {"value": "999"},
-        "button" : {"value": "{size.radius.full.value}", "themable": true, "comment": "themable"}
-      }
+  "size": {
+    "radius": {
+      "none": { "value": "0", "type": "dimension" },
+      "small": { "value": ".25", "type": "dimension" },
+      "default": { "value": ".5", "type": "dimension" },
+      "large": { "value": ".75", "type": "dimension" },
+      "full": { "value": "999", "type": "dimension" },
+      "button": { "value": "{size.radius.full}", "themable": true, "comment": "themable" }
     }
   }
-  
+}

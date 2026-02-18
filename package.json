@@ -4,8 +4,11 @@
   "description": "The design tokens for Xplor and Xplor's Apollo design library",
   "type": "module",
   "scripts": {
-    "build": "tsx build.ts",
+    "build": "tsx ./build.ts",
+    "build:new": "tsx ./src/builder/index.ts",
+    "build:new:debug": "tsx --inspect-brk ./src/builder/index.ts",
     "clean": "rm -rf ./build/",
+    "dev:new": "tsx watch --include ./src/tokens ./src/builder/index.ts --debug",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"
   },

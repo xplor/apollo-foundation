@@ -1,0 +1,308 @@
+{
+  "size": {
+    "spacing": {
+      "0": {
+        "value": "0",
+        "type": "dimension",
+        "comment": "0px/0rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-0"
+      },
+      "2": {
+        "value": "2",
+        "type": "dimension",
+        "comment": "2px/0.125rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-2"
+      },
+      "4": {
+        "value": "4",
+        "type": "dimension",
+        "comment": "4px/0.25rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-4"
+      },
+      "6": {
+        "value": "6",
+        "type": "dimension",
+        "comment": "6px/0.375rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-6"
+      },
+      "8": {
+        "value": "8",
+        "type": "dimension",
+        "comment": "8px/0.5rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-8"
+      },
+      "10": {
+        "value": "10",
+        "type": "dimension",
+        "comment": "10px/0.625rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-10"
+      },
+      "12": {
+        "value": "12",
+        "type": "dimension",
+        "comment": "12px/0.75rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-12"
+      },
+      "14": {
+        "value": "14",
+        "type": "dimension",
+        "comment": "14px/0.875rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-12 or --space-16"
+      },
+      "16": {
+        "value": "16",
+        "type": "dimension",
+        "comment": "16px/1rem (base value)",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-16"
+      },
+      "20": {
+        "value": "20",
+        "type": "dimension",
+        "comment": "20px/1.25rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-20"
+      },
+      "24": {
+        "value": "24",
+        "type": "dimension",
+        "comment": "24px/1.5rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-24"
+      },
+      "28": {
+        "value": "28",
+        "type": "dimension",
+        "comment": "28px/1.75rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-24 or --space-32"
+      },
+      "32": {
+        "value": "32",
+        "type": "dimension",
+        "comment": "32px/2rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-32"
+      },
+      "36": {
+        "value": "36",
+        "type": "dimension",
+        "comment": "36px/2.25rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-32 or --space-40"
+      },
+      "40": {
+        "value": "40",
+        "type": "dimension",
+        "comment": "40px/2.5rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-40"
+      },
+      "48": {
+        "value": "48",
+        "type": "dimension",
+        "comment": "48px/3rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-48"
+      },
+      "56": {
+        "value": "56",
+        "type": "dimension",
+        "comment": "56px/3.5rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-56"
+      },
+      "64": {
+        "value": "64",
+        "type": "dimension",
+        "comment": "64px/4rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-64"
+      },
+      "72": {
+        "value": "72",
+        "type": "dimension",
+        "comment": "72px/4.5rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-72"
+      },
+      "80": {
+        "value": "80",
+        "type": "dimension",
+        "comment": "80px/5rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-80"
+      },
+      "96": {
+        "value": "96",
+        "type": "dimension",
+        "comment": "96px/6rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-80 or --space-112"
+      },
+      "112": {
+        "value": "112",
+        "type": "dimension",
+        "comment": "112px/7rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-112"
+      },
+      "128": {
+        "value": "128",
+        "type": "dimension",
+        "comment": "128px/8rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-112 or --space-144"
+      },
+      "144": {
+        "value": "144",
+        "type": "dimension",
+        "comment": "144px/9rem",
+        "scope": "All",
+        "deprecated": true,
+        "deprecated_comment": "This value is deprecated and will be removed in v3.0.0. Please switch to --space-144"
+      }
+    }
+  },
+  "space": {
+    "0": {
+      "value": "0",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "0px/0rem"
+    },
+    "2": {
+      "value": "2",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "2px/0.125rem"
+    },
+    "4": {
+      "value": "4",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "4px/0.25rem"
+    },
+    "6": {
+      "value": "6",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "6px/0.375rem"
+    },
+    "8": {
+      "value": "8",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "8px/0.5rem"
+    },
+    "10": {
+      "value": "10",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "10px/0.625rem"
+    },
+    "12": {
+      "value": "12",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "12px/0.75rem"
+    },
+    "16": {
+      "value": "16",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "16px/1rem"
+    },
+    "24": {
+      "value": "24",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "24px/1.5rem"
+    },
+    "32": {
+      "value": "32",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "32px/2rem"
+    },
+    "40": {
+      "value": "40",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "40px/2.5rem"
+    },
+    "48": {
+      "value": "48",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "48px/3rem"
+    },
+    "56": {
+      "value": "56",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "56px/3.5rem"
+    },
+    "64": {
+      "value": "64",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "64px/4rem"
+    },
+    "72": {
+      "value": "72",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "72px/4.5rem"
+    },
+    "80": {
+      "value": "80",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "80px/5rem"
+    },
+    "112": {
+      "value": "112",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "112px/7rem"
+    },
+    "144": {
+      "value": "144",
+      "type": "dimension",
+      "scope": "Text Content, Width Height, Gap, Effect Float, Opacity",
+      "comment": "144px/8.75rem"
+    }
+  }
+}

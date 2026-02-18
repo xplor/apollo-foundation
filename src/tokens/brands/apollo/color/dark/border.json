@@ -1,0 +1,142 @@
+{
+  "dark": {
+    "border": {
+      "default": {
+        "value": "{color.neutral.600}",
+        "type": "color",
+        "scope": "Stroke Color, Effect Color",
+        "comment": "Default border color"
+      },
+      "strong": {
+        "value": "{color.neutral.400}",
+        "type": "color",
+        "scope": "Stroke Color, Effect Color",
+        "comment": "Use for strong weight borders"
+      },
+      "subtle": {
+        "value": "{color.neutral.800}",
+        "type": "color",
+        "scope": "Stroke Color, Effect Color",
+        "comment": "Use for subtle weight borders"
+      },
+      "inverse": {
+        "value": "{color.neutral.1000}",
+        "type": "color",
+        "scope": "Stroke Color, Effect Color",
+        "comment": "Use for inverse borders (light on dark/dark on light)"
+      },
+      "hover": {
+        "value": "{color.purple.300}",
+        "type": "color",
+        "scope": "Stroke Color, Effect Color",
+        "comment": "Use for borders in a hover state"
+      },
+      "active": {
+        "value": "{color.purple.300}",
+        "type": "color",
+        "scope": "Stroke Color, Effect Color",
+        "comment": "Use for borders in an active state"
+      },
+      "focus": {
+        "value": "{color.purple.400}",
+        "type": "color",
+        "scope": "Stroke Color, Effect Color",
+        "comment": "Use for borders in a focus state"
+      },
+      "negative": {
+        "value": "{color.red.300}",
+        "type": "color",
+        "scope": "Stroke Color, Effect Color",
+        "comment": "Use for negative sentiment borders"
+      },
+      "positive": {
+        "value": "{color.green.300}",
+        "type": "color",
+        "scope": "Stroke Color, Effect Color",
+        "comment": "Use for positive sentiment borders"
+      },
+      "accent": {
+        "default": {
+          "value": "{color.purple.300}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Default color accented borders"
+        },
+        "brand": {
+          "value": "{color.orange.500}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Brand color accented borders"
+        },
+        "information": {
+          "value": "{color.purple.300}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Informational accented borders"
+        },
+        "highlight": {
+          "value": "{color.yellow.200}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Highlight accented borders"
+        },
+        "warning": {
+          "value": "{color.yellow.200}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Highlight accented borders"
+        },
+        "subtle": {
+          "value": "{color.neutral.500}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Subtle accented borders"
+        },
+        "alternative": {
+          "value": "{color.blue.300}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Alternative accented borders"
+        }
+      },
+      "badge": {
+        "purple": {
+          "value": "{color.purple.300}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Blue badge surface"
+        },
+        "yellow": {
+          "value": "{color.yellow.200}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Yellow badge surface"
+        },
+        "green": {
+          "value": "{color.green.300}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Green badge surface"
+        },
+        "grey": {
+          "value": "{color.neutral.500}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Grey badge surface"
+        },
+        "blue": {
+          "value": "{color.blue.300}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Blue badge surface"
+        },
+        "red": {
+          "value": "{color.red.300}",
+          "type": "color",
+          "scope": "Stroke Color",
+          "comment": "Red badge surface"
+        }
+      }
+    }
+  }
+}

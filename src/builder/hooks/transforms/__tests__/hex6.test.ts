@@ -7,11 +7,11 @@ describe('hex6 transform', () => {
         expect(hex6.type).toBe('value');
     });
 
-    it('filters only color category', () => {
-        expect(hex6.filter!({ attributes: { category: 'color' } } as any)).toBe(true);
-        expect(hex6.filter!({ attributes: { category: 'size' } } as any)).toBe(false);
-        expect(hex6.filter!({ attributes: {} } as any)).toBe(false);
-        expect(hex6.filter!({ attributes: undefined } as any)).toBe(false);
+    it('filters only color type', () => {
+        expect(hex6.filter!({ type: 'color' } as any)).toBe(true);
+        expect(hex6.filter!({ type: 'dimension' } as any)).toBe(false);
+        expect(hex6.filter!({ type: 'fontSize' } as any)).toBe(false);
+        expect(hex6.filter!({} as any)).toBe(false);
     });
 
     it('strips alpha from 8-digit hex', () => {

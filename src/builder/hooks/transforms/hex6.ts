@@ -3,7 +3,7 @@ import type { Transform } from 'style-dictionary/types';
 export const hex6 = {
     name: 'color/hex6',
     type: 'value',
-    filter: ({ attributes }) => attributes?.category === 'color',
+    filter: (token) => token.type === 'color',
     transform: ({ value }) => {
         // Strip alpha channel if it's an 8-digit hex
         if (value && typeof value === 'string') {

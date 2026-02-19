@@ -1,4 +1,5 @@
 import type { Transform } from 'style-dictionary/types';
+import { formatNumericValue } from './utils';
 
 /**
  * Transforms dimension values to CGFloat format for iOS/Swift.
@@ -10,9 +11,6 @@ export const sizeCGFloat = {
     name: 'size/pxToCGFloat',
     type: 'value',
     filter: (token) => token.type === 'dimension' || token.type === 'fontSize',
-    transform: ({ value }) => {
-        const numValue = parseFloat(value);
-        if (isNaN(numValue)) return value;
-        return `CGFloat(${numValue.toFixed(2)})`;
-    }
+    transform: ({ value }) =>
+        formatNumericValue(value, (n) => `CGFloat(${n.toFixed(2)})`),
 } satisfies Transform;

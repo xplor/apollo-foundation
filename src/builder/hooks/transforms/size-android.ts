@@ -1,4 +1,5 @@
 import type { Transform, TransformedToken } from 'style-dictionary/types';
+import { formatNumericValue } from './utils';
 
 /**
  * Transforms dimension values to dp format for Android.
@@ -10,11 +11,8 @@ export const sizePxToDp = {
     name: 'size/pxToDp',
     type: 'value',
     filter: (token: TransformedToken) => token.type === 'dimension',
-    transform: ({ value }: TransformedToken) => {
-        const numValue = parseFloat(value);
-        if (isNaN(numValue)) return value;
-        return `${numValue.toFixed(2)}dp`;
-    }
+    transform: ({ value }: TransformedToken) =>
+        formatNumericValue(value, (n) => `${n.toFixed(2)}dp`),
 } satisfies Transform;
 
 /**
@@ -27,9 +25,6 @@ export const sizePxToSp = {
     name: 'size/pxToSp',
     type: 'value',
     filter: (token: TransformedToken) => token.type === 'fontSize',
-    transform: ({ value }: TransformedToken) => {
-        const numValue = parseFloat(value);
-        if (isNaN(numValue)) return value;
-        return `${numValue.toFixed(2)}sp`;
-    }
+    transform: ({ value }: TransformedToken) =>
+        formatNumericValue(value, (n) => `${n.toFixed(2)}sp`),
 } satisfies Transform;

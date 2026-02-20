@@ -73,16 +73,19 @@ function stringifyNested(obj: Record<string, unknown>, indent: string = ''): str
  */
 function buildTokenTreeWithModes(tokens: TransformedToken[]): Record<string, unknown> {
     const tree: Record<string, unknown> = {};
-    const tokensByPath = new Map<string, { light?: TransformedToken, dark?: TransformedToken }>();
+    type PathEntry = { path: string[], light?: TransformedToken, dark?: TransformedToken };
+    const tokensByPath = new Map<string, PathEntry>();
 
     // First, organize tokens by canonical path (removing 'dark' segment)
     tokens.forEach((token) => {
         const isDark = token.path.includes('dark');
         // Canonical path removes 'dark' segment
         const canonicalPath = token.path.filter((part) => part !== 'dark');
-        const pathKey = canonicalPath.join('.');
+        // Use JSON.stringify as the Map key to avoid lossy join/split round-trips
+        // when path segments contain literal dots (e.g. '1.5rem', '2.5xl')
+        const pathKey = JSON.stringify(canonicalPath);
 
-        const entry = tokensByPath.get(pathKey) || {};
+        const entry = tokensByPath.get(pathKey) || { path: canonicalPath };
         if (isDark) {
             entry.dark = token;
         } else {
@@ -92,8 +95,7 @@ function buildTokenTreeWithModes(tokens: TransformedToken[]): Record<string, unk
     });
 
     // Build the tree structure
-    tokensByPath.forEach((entries, pathKey) => {
-        const path = pathKey.split('.');
+    tokensByPath.forEach(({ path, ...entries }) => {
         let current: Record<string, unknown> = tree;
 
         // Navigate to the correct nesting level

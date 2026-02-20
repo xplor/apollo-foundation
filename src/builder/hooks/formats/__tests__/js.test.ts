@@ -47,4 +47,39 @@ describe('js formats', () => {
         expect(result).toContain('readonly value:');
         expect(result).toContain('export = _styleDictionary');
     });
+
+    it('handles path segments containing literal dots without splitting them', async () => {
+        const dottedTokens = [
+            {
+                path: ['size', '1.5rem'],
+                name: '1.5rem',
+                value: '24px',
+                type: 'dimension',
+                original: { value: '24px', key: '1.5rem' },
+            },
+            {
+                path: ['size', 'dark', '1.5rem'],
+                name: '1.5remDark',
+                value: '20px',
+                type: 'dimension',
+                original: { value: '20px', key: '1.5remDark' },
+            },
+        ];
+        const dottedDictionary = { allTokens: dottedTokens, tokens: {}, unfilteredTokens: [] };
+
+        const result = await javascriptUmdWithModes.format!({
+            // @ts-expect-error: Typescript is overzealous in this instance
+            dictionary: dottedDictionary,
+            file,
+            options: {},
+        });
+
+        // The dotted segment should appear as a single key, not be split into nested objects
+        expect(result).toContain('"1.5rem"');
+        // The value should be the combined light/dark shape, not a flat string
+        expect(result).toContain('"light"');
+        expect(result).toContain('"dark"');
+        // There should be only two levels of nesting: size -> 1.5rem, not size -> 1 -> 5rem
+        expect(result).not.toContain('"5rem"');
+    });
 });

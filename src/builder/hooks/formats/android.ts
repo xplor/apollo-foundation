@@ -120,9 +120,12 @@ function toKotlinObjectName(segment: string): string {
  */
 export const androidResourcesWithModes = {
     name: 'android/resources-with-modes',
-    format: async ({ dictionary, file, options }) => {
+    format: async ({
+        dictionary, file, options, platform,
+    }) => {
         const header = await fileHeader({ file, commentStyle: commentStyles.long });
-        const { prefix } = options || {};
+        const prefix = (options as { prefix?: string } | undefined)?.prefix
+            ?? (platform as { prefix?: string }).prefix;
 
         let output = header;
         output += '<?xml version="1.0" encoding="UTF-8"?>\n';

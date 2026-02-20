@@ -23,6 +23,7 @@ function getAndroidColorValue(
         const refs = getReferences(token.original.value, dictionary.tokens);
         if (refs.length > 0) {
             const refPath = refs[0].path.filter((p: string) => p !== 'dark');
+            if (refPath.length === 0) return token.value;
             const refName = toAndroidResourceName(refPath, prefix);
             return `@color/${refName}`;
         }
@@ -94,6 +95,8 @@ export const androidResourcesWithModes = {
         dictionary.allTokens.forEach((token) => {
             const isDark = token.path.includes('dark');
             const canonicalPath = token.path.filter((part) => part !== 'dark');
+
+            if (canonicalPath.length === 0) return;
 
             const virtualToken = { ...token, path: canonicalPath };
             let namePrefix = prefix;
@@ -167,6 +170,8 @@ export const androidResourcesLight = {
             if (!token) return;
 
             const canonicalPath = token.path.filter((p) => p !== 'dark');
+            if (canonicalPath.length === 0) return;
+
             const name = toAndroidResourceName(canonicalPath, prefix);
             const value = getAndroidColorValue(token, dictionary, !!outputReferences, prefix);
 
@@ -231,6 +236,8 @@ export const androidResourcesDark = {
             if (!token) return;
 
             const canonicalPath = token.path.filter((p) => p !== 'dark');
+            if (canonicalPath.length === 0) return;
+
             const name = toAndroidResourceName(canonicalPath, prefix);
             const value = getAndroidColorValue(token, dictionary, !!outputReferences, prefix);
 
@@ -421,6 +428,8 @@ export const androidDimens = {
         output += '<resources>\n';
 
         dictionary.allTokens.forEach((token) => {
+            if (token.path.length === 0) return;
+
             const name = toAndroidResourceName(token.path, prefix);
 
             if (token.comment) {

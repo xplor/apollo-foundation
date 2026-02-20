@@ -46,11 +46,14 @@ function toKotlinPropertyName(path: string[]): string {
 
 /**
  * Sanitizes a string for safe embedding inside an XML comment.
- * XML forbids "--" inside comments and "-->" prematurely closes them,
- * so every "--" sequence is replaced with "- -".
+ * XML forbids "--" inside comments and "-->" prematurely closes them.
+ * A lookbehind replaces every dash that immediately follows another dash with
+ * " -", inserting a space between each consecutive pair in a single pass.
+ * This handles runs of 3+ dashes correctly (e.g. "---" → "- - -"),
+ * unlike a plain /--/g replace which leaves "- --" for odd-length runs.
  */
 function sanitizeXmlComment(comment: string): string {
-    return comment.replace(/--/g, '- -');
+    return comment.replace(/(?<=-)-/g, ' -');
 }
 
 /**
@@ -64,10 +67,39 @@ function sanitizeKotlinDocComment(comment: string): string {
 
 /**
  * Escapes a value for safe embedding inside a Kotlin double-quoted string literal.
- * Backslashes and double quotes must be escaped to prevent broken string syntax.
+ * Backslashes, double quotes, and dollar signs must be escaped: backslashes and
+ * double quotes to prevent broken string syntax, and "$" because Kotlin treats it
+ * as the start of a string template expression in double-quoted strings.
  */
 function escapeKotlinStringLiteral(value: string): string {
-    return value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+    return value.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\$/g, '\\$');
+}
+
+/**
+ * Groups a flat token list by canonical path (with "dark" segments stripped),
+ * recording each token as either the light or dark variant of its group.
+ * Returns a Map whose keys are JSON-serialised canonical paths.
+ */
+function groupTokensByCanonicalPath(
+    tokens: TransformedToken[],
+): Map<string, { light?: TransformedToken; dark?: TransformedToken }> {
+    const tokensByPath = new Map<string, { light?: TransformedToken; dark?: TransformedToken }>();
+
+    tokens.forEach((token) => {
+        const isDark = token.path.includes('dark');
+        const canonicalPath = token.path.filter((p) => p !== 'dark');
+        const key = JSON.stringify(canonicalPath);
+
+        if (!tokensByPath.has(key)) tokensByPath.set(key, {});
+        const group = tokensByPath.get(key)!;
+        if (isDark) {
+            group.dark = token;
+        } else {
+            group.light = token;
+        }
+    });
+
+    return tokensByPath;
 }
 
 /**
@@ -138,24 +170,7 @@ export const androidResourcesLight = {
         const prefix = platform.prefix || 'xpl';
         const { outputReferences } = options || {};
 
-        // Group tokens by canonical path to merge light/dark
-        const tokensByPath = new Map<
-            string, { light?: TransformedToken, dark?: TransformedToken }
-        >();
-
-        dictionary.allTokens.forEach((token) => {
-            const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter((p) => p !== 'dark');
-            const key = JSON.stringify(canonicalPath);
-
-            if (!tokensByPath.has(key)) tokensByPath.set(key, {});
-            const group = tokensByPath.get(key)!;
-            if (isDark) {
-                group.dark = token;
-            } else {
-                group.light = token;
-            }
-        });
+        const tokensByPath = groupTokensByCanonicalPath(dictionary.allTokens);
 
         let output = header;
         output += '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -204,24 +219,7 @@ export const androidResourcesDark = {
         const prefix = platform.prefix || 'xpl';
         const { outputReferences } = options || {};
 
-        // Group tokens by canonical path to merge light/dark
-        const tokensByPath = new Map<
-            string, { light?: TransformedToken, dark?: TransformedToken }
-        >();
-
-        dictionary.allTokens.forEach((token) => {
-            const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter((p) => p !== 'dark');
-            const key = JSON.stringify(canonicalPath);
-
-            if (!tokensByPath.has(key)) tokensByPath.set(key, {});
-            const group = tokensByPath.get(key)!;
-            if (isDark) {
-                group.dark = token;
-            } else {
-                group.light = token;
-            }
-        });
+        const tokensByPath = groupTokensByCanonicalPath(dictionary.allTokens);
 
         let output = header;
         output += '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -308,25 +306,7 @@ export const androidKotlinTheme = {
         const className = options.className || 'Theme';
         const packageName = options.packageName || 'com.xplor.design';
 
-        // Group tokens by canonical path
-        const tokensByPath = new Map<
-            string, { light?: TransformedToken, dark?: TransformedToken }
-        >();
-
-        dictionary.allTokens.forEach((token) => {
-            const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter((p) => p !== 'dark');
-            const key = JSON.stringify(canonicalPath);
-
-            if (!tokensByPath.has(key)) tokensByPath.set(key, {});
-            const group = tokensByPath.get(key)!;
-            if (isDark) {
-                group.dark = token;
-            } else {
-                group.light = token;
-            }
-        });
-
+        const tokensByPath = groupTokensByCanonicalPath(dictionary.allTokens);
         const nestedRoot = buildNestedStructure(tokensByPath);
 
         let output = header;
@@ -363,8 +343,10 @@ export const androidKotlinTheme = {
             // Generate token properties
             const sortedTokens = [...node.tokens]
                 .sort((a, b) => {
-                    const aLast = a.token.path[a.token.path.length - 1] ?? a.token.name ?? 'unknown';
-                    const bLast = b.token.path[b.token.path.length - 1] ?? b.token.name ?? 'unknown';
+                    const aPath = a.token.path.filter((p) => p !== 'dark');
+                    const bPath = b.token.path.filter((p) => p !== 'dark');
+                    const aLast = aPath[aPath.length - 1] ?? a.token.name ?? 'unknown';
+                    const bLast = bPath[bPath.length - 1] ?? b.token.name ?? 'unknown';
                     return aLast.localeCompare(bLast);
                 });
 

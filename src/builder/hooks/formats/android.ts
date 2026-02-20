@@ -158,52 +158,65 @@ export const androidResourcesWithModes = {
 } satisfies Format;
 
 /**
+ * Shared implementation for light/dark XML resource formats.
+ * `preferDark` controls which token variant takes priority when both exist.
+ */
+async function formatAndroidResourcesForMode(
+    {
+        dictionary,
+        file,
+        options,
+        platform,
+    }: Parameters<NonNullable<Format['format']>>[0],
+    preferDark: boolean,
+): Promise<string> {
+    const header = await fileHeader({ file, commentStyle: commentStyles.long });
+    const prefix = (platform as { prefix?: string }).prefix || 'xpl';
+    const { outputReferences } = options || {};
+
+    const tokensByPath = groupTokensByCanonicalPath(dictionary.allTokens);
+
+    let output = header;
+    output += '<?xml version="1.0" encoding="UTF-8"?>\n';
+    output += '<resources>\n';
+
+    const sortedKeys = Array.from(tokensByPath.keys()).sort();
+
+    sortedKeys.forEach((key) => {
+        const group = tokensByPath.get(key)!;
+        const token = preferDark
+            ? (group.dark || group.light)
+            : (group.light || group.dark);
+        if (!token) return;
+
+        const canonicalPath = token.path.filter((p) => p !== 'dark');
+        if (canonicalPath.length === 0) return;
+
+        const name = toAndroidResourceName(canonicalPath, prefix);
+        const value = getAndroidColorValue(token, dictionary, !!outputReferences, prefix);
+
+        if (token.comment) {
+            output += `  <!-- ${sanitizeXmlComment(token.comment)} -->\n`;
+        }
+
+        if (token.type === 'color' || token.attributes?.category === 'color') {
+            output += `  <color name="${name}">${value}</color>\n`;
+        } else if (token.type === 'dimension' || token.attributes?.category === 'size') {
+            output += `  <dimen name="${name}">${token.value}</dimen>\n`;
+        }
+    });
+
+    output += '</resources>\n';
+    return output;
+}
+
+/**
  * Android XML resources format - Light mode only
  * For use in values/ folder
  */
 export const androidResourcesLight = {
     name: 'android/resources-light',
-    format: async ({
-        dictionary, file, options, platform,
-    }) => {
-        const header = await fileHeader({ file, commentStyle: commentStyles.long });
-        const prefix = platform.prefix || 'xpl';
-        const { outputReferences } = options || {};
-
-        const tokensByPath = groupTokensByCanonicalPath(dictionary.allTokens);
-
-        let output = header;
-        output += '<?xml version="1.0" encoding="UTF-8"?>\n';
-        output += '<resources>\n';
-
-        const sortedKeys = Array.from(tokensByPath.keys()).sort();
-
-        sortedKeys.forEach((key) => {
-            const group = tokensByPath.get(key)!;
-            // Use light token, or fall back to dark if no light exists
-            const token = group.light || group.dark;
-            if (!token) return;
-
-            const canonicalPath = token.path.filter((p) => p !== 'dark');
-            if (canonicalPath.length === 0) return;
-
-            const name = toAndroidResourceName(canonicalPath, prefix);
-            const value = getAndroidColorValue(token, dictionary, !!outputReferences, prefix);
-
-            if (token.comment) {
-                output += `  <!-- ${sanitizeXmlComment(token.comment)} -->\n`;
-            }
-
-            if (token.type === 'color' || token.attributes?.category === 'color') {
-                output += `  <color name="${name}">${value}</color>\n`;
-            } else if (token.type === 'dimension' || token.attributes?.category === 'size') {
-                output += `  <dimen name="${name}">${token.value}</dimen>\n`;
-            }
-        });
-
-        output += '</resources>\n';
-        return output;
-    },
+    format: (args) => formatAndroidResourcesForMode(args, false),
 } satisfies Format;
 
 /**
@@ -212,47 +225,7 @@ export const androidResourcesLight = {
  */
 export const androidResourcesDark = {
     name: 'android/resources-dark',
-    format: async ({
-        dictionary, file, options, platform,
-    }) => {
-        const header = await fileHeader({ file, commentStyle: commentStyles.long });
-        const prefix = platform.prefix || 'xpl';
-        const { outputReferences } = options || {};
-
-        const tokensByPath = groupTokensByCanonicalPath(dictionary.allTokens);
-
-        let output = header;
-        output += '<?xml version="1.0" encoding="UTF-8"?>\n';
-        output += '<resources>\n';
-
-        const sortedKeys = Array.from(tokensByPath.keys()).sort();
-
-        sortedKeys.forEach((key) => {
-            const group = tokensByPath.get(key)!;
-            // Use dark token, or fall back to light if no dark exists
-            const token = group.dark || group.light;
-            if (!token) return;
-
-            const canonicalPath = token.path.filter((p) => p !== 'dark');
-            if (canonicalPath.length === 0) return;
-
-            const name = toAndroidResourceName(canonicalPath, prefix);
-            const value = getAndroidColorValue(token, dictionary, !!outputReferences, prefix);
-
-            if (token.comment) {
-                output += `  <!-- ${sanitizeXmlComment(token.comment)} -->\n`;
-            }
-
-            if (token.type === 'color' || token.attributes?.category === 'color') {
-                output += `  <color name="${name}">${value}</color>\n`;
-            } else if (token.type === 'dimension' || token.attributes?.category === 'size') {
-                output += `  <dimen name="${name}">${token.value}</dimen>\n`;
-            }
-        });
-
-        output += '</resources>\n';
-        return output;
-    },
+    format: (args) => formatAndroidResourcesForMode(args, true),
 } satisfies Format;
 
 /**

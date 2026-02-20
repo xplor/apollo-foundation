@@ -13,7 +13,11 @@ function toAndroidResourceName(path: string[], prefix?: string): string {
 /**
  * Helper to get Android color reference or raw value
  */
-function getAndroidColorValue(token: TransformedToken, dictionary: Dictionary, outputReferences: boolean): string {
+function getAndroidColorValue(
+    token: TransformedToken,
+    dictionary: Dictionary,
+    outputReferences: boolean,
+): string {
     if (outputReferences && usesReferences(token.original.value)) {
         const refs = getReferences(token.original.value, dictionary.tokens);
         if (refs.length > 0) {
@@ -62,16 +66,16 @@ export const androidResourcesWithModes = {
 
         dictionary.allTokens.forEach((token) => {
             const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter(part => part !== 'dark');
+            const canonicalPath = token.path.filter((part) => part !== 'dark');
 
-            let virtualToken = { ...token, path: canonicalPath };
+            const virtualToken = { ...token, path: canonicalPath };
             let namePrefix = prefix;
             if (isDark) {
                 namePrefix = prefix ? `${prefix}_dark` : 'dark';
             }
 
             const name = toAndroidResourceName(virtualToken.path, namePrefix);
-            const value = token.value;
+            const { value } = token;
 
             if (token.comment) {
                 output += `  <!-- ${token.comment} -->\n`;
@@ -97,17 +101,21 @@ export const androidResourcesWithModes = {
  */
 export const androidResourcesLight = {
     name: 'android/resources-light',
-    format: async ({ dictionary, file, options, platform }) => {
+    format: async ({
+        dictionary, file, options, platform,
+    }) => {
         const header = await fileHeader({ file, commentStyle: commentStyles.long });
         const prefix = platform.prefix || 'xpl';
         const { outputReferences } = options || {};
 
         // Group tokens by canonical path to merge light/dark
-        const tokensByPath = new Map<string, { light?: TransformedToken, dark?: TransformedToken }>();
+        const tokensByPath = new Map<
+            string, { light?: TransformedToken, dark?: TransformedToken }
+        >();
 
-        dictionary.allTokens.forEach(token => {
+        dictionary.allTokens.forEach((token) => {
             const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter(p => p !== 'dark');
+            const canonicalPath = token.path.filter((p) => p !== 'dark');
             const key = canonicalPath.join('.');
 
             if (!tokensByPath.has(key)) tokensByPath.set(key, {});
@@ -125,13 +133,13 @@ export const androidResourcesLight = {
 
         const sortedKeys = Array.from(tokensByPath.keys()).sort();
 
-        sortedKeys.forEach(key => {
+        sortedKeys.forEach((key) => {
             const group = tokensByPath.get(key)!;
             // Use light token, or fall back to dark if no light exists
             const token = group.light || group.dark;
             if (!token) return;
 
-            const canonicalPath = token.path.filter(p => p !== 'dark');
+            const canonicalPath = token.path.filter((p) => p !== 'dark');
             const name = toAndroidResourceName(canonicalPath, prefix);
             const value = getAndroidColorValue(token, dictionary, !!outputReferences);
 
@@ -157,17 +165,21 @@ export const androidResourcesLight = {
  */
 export const androidResourcesDark = {
     name: 'android/resources-dark',
-    format: async ({ dictionary, file, options, platform }) => {
+    format: async ({
+        dictionary, file, options, platform,
+    }) => {
         const header = await fileHeader({ file, commentStyle: commentStyles.long });
         const prefix = platform.prefix || 'xpl';
         const { outputReferences } = options || {};
 
         // Group tokens by canonical path to merge light/dark
-        const tokensByPath = new Map<string, { light?: TransformedToken, dark?: TransformedToken }>();
+        const tokensByPath = new Map<
+            string, { light?: TransformedToken, dark?: TransformedToken }
+        >();
 
-        dictionary.allTokens.forEach(token => {
+        dictionary.allTokens.forEach((token) => {
             const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter(p => p !== 'dark');
+            const canonicalPath = token.path.filter((p) => p !== 'dark');
             const key = canonicalPath.join('.');
 
             if (!tokensByPath.has(key)) tokensByPath.set(key, {});
@@ -185,13 +197,13 @@ export const androidResourcesDark = {
 
         const sortedKeys = Array.from(tokensByPath.keys()).sort();
 
-        sortedKeys.forEach(key => {
+        sortedKeys.forEach((key) => {
             const group = tokensByPath.get(key)!;
             // Use dark token, or fall back to light if no dark exists
             const token = group.dark || group.light;
             if (!token) return;
 
-            const canonicalPath = token.path.filter(p => p !== 'dark');
+            const canonicalPath = token.path.filter((p) => p !== 'dark');
             const name = toAndroidResourceName(canonicalPath, prefix);
             const value = getAndroidColorValue(token, dictionary, !!outputReferences);
 
@@ -219,7 +231,9 @@ interface NestedNode {
     children: Map<string, NestedNode>;
 }
 
-function buildNestedStructure(tokensByPath: Map<string, { light?: TransformedToken, dark?: TransformedToken }>): NestedNode {
+function buildNestedStructure(
+    tokensByPath: Map<string, { light?: TransformedToken, dark?: TransformedToken }>,
+): NestedNode {
     const root: NestedNode = { tokens: [], children: new Map() };
 
     tokensByPath.forEach((group, pathKey) => {
@@ -228,7 +242,7 @@ function buildNestedStructure(tokensByPath: Map<string, { light?: TransformedTok
 
         let current = root;
         // Navigate to the parent node (all but last segment)
-        for (let i = 0; i < path.length - 1; i++) {
+        for (let i = 0; i < path.length - 1; i += 1) {
             const segment = path[i];
             if (!current.children.has(segment)) {
                 current.children.set(segment, { tokens: [], children: new Map() });
@@ -240,7 +254,7 @@ function buildNestedStructure(tokensByPath: Map<string, { light?: TransformedTok
         current.tokens.push({
             token: primary,
             light: group.light,
-            dark: group.dark
+            dark: group.dark,
         });
     });
 
@@ -253,17 +267,21 @@ function buildNestedStructure(tokensByPath: Map<string, { light?: TransformedTok
  */
 export const androidKotlinTheme = {
     name: 'android/kotlin-theme',
-    format: async ({ dictionary, file, options, platform }) => {
+    format: async ({
+        dictionary, file, options,
+    }) => {
         const header = await fileHeader({ file, commentStyle: commentStyles.long });
         const className = options.className || 'Theme';
         const packageName = options.packageName || 'com.xplor.design';
 
         // Group tokens by canonical path
-        const tokensByPath = new Map<string, { light?: TransformedToken, dark?: TransformedToken }>();
+        const tokensByPath = new Map<
+            string, { light?: TransformedToken, dark?: TransformedToken }
+        >();
 
-        dictionary.allTokens.forEach(token => {
+        dictionary.allTokens.forEach((token) => {
             const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter(p => p !== 'dark');
+            const canonicalPath = token.path.filter((p) => p !== 'dark');
             const key = canonicalPath.join('.');
 
             if (!tokensByPath.has(key)) tokensByPath.set(key, {});
@@ -301,18 +319,23 @@ export const androidKotlinTheme = {
             let result = `${indent}object ${objectName} {\n`;
 
             // Generate child objects first
-            const sortedChildren = Array.from(node.children.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+            const sortedChildren = Array
+                .from(node.children.entries())
+                .sort((a, b) => a[0].localeCompare(b[0]));
             sortedChildren.forEach(([childName, childNode]) => {
-                result += generateNestedObject(childNode, toKotlinObjectName(childName), indent + '    ');
+                result += generateNestedObject(childNode, toKotlinObjectName(childName), `${indent}    `);
             });
 
             // Generate token properties
-            const sortedTokens = [...node.tokens].sort((a, b) =>
-                a.token.path[a.token.path.length - 1].localeCompare(b.token.path[b.token.path.length - 1])
-            );
+            const sortedTokens = [...node.tokens]
+                .sort(
+                    (a, b) => a.token.path[a.token.path.length - 1].localeCompare(
+                        b.token.path[b.token.path.length - 1],
+                    ),
+                );
 
             sortedTokens.forEach(({ token, light, dark }) => {
-                const path = token.path.filter(p => p !== 'dark');
+                const path = token.path.filter((p) => p !== 'dark');
                 const propName = toKotlinPropertyName([path[path.length - 1]]);
                 const isColor = token.type === 'color' || token.attributes?.category === 'color';
                 const isDimension = token.type === 'dimension' || token.type === 'fontSize' || token.attributes?.category === 'size';
@@ -381,12 +404,12 @@ export const androidDimens = {
             } else if (token.type === 'fontSize') {
                 // Font sizes use sp (scale-independent pixels) for accessibility
                 const numValue = parseFloat(token.value);
-                const spValue = isNaN(numValue) ? token.value : `${numValue.toFixed(2)}sp`;
+                const spValue = Number.isNaN(numValue) ? token.value : `${numValue.toFixed(2)}sp`;
                 output += `  <dimen name="${name}">${spValue}</dimen>\n`;
             } else {
                 // Dimensions use dp (density-independent pixels)
                 const numValue = parseFloat(token.value);
-                const dpValue = isNaN(numValue) ? token.value : `${numValue.toFixed(2)}dp`;
+                const dpValue = Number.isNaN(numValue) ? token.value : `${numValue.toFixed(2)}dp`;
                 output += `  <dimen name="${name}">${dpValue}</dimen>\n`;
             }
         });

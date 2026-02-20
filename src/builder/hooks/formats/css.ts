@@ -7,6 +7,7 @@ import { genFormatter } from 'src/builder/utils/gen-formatter';
 export const cssVariablesClassMode = {
     name: 'css/variables-class-mode',
     format: genFormatter({
+        darkFormatting: { indentation: '  ' },
         darkWrapPrefix: '.dark {\n',
         darkWrapSuffix: '\n}',
         format: 'css',

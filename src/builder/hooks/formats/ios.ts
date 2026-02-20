@@ -6,11 +6,15 @@ function getValue(
     token: TransformedToken,
     dictionary: Dictionary,
     outputReferences: boolean,
+    referenceFormatter?: (ref: TransformedToken) => string,
 ): string {
     if (outputReferences && usesReferences(token.original.value)) {
         const refs = getReferences(token.original.value, dictionary.tokens);
 
-        if (refs.length > 0) return refs[0].name;
+        if (refs.length > 0) {
+            const ref = refs[0];
+            return referenceFormatter ? referenceFormatter(ref) : ref.name;
+        }
     }
 
     return token.value;
@@ -72,6 +76,32 @@ function getSizeLegacyNames(name: string, prefix: string): string[] {
     return legacyNames;
 }
 
+type TokenModeGroup = { light?: TransformedToken; dark?: TransformedToken };
+
+/**
+ * Groups a flat token list into light/dark pairs keyed by canonical path
+ * (i.e., the token path with any "dark" segment removed).
+ */
+function groupTokensByMode(tokens: TransformedToken[]): Map<string, TokenModeGroup> {
+    const map = new Map<string, TokenModeGroup>();
+
+    tokens.forEach((token) => {
+        const isDark = token.path.includes('dark');
+        const key = token.path.filter((p) => p !== 'dark').join('.');
+
+        if (!map.has(key)) map.set(key, {});
+
+        const group = map.get(key)!;
+        if (isDark) {
+            group.dark = token;
+        } else {
+            group.light = token;
+        }
+    });
+
+    return map;
+}
+
 /**
  * Legacy iOS Swift enum format with flat structure.
  * Maintains backwards compatibility with older token naming.
@@ -87,25 +117,7 @@ export const iosSwiftEnumWithModesLegacy = {
         const header = await fileHeader({ file, commentStyle: commentStyles.short });
         const prefix = platform.prefix || 'xpl';
 
-        const tokensByPath = new Map<
-            string, { light?: TransformedToken, dark?: TransformedToken }
-        >();
-
-        dictionary.allTokens.forEach((token) => {
-            const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter((p) => p !== 'dark');
-            const key = canonicalPath.join('.');
-
-            if (!tokensByPath.has(key)) tokensByPath.set(key, {});
-
-            const group = tokensByPath.get(key)!;
-            if (isDark) {
-                group.dark = token;
-            } else {
-                group.light = token;
-            }
-        });
-
+        const tokensByPath = groupTokensByMode(dictionary.allTokens);
         const sortedKeys = Array.from(tokensByPath.keys()).sort();
 
         let output = header;
@@ -200,16 +212,20 @@ export const iosSwiftEnumWithModesLegacy = {
 } satisfies Format;
 
 /**
- * Helper to convert token path to PascalCase for nested enum names
+ * Helper to convert token path to PascalCase for nested enum names.
+ * Prefixes digit-leading results with an underscore because Swift
+ * identifiers cannot start with a digit (e.g. path segment "0" → "_0").
  */
 function toPascalCase(str: string): string {
-    return str
+    const result = str
         .replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ''))
         .replace(/^./, (c) => c.toUpperCase());
+    return /^\d/.test(result) ? `_${result}` : result;
 }
 
 /**
- * Helper to convert token name to camelCase for property names
+ * Helper to convert token name to camelCase for property names.
+ * Inherits digit-leading underscore prefix from toPascalCase.
  */
 function toCamelCase(str: string): string {
     const pascal = toPascalCase(str);
@@ -249,6 +265,18 @@ function buildNestedStructure(tokens: TransformedToken[]): NestedNode {
 }
 
 /**
+ * Builds a fully-qualified Swift reference for a token in the nested enum format.
+ * e.g., a token with path ['color', 'background', 'primary'] inside a root enum
+ * named 'Theme' becomes 'Theme.Color.Background.primary'.
+ */
+function buildNestedRef(ref: TransformedToken, className: string): string {
+    const path = ref.path.filter((p) => p !== 'dark');
+    const enumSegments = path.slice(0, -1).map(toPascalCase);
+    const prop = toCamelCase(path[path.length - 1]);
+    return [className, ...enumSegments, prop].join('.');
+}
+
+/**
  * Modern iOS Swift format with nested enum structure.
  * Provides better discoverability and organization.
  * e.g., Apollo.Color.Background.primary, Apollo.Spacing.medium
@@ -261,25 +289,7 @@ export const iosSwiftEnumWithModes = {
         const { outputReferences } = options;
         const header = await fileHeader({ file, commentStyle: commentStyles.short });
 
-        // Group tokens by light/dark mode
-        const tokensByPath = new Map<
-            string, { light?: TransformedToken, dark?: TransformedToken }
-        >();
-
-        dictionary.allTokens.forEach((token) => {
-            const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter((p) => p !== 'dark');
-            const key = canonicalPath.join('.');
-
-            if (!tokensByPath.has(key)) tokensByPath.set(key, {});
-
-            const group = tokensByPath.get(key)!;
-            if (isDark) {
-                group.dark = token;
-            } else {
-                group.light = token;
-            }
-        });
+        const tokensByPath = groupTokensByMode(dictionary.allTokens);
 
         // Build nested structure from the grouped tokens
         const mergedTokens: TransformedToken[] = [];
@@ -343,15 +353,17 @@ export const iosSwiftEnumWithModes = {
 
                 const isColor = primary.type === 'color';
 
+                const nestedRef = (ref: TransformedToken) => buildNestedRef(ref, className);
+
                 if (light && dark && isColor) {
-                    const lightVal = getValue(light, dictionary, !!outputReferences);
-                    const darkVal = getValue(dark, dictionary, !!outputReferences);
+                    const lightVal = getValue(light, dictionary, !!outputReferences, nestedRef);
+                    const darkVal = getValue(dark, dictionary, !!outputReferences, nestedRef);
 
                     result += `${indent}    public static let ${propName} = UIColor { traitCollection in\n`;
                     result += `${indent}        return traitCollection.userInterfaceStyle === .dark ? ${darkVal} : ${lightVal}\n`;
                     result += `${indent}    }`;
                 } else {
-                    const val = getValue(primary, dictionary, !!outputReferences);
+                    const val = getValue(primary, dictionary, !!outputReferences, nestedRef);
                     result += `${indent}    public static let ${propName} = ${val}`;
                 }
 

@@ -1,4 +1,6 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import {
+    describe, it, expect, vi, beforeEach, afterEach,
+} from 'vitest';
 import { detectColorModes, clearModeCache } from '../mode-detection';
 
 const access = vi.hoisted(() => vi.fn());

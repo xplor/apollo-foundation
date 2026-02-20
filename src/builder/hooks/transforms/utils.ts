@@ -8,5 +8,5 @@ export function formatNumericValue<T>(
 ): string | T {
     const numValue = parseFloat(value as string);
 
-    return isNaN(numValue) ? value : formatter(numValue);
+    return Number.isNaN(numValue) ? value : formatter(numValue);
 }

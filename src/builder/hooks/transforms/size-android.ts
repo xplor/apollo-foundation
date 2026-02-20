@@ -11,8 +11,7 @@ export const sizePxToDp = {
     name: 'size/pxToDp',
     type: 'value',
     filter: (token: TransformedToken) => token.type === 'dimension',
-    transform: ({ value }: TransformedToken) =>
-        formatNumericValue(value, (n) => `${n.toFixed(2)}dp`),
+    transform: ({ value }: TransformedToken) => formatNumericValue(value, (n) => `${n.toFixed(2)}dp`),
 } satisfies Transform;
 
 /**
@@ -25,6 +24,5 @@ export const sizePxToSp = {
     name: 'size/pxToSp',
     type: 'value',
     filter: (token: TransformedToken) => token.type === 'fontSize',
-    transform: ({ value }: TransformedToken) =>
-        formatNumericValue(value, (n) => `${n.toFixed(2)}sp`),
+    transform: ({ value }: TransformedToken) => formatNumericValue(value, (n) => `${n.toFixed(2)}sp`),
 } satisfies Transform;

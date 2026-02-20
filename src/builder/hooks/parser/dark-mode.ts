@@ -10,5 +10,5 @@ export const darkMode: Parser = {
         return filePath?.includes('/dark/')
             ? { dark: tokens }
             : tokens;
-    }
+    },
 };

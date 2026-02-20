@@ -1,6 +1,5 @@
-import { commentStyles } from 'style-dictionary/enums';
-import type { Format, FormatFn, FormattingOptions, TransformedToken } from 'style-dictionary/types';
-import { fileHeader, formattedVariables } from 'style-dictionary/utils';
+import type { FormatFn, FormattingOptions, TransformedToken } from 'style-dictionary/types';
+import { formattedVariables } from 'style-dictionary/utils';
 
 /**
  * Generates backwards-compatible alias declarations for legacy token names.
@@ -12,7 +11,7 @@ function generateLegacyAliases(format: 'css' | 'sass', indentation: string = '  
         {
             legacy: 'xpl-color-transparent',
             current: 'xpl-color-transparent-0',
-            comment: 'Backwards-compatible alias. Use --xpl-color-transparent-0 instead.'
+            comment: 'Backwards-compatible alias. Use --xpl-color-transparent-0 instead.',
         },
     ];
 
@@ -22,14 +21,13 @@ function generateLegacyAliases(format: 'css' | 'sass', indentation: string = '  
         if (format === 'css') {
             const commentStr = comment ? ` /** ${comment} */` : '';
             return `${indentation}--${legacy}: var(--${current});${commentStr}`;
-        } else {
-            // SCSS format
-            const commentStr = comment ? ` // ${comment}` : '';
-            return `${indentation}$${legacy}: $${current};${commentStr}`;
         }
+        // SCSS format
+        const commentStr = comment ? ` // ${comment}` : '';
+        return `${indentation}$${legacy}: $${current};${commentStr}`;
     });
 
-    return '\n' + lines.join('\n');
+    return `\n${lines.join('\n')}`;
 }
 
 export function genFormatter({
@@ -49,10 +47,9 @@ export function genFormatter({
     lightWrapPrefix: string,
     lightWrapSuffix: string,
 }): FormatFn {
-    return async ({ dictionary, file, options }) => {
-        const header = await fileHeader({ file, commentStyle: commentStyles.long });
+    return async ({ dictionary, options }) => {
         const { outputReferences } = options;
-        const lightTokens = dictionary.allTokens.filter(t => !t.path.includes('dark'));
+        const lightTokens = dictionary.allTokens.filter((t) => !t.path.includes('dark'));
         const lightTokensStr = formattedVariables({
             format,
             dictionary: { ...dictionary, allTokens: lightTokens },
@@ -64,7 +61,7 @@ export function genFormatter({
         const legacyAliasesStr = generateLegacyAliases(format, lightFormatting?.indentation);
 
         // 2. Get tokens that ARE under the 'dark' namespace
-        const darkTokens = dictionary.allTokens.filter(t => t.path.includes('dark'));
+        const darkTokens = dictionary.allTokens.filter((t) => t.path.includes('dark'));
         const darkTokensStr = formattedVariables({
             format,
             dictionary: {
@@ -80,15 +77,17 @@ export function genFormatter({
                     const {
                         type: aType,
                         item: aItem,
-                        subitem: aSubitem
-                    } = attributes as { category?: string; type?: string; item?: string; subitem?: string };
+                        subitem: aSubitem,
+                    } = attributes as {
+                        category?: string; type?: string; item?: string; subitem?: string
+                    };
 
                     return {
                         key: key.replace('dark.', ''),
                         original: {
                             value: oVal.replace('dark.', ''),
                             key: oKey.replace('dark.', ''),
-                        ...oRest
+                            ...oRest,
                         },
                         name: name.replace('-dark', ''),
                         attributes: {
@@ -96,10 +95,10 @@ export function genFormatter({
                             type: aItem,
                             item: aSubitem,
                         },
-                        path: path.filter(seg => seg !== 'dark'),
-                        ...rest
+                        path: path.filter((seg) => seg !== 'dark'),
+                        ...rest,
                     } as TransformedToken;
-                })
+                }),
             },
             outputReferences,
             formatting: darkFormatting,

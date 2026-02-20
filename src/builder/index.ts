@@ -16,18 +16,18 @@ const __dirname = import.meta.dirname;
 const fullPath = path.join(__dirname, '../../');
 const __rootDir = fullPath.substring(0, fullPath.length - 1);
 const tokensDir = `${__rootDir}/src/tokens`;
-const isDebug = process.argv.find(arg => arg === '--debug');
+const isDebug = process.argv.find((arg) => arg === '--debug');
 
 async function getSDConfig(brand: PlatformsConfig['brand'], platform: string): Promise<Config> {
     const modeConfig = await detectColorModes(brand, tokensDir);
     const include = [
-        `global/**/*.json`,
+        'global/**/*.json',
         `platforms/${platform}/**/*.{ts,json}`,
-    ].reduce<string[]>((acc, path) => ([...acc, `${tokensDir}/${path}`]), []);
+    ].reduce<string[]>((acc, glob) => ([...acc, `${tokensDir}/${glob}`]), []);
 
     const source = [
         `brands/${brand}/**/*.json`,
-    ].reduce<string[]>((acc, path) => ([...acc, `${tokensDir}/${path}`]), []);
+    ].reduce<string[]>((acc, glob) => ([...acc, `${tokensDir}/${glob}`]), []);
 
     return {
         include,
@@ -54,17 +54,18 @@ async function generateBrandDictionaries() {
         { withFileTypes: true },
     );
     const brands = brandsDir
-        .filter(dir => dir.isDirectory())
-        .map(dir => dir.name);
+        .filter((dir) => dir.isDirectory())
+        .map((dir) => dir.name);
     const platformsDir = await readdir(
         path.resolve(`${__rootDir}/src/tokens/platforms`),
         { withFileTypes: true },
     );
     const platforms = platformsDir
-        .filter(dir => dir.isDirectory())
-        .map(({ name }) => !isDebug && name === 'debug' ? false : name)
+        .filter((dir) => dir.isDirectory())
+        .map(({ name }) => (!isDebug && name === 'debug' ? false : name))
         .filter(Boolean) as string[];
 
+    // eslint-disable-next-line no-console
     console.log('🔁 Building tokens...');
 
     for (const brand of brands) {
@@ -75,6 +76,7 @@ async function generateBrandDictionaries() {
         }
     }
 
+    // eslint-disable-next-line no-console
     console.log('✅ Tokens Successfully Built!');
 }
 

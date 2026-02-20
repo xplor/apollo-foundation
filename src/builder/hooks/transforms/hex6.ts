@@ -12,5 +12,5 @@ export const hex6 = {
         }
 
         return value;
-    }
+    },
 } satisfies Transform;

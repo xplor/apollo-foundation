@@ -30,13 +30,13 @@ export async function detectColorModes(brand: string, tokensDir: string): Promis
         // Check if both light and dark directories exist
         await Promise.all([
             access(lightPath, constants.R_OK),
-            access(darkPath, constants.R_OK)
+            access(darkPath, constants.R_OK),
         ]);
 
         const config: ModeConfig = {
             hasModes: true,
             lightPath: `${brand}/color/light`,
-            darkPath: `${brand}/color/dark`
+            darkPath: `${brand}/color/dark`,
         };
 
         modeCache.set(cacheKey, config);
@@ -44,7 +44,7 @@ export async function detectColorModes(brand: string, tokensDir: string): Promis
     } catch {
         // If either directory doesn't exist, no mode support
         const config: ModeConfig = {
-            hasModes: false
+            hasModes: false,
         };
 
         modeCache.set(cacheKey, config);

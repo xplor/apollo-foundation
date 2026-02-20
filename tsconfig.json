@@ -11,7 +11,8 @@
     "allowImportingTsExtensions": true,
     "lib": [ "esnext" ],
     "types": [ "node" ],
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "strict": true
   },
   "exclude": [ "node_modules" ],
   "include": [

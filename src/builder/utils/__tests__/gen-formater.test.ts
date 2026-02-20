@@ -1,14 +1,16 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import { genFormatter } from '../gen-formater';
 import type { TransformedToken } from 'style-dictionary/types';
+import { genFormatter } from '../gen-formater';
 
 const FIXTURE_PATH = resolve(__dirname, '../../__tests__/fixtures/tokens-formatter.json');
 
+type FixtureItem = { path: string[]; name: string; value: string; comment?: string };
+
 function loadFixtureTokens(): TransformedToken[] {
     const raw = readFileSync(FIXTURE_PATH, 'utf-8');
-    const items = JSON.parse(raw) as Array<{ path: string[]; name: string; value: string; comment?: string }>;
+    const items = JSON.parse(raw) as Array<FixtureItem>;
     return items.map((item) => ({
         path: item.path,
         name: item.name,
@@ -32,7 +34,7 @@ describe('genFormatter', () => {
         });
 
         const result = await formatFn({
-            // @ts-expect-error: Typescript complains this text fixture doesn't satisfy the requirements for formatFn but its fine
+            // @ts-expect-error: test fixture doesn't fully satisfy the formatFn dictionary shape
             dictionary: { allTokens, tokens: {}, unfilteredTokens: [] },
             file: { destination: 'variables.css' },
             options: { outputReferences: false },
@@ -63,7 +65,7 @@ describe('genFormatter', () => {
                 allTokens,
                 tokens: {},
                 // @ts-expect-error: Typescript is a little overzealous in this instance
-                unfilteredTokens: []
+                unfilteredTokens: [],
             },
             file: { destination: 'variables-media.css' },
             options: { outputReferences: false },

@@ -4,7 +4,7 @@ const zIndexes = zIndexArr.reduce((acc, zIndex) => ({
     [`${zIndex}`]: {
         value: zIndex,
         type: 'other',
-    }
+    },
 }), {});
 
 export default {

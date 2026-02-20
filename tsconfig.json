@@ -12,7 +12,11 @@
     "lib": [ "esnext" ],
     "types": [ "node" ],
     "baseUrl": "./",
-    "strict": true
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "src/*": ["./src/*"]
+    }
   },
   "exclude": [ "node_modules" ],
   "include": [

@@ -34,13 +34,17 @@ const platform = {};
 
 describe('scss formats', () => {
     it('scssVariablesClassMode produces .dark and SCSS variables', async () => {
-        const result = await scssVariablesClassMode.format!({ dictionary, file, options, platform });
+        const result = await scssVariablesClassMode.format!({
+            dictionary, file, options, platform,
+        });
         expect(result).toContain('.dark {');
         expect(result).toContain('$xpl-color-primary');
     });
 
     it('scssVariablesMediaMode produces media query', async () => {
-        const result = await scssVariablesMediaMode.format!({ dictionary, file, options, platform });
+        const result = await scssVariablesMediaMode.format!({
+            dictionary, file, options, platform,
+        });
         expect(result).toContain('@media (prefers-color-scheme: dark)');
     });
 });

@@ -86,6 +86,114 @@ describe('android formats', () => {
         expect(result).toContain('sp');
     });
 
+    it('sanitizes "--" in token comments to prevent invalid XML', async () => {
+        const tokenWithDashComment = [
+            {
+                path: ['color', 'brand'],
+                name: 'xpl_color_brand',
+                value: '#ff0000',
+                type: 'color',
+                comment: 'Updated for version 2.0--latest',
+                original: { value: '#ff0000', key: 'xpl_color_brand' },
+                attributes: { category: 'color' },
+            },
+        ];
+        const dict = { allTokens: tokenWithDashComment, tokens: {}, unfilteredTokens: [] };
+
+        for (
+            const format of [
+                androidResourcesWithModes,
+                androidResourcesLight,
+                androidResourcesDark,
+                androidDimens,
+            ]
+        ) {
+            const result = await format.format!({
+                // @ts-expect-error: no need for a complete object in test
+                dictionary: dict,
+                file,
+                options: {},
+                platform,
+            });
+            expect(result).not.toContain('--latest');
+            expect(result).toContain('- -latest');
+        }
+    });
+
+    it('sanitizes "*/" in Kotlin doc comments to prevent premature block closure', async () => {
+        const tokenWithClosingComment = [
+            {
+                path: ['color', 'brand'],
+                name: 'xpl_color_brand',
+                value: '#ff0000',
+                type: 'color',
+                comment: 'Note: close with */',
+                original: { value: '#ff0000', key: 'xpl_color_brand' },
+                attributes: { category: 'color' },
+            },
+        ];
+        const dict = { allTokens: tokenWithClosingComment, tokens: {}, unfilteredTokens: [] };
+
+        const result = await androidKotlinTheme.format!({
+            // @ts-expect-error: no need for a complete object in test
+            dictionary: dict,
+            file: { destination: 'Theme.kt' },
+            options: { className: 'Theme', packageName: 'com.xplor.design' },
+            platform,
+        });
+        expect(result).not.toContain('*/\n */');
+        expect(result).toContain('* /');
+    });
+
+    it('escapes double quotes and backslashes in Kotlin color string literals', async () => {
+        const malformedTokens = [
+            {
+                path: ['color', 'weird'],
+                name: 'xpl_color_weird',
+                value: '#ff"00\\00',
+                type: 'color',
+                original: { value: '#ff"00\\00', key: 'xpl_color_weird' },
+                attributes: { category: 'color' },
+            },
+        ];
+        const dict = { allTokens: malformedTokens, tokens: {}, unfilteredTokens: [] };
+
+        const result = await androidKotlinTheme.format!({
+            // @ts-expect-error: no need for a complete object in test
+            dictionary: dict,
+            file: { destination: 'Theme.kt' },
+            options: { className: 'Theme', packageName: 'com.xplor.design' },
+            platform,
+        });
+        // Raw unescaped quote must not appear inside the string literal
+        expect(result).not.toMatch(/"#ff"00/);
+        // Both special chars must be properly escaped
+        expect(result).toContain('\\"');
+        expect(result).toContain('\\\\');
+    });
+
+    it('androidKotlinTheme does not crash for tokens whose path is only "dark"', async () => {
+        const darkOnlyToken = [
+            {
+                path: ['dark'],
+                name: 'xpl_dark',
+                value: '#000000',
+                type: 'color',
+                original: { value: '#000000', key: 'xpl_dark' },
+                attributes: { category: 'color' },
+            },
+        ];
+        const dict = { allTokens: darkOnlyToken, tokens: {}, unfilteredTokens: [] };
+
+        await expect(androidKotlinTheme.format!({
+            // @ts-expect-error: no need for a complete object in test
+            dictionary: dict,
+            file: { destination: 'Theme.kt' },
+            options: { className: 'Theme', packageName: 'com.xplor.design' },
+            platform,
+        })).resolves.not.toThrow();
+    });
+
     it('androidKotlinTheme outputs Kotlin object with nested structure', async () => {
         const result = await androidKotlinTheme.format!({
             // @ts-expect-error: no need for a complete object in test

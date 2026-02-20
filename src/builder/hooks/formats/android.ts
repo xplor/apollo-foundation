@@ -17,12 +17,13 @@ function getAndroidColorValue(
     token: TransformedToken,
     dictionary: Dictionary,
     outputReferences: boolean,
+    prefix?: string,
 ): string {
     if (outputReferences && usesReferences(token.original.value)) {
         const refs = getReferences(token.original.value, dictionary.tokens);
         if (refs.length > 0) {
             const refPath = refs[0].path.filter((p: string) => p !== 'dark');
-            const refName = toAndroidResourceName(refPath, 'xpl');
+            const refName = toAndroidResourceName(refPath, prefix);
             return `@color/${refName}`;
         }
     }
@@ -34,7 +35,7 @@ function getAndroidColorValue(
  */
 function toKotlinPropertyName(path: string[]): string {
     return path.map((segment, index) => {
-        const cleaned = segment.replace(/[^a-zA-Z0-9]/g, '');
+        const cleaned = (segment ?? '').replace(/[^a-zA-Z0-9]/g, '') || 'unknown';
         if (index === 0) {
             return cleaned.toLowerCase();
         }
@@ -43,10 +44,36 @@ function toKotlinPropertyName(path: string[]): string {
 }
 
 /**
+ * Sanitizes a string for safe embedding inside an XML comment.
+ * XML forbids "--" inside comments and "-->" prematurely closes them,
+ * so every "--" sequence is replaced with "- -".
+ */
+function sanitizeXmlComment(comment: string): string {
+    return comment.replace(/--/g, '- -');
+}
+
+/**
+ * Sanitizes a string for safe embedding inside a Kotlin/KDoc block comment.
+ * The sequence "*\/" prematurely closes the comment block, so every "*\/"
+ * is replaced with "* /".
+ */
+function sanitizeKotlinDocComment(comment: string): string {
+    return comment.replace(/\*\//g, '* /');
+}
+
+/**
+ * Escapes a value for safe embedding inside a Kotlin double-quoted string literal.
+ * Backslashes and double quotes must be escaped to prevent broken string syntax.
+ */
+function escapeKotlinStringLiteral(value: string): string {
+    return value.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+/**
  * Helper to convert token path to PascalCase for Kotlin object names
  */
 function toKotlinObjectName(segment: string): string {
-    const cleaned = segment.replace(/[^a-zA-Z0-9]/g, '');
+    const cleaned = segment.replace(/[^a-zA-Z0-9]/g, '') || 'Unknown';
     return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
 }
 
@@ -78,7 +105,7 @@ export const androidResourcesWithModes = {
             const { value } = token;
 
             if (token.comment) {
-                output += `  <!-- ${token.comment} -->\n`;
+                output += `  <!-- ${sanitizeXmlComment(token.comment)} -->\n`;
             }
 
             if (token.attributes?.category === 'color') {
@@ -116,7 +143,7 @@ export const androidResourcesLight = {
         dictionary.allTokens.forEach((token) => {
             const isDark = token.path.includes('dark');
             const canonicalPath = token.path.filter((p) => p !== 'dark');
-            const key = canonicalPath.join('.');
+            const key = JSON.stringify(canonicalPath);
 
             if (!tokensByPath.has(key)) tokensByPath.set(key, {});
             const group = tokensByPath.get(key)!;
@@ -141,10 +168,10 @@ export const androidResourcesLight = {
 
             const canonicalPath = token.path.filter((p) => p !== 'dark');
             const name = toAndroidResourceName(canonicalPath, prefix);
-            const value = getAndroidColorValue(token, dictionary, !!outputReferences);
+            const value = getAndroidColorValue(token, dictionary, !!outputReferences, prefix);
 
             if (token.comment) {
-                output += `  <!-- ${token.comment} -->\n`;
+                output += `  <!-- ${sanitizeXmlComment(token.comment)} -->\n`;
             }
 
             if (token.type === 'color' || token.attributes?.category === 'color') {
@@ -180,7 +207,7 @@ export const androidResourcesDark = {
         dictionary.allTokens.forEach((token) => {
             const isDark = token.path.includes('dark');
             const canonicalPath = token.path.filter((p) => p !== 'dark');
-            const key = canonicalPath.join('.');
+            const key = JSON.stringify(canonicalPath);
 
             if (!tokensByPath.has(key)) tokensByPath.set(key, {});
             const group = tokensByPath.get(key)!;
@@ -205,10 +232,10 @@ export const androidResourcesDark = {
 
             const canonicalPath = token.path.filter((p) => p !== 'dark');
             const name = toAndroidResourceName(canonicalPath, prefix);
-            const value = getAndroidColorValue(token, dictionary, !!outputReferences);
+            const value = getAndroidColorValue(token, dictionary, !!outputReferences, prefix);
 
             if (token.comment) {
-                output += `  <!-- ${token.comment} -->\n`;
+                output += `  <!-- ${sanitizeXmlComment(token.comment)} -->\n`;
             }
 
             if (token.type === 'color' || token.attributes?.category === 'color') {
@@ -237,7 +264,7 @@ function buildNestedStructure(
     const root: NestedNode = { tokens: [], children: new Map() };
 
     tokensByPath.forEach((group, pathKey) => {
-        const path = pathKey.split('.');
+        const path = JSON.parse(pathKey) as string[];
         const primary = group.light || group.dark!;
 
         let current = root;
@@ -282,7 +309,7 @@ export const androidKotlinTheme = {
         dictionary.allTokens.forEach((token) => {
             const isDark = token.path.includes('dark');
             const canonicalPath = token.path.filter((p) => p !== 'dark');
-            const key = canonicalPath.join('.');
+            const key = JSON.stringify(canonicalPath);
 
             if (!tokensByPath.has(key)) tokensByPath.set(key, {});
             const group = tokensByPath.get(key)!;
@@ -336,30 +363,32 @@ export const androidKotlinTheme = {
 
             sortedTokens.forEach(({ token, light, dark }) => {
                 const path = token.path.filter((p) => p !== 'dark');
-                const propName = toKotlinPropertyName([path[path.length - 1]]);
+                const lastSegment = path[path.length - 1] ?? token.name ?? 'unknown';
+                const propName = toKotlinPropertyName([lastSegment]);
                 const isColor = token.type === 'color' || token.attributes?.category === 'color';
                 const isDimension = token.type === 'dimension' || token.type === 'fontSize' || token.attributes?.category === 'size';
 
                 if (token.comment) {
-                    result += `${indent}    /** ${token.comment} */\n`;
+                    result += `${indent}    /** ${sanitizeKotlinDocComment(token.comment)} */\n`;
                 }
 
                 if (isColor) {
                     if (light && dark) {
                         // Dynamic color based on theme
                         result += `${indent}    val ${propName}: Color\n`;
-                        result += `${indent}        @Composable get() = if (isSystemInDarkTheme()) "${dark.value}".toColor() else "${light.value}".toColor()\n`;
+                        result += `${indent}        @Composable get() = if (isSystemInDarkTheme()) "${escapeKotlinStringLiteral(dark.value)}".toColor() else "${escapeKotlinStringLiteral(light.value)}".toColor()\n`;
                     } else {
                         // Static color
-                        result += `${indent}    val ${propName}: Color = "${token.value}".toColor()\n`;
+                        result += `${indent}    val ${propName}: Color = "${escapeKotlinStringLiteral(token.value)}".toColor()\n`;
                     }
                 } else if (isDimension) {
-                    // Extract numeric value
-                    const numValue = parseFloat(token.value) || 0;
+                    const numValue = parseFloat(token.value);
                     if (token.type === 'fontSize') {
-                        result += `${indent}    val ${propName} = ${numValue}.sp\n`;
+                        const spValue = Number.isNaN(numValue) ? token.value : `${numValue}.sp`;
+                        result += `${indent}    val ${propName} = ${spValue}\n`;
                     } else {
-                        result += `${indent}    val ${propName} = ${numValue}.dp\n`;
+                        const dpValue = Number.isNaN(numValue) ? token.value : `${numValue}.dp`;
+                        result += `${indent}    val ${propName} = ${dpValue}\n`;
                     }
                 } else {
                     // Generic value
@@ -395,7 +424,7 @@ export const androidDimens = {
             const name = toAndroidResourceName(token.path, prefix);
 
             if (token.comment) {
-                output += `  <!-- ${token.comment} -->\n`;
+                output += `  <!-- ${sanitizeXmlComment(token.comment)} -->\n`;
             }
 
             // fontWeight should be a string, not a dimen

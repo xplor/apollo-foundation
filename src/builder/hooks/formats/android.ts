@@ -143,9 +143,9 @@ export const androidResourcesWithModes = {
                 output += `  <!-- ${sanitizeXmlComment(token.comment)} -->\n`;
             }
 
-            if (token.attributes?.category === 'color') {
+            if (token.type === 'color' || token.attributes?.category === 'color') {
                 output += `  <color name="${name}">${value}</color>\n`;
-            } else if (token.attributes?.category === 'size') {
+            } else if (token.type === 'dimension' || token.attributes?.category === 'size') {
                 output += `  <dimen name="${name}">${value}</dimen>\n`;
             } else {
                 output += `  <item name="${name}" type="string">${value}</item>\n`;

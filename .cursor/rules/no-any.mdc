@@ -1,0 +1,46 @@
+---
+description: Bans use of the any type in TypeScript files
+globs: **/*.ts
+alwaysApply: false
+---
+
+# No `any` Types
+
+The `@typescript-eslint/no-explicit-any` ESLint rule is set to `error`. Never use `any` — it defeats TypeScript's type safety guarantees.
+
+## Alternatives
+
+**For test stubs**, cast to the real type using `as`:
+
+```typescript
+// ❌ BAD
+expect(transform({ value: '16' } as any)).toBe('16.00dp');
+
+// ✅ GOOD
+import type { TransformedToken } from 'style-dictionary/types';
+expect(transform({ value: '16' } as TransformedToken)).toBe('16.00dp');
+```
+
+**For unknown external data**, use `unknown` and narrow:
+
+```typescript
+// ❌ BAD
+function process(data: any) { return data.value; }
+
+// ✅ GOOD
+function process(data: unknown) {
+    if (typeof data === 'object' && data !== null && 'value' in data) {
+        return (data as { value: string }).value;
+    }
+}
+```
+
+**For generic containers**, use a type parameter:
+
+```typescript
+// ❌ BAD
+function identity(x: any) { return x; }
+
+// ✅ GOOD
+function identity<T>(x: T): T { return x; }
+```

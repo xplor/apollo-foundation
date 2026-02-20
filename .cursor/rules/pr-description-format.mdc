@@ -1,0 +1,17 @@
+---
+description: Always output PR descriptions inside a fenced code block for easy copy-pasting
+alwaysApply: true
+---
+
+# PR Description Format
+
+Whenever you are asked to write, draft, or generate a pull request description (including title and body), output the result inside a fenced markdown code block:
+
+```markdown
+## Summary
+...
+```
+
+- The code block must contain the full PR description — title, body, and all sections
+- Do not split the description across multiple blocks
+- Prose commentary (e.g. "here is your PR description") may appear outside the block, but the pasteable content must be entirely inside it

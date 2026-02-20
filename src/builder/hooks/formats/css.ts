@@ -1,5 +1,5 @@
-import type { Format, FormatFn, TransformedToken } from 'style-dictionary/types';
-import { genFormatter } from 'src/builder/utils/gen-formater';
+import type { Format } from 'style-dictionary/types';
+import { genFormatter } from 'src/builder/utils/gen-formatter';
 
 /**
  * CSS Variables format with class-based dark mode (.dark selector)

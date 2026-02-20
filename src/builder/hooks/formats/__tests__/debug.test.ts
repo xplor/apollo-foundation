@@ -9,7 +9,7 @@ describe('debug format', () => {
     it('outputs stringified dictionary.tokens', async () => {
         const tokens = { color: { background: { value: '#fff' } } };
         const result = await debug.format!({
-            // @ts-expect-error: Typescript complains this text fixture doesn't satisfy the requirements for formatFn but its fine
+            // @ts-expect-error: TS thinks this fixture doesn't meet reqs for formatFn but its fine
             dictionary: { tokens, allTokens: [], unfilteredTokens: [] },
             file: {},
             options: {},
@@ -19,6 +19,6 @@ describe('debug format', () => {
     });
 
     it('format has nested property', () => {
-        expect((debug.format as any).nested).toBe(true);
+        expect((debug.format).nested).toBe(true);
     });
 });

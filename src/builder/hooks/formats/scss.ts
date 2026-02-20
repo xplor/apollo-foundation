@@ -1,5 +1,5 @@
 import type { Format } from 'style-dictionary/types';
-import { genFormatter } from 'src/builder/utils/gen-formater';
+import { genFormatter } from 'src/builder/utils/gen-formatter';
 
 /**
  * SCSS Variables format with class-based dark mode (.dark selector)

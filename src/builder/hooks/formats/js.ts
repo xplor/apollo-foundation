@@ -147,19 +147,19 @@ export const javascriptUmdWithModes = {
         const tokensString = stringifyNested(tokens);
 
         return `${header}(function (root, factory) {
-            if (typeof module === "object" && module.exports) {
-                module.exports = factory();
-            } else if (typeof exports === "object") {
-                exports["_styleDictionary"] = factory();
-            } else if (typeof define === "function" && define.amd) {
-                define([], factory);
-            } else {
-                root["_styleDictionary"] = factory();
-            }
-            })(this, function () {
-                return ${tokensString};
-            });
-        `;
+    if (typeof module === "object" && module.exports) {
+        module.exports = factory();
+    } else if (typeof exports === "object") {
+        exports["_styleDictionary"] = factory();
+    } else if (typeof define === "function" && define.amd) {
+        define([], factory);
+    } else {
+        root["_styleDictionary"] = factory();
+    }
+})(this, function () {
+    return ${tokensString};
+});
+`;
     },
 } satisfies Format;
 

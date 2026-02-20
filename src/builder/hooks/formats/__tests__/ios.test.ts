@@ -35,7 +35,7 @@ describe('ios formats', () => {
         });
         expect(result).toContain('import UIKit');
         expect(result).toContain('public enum StyleDictionaryColor');
-        expect(result).toContain('traitCollection.userInterfaceStyle === .dark');
+        expect(result).toContain('traitCollection.userInterfaceStyle == .dark');
     });
 
     it('iosSwiftEnumWithModes outputs nested enum structure', async () => {
@@ -47,7 +47,7 @@ describe('ios formats', () => {
             platform,
         });
         expect(result).toContain('public enum Theme');
-        expect(result).toContain('traitCollection.userInterfaceStyle === .dark');
+        expect(result).toContain('traitCollection.userInterfaceStyle == .dark');
     });
 
     it('iosSwiftEnumWithModesLegacy emits flat token name as reference when outputReferences is true', async () => {

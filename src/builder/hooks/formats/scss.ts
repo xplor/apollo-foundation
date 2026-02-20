@@ -2,7 +2,10 @@ import type { Format } from 'style-dictionary/types';
 import { genFormatter } from 'src/builder/utils/gen-formatter';
 
 /**
- * SCSS Variables format with class-based dark mode (.dark selector)
+ * SCSS file format with CSS custom property dark mode via .dark selector.
+ * Uses CSS custom properties (--var) rather than SCSS variables ($var) for dark
+ * tokens because $variables are compile-time and lexically scoped — declaring
+ * them inside .dark {} would make them inaccessible outside that block.
  */
 export const scssVariablesClassMode = {
     name: 'scss/variables-class-mode',
@@ -10,14 +13,18 @@ export const scssVariablesClassMode = {
         darkFormatting: { indentation: '  ' },
         darkWrapPrefix: '.dark {\n',
         darkWrapSuffix: '\n}',
-        format: 'sass',
-        lightWrapPrefix: '',
-        lightWrapSuffix: '\n\n',
+        format: 'css',
+        lightFormatting: { indentation: '  ' },
+        lightWrapPrefix: ':root {\n',
+        lightWrapSuffix: '\n}\n\n',
     }),
 } satisfies Format;
 
 /**
- * sass Variables format with media query dark mode (@media prefers-color-scheme)
+ * SCSS file format with CSS custom property dark mode via @media prefers-color-scheme.
+ * Uses CSS custom properties (--var) rather than SCSS variables ($var) for dark
+ * tokens because $variables are compile-time and lexically scoped — declaring
+ * them inside a media block would make them inaccessible outside that block.
  */
 export const scssVariablesMediaMode = {
     name: 'scss/variables-media-mode',
@@ -25,9 +32,9 @@ export const scssVariablesMediaMode = {
         darkFormatting: { indentation: '    ' },
         darkWrapPrefix: '@media (prefers-color-scheme: dark) {\n  :root {\n',
         darkWrapSuffix: '\n  }\n}\n',
-        format: 'sass',
+        format: 'css',
         lightFormatting: { indentation: '  ' },
-        lightWrapPrefix: '',
-        lightWrapSuffix: '\n\n',
+        lightWrapPrefix: ':root {\n',
+        lightWrapSuffix: '\n}\n\n',
     }),
 } satisfies Format;

@@ -33,18 +33,23 @@ const options = { outputReferences: false };
 const platform = {};
 
 describe('scss formats', () => {
-    it('scssVariablesClassMode produces .dark and SCSS variables', async () => {
+    it('scssVariablesClassMode produces :root, .dark, and CSS custom properties', async () => {
         const result = await scssVariablesClassMode.format!({
             dictionary, file, options, platform,
         });
+        expect(result).toContain(':root {');
         expect(result).toContain('.dark {');
-        expect(result).toContain('$xpl-color-primary');
+        expect(result).toContain('--xpl-color-primary');
+        expect(result).not.toContain('$xpl-color-primary');
     });
 
-    it('scssVariablesMediaMode produces media query', async () => {
+    it('scssVariablesMediaMode produces :root and media query with CSS custom properties', async () => {
         const result = await scssVariablesMediaMode.format!({
             dictionary, file, options, platform,
         });
+        expect(result).toContain(':root {');
         expect(result).toContain('@media (prefers-color-scheme: dark)');
+        expect(result).toContain('--xpl-color-primary');
+        expect(result).not.toContain('$xpl-color-primary');
     });
 });

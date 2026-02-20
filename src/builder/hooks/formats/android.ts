@@ -1,6 +1,7 @@
 import type { Format, TransformedToken, Dictionary } from 'style-dictionary/types';
 import { fileHeader, usesReferences, getReferences } from 'style-dictionary/utils';
 import { commentStyles } from 'style-dictionary/enums';
+import { formatNumericValue } from '../transforms/utils';
 
 /**
  * Helper to convert token path to Android resource name (snake_case)
@@ -346,12 +347,11 @@ export const androidKotlinTheme = {
                         result += `${indent}    val ${propName}: ComposeColor = "${escapeKotlinStringLiteral(token.value)}".toColor()\n`;
                     }
                 } else if (isDimension) {
-                    const numValue = parseFloat(token.value);
                     if (token.type === 'fontSize') {
-                        const spValue = Number.isNaN(numValue) ? token.value : `${numValue}.sp`;
+                        const spValue = formatNumericValue(token.value, (n) => `${n}.sp`);
                         result += `${indent}    val ${propName} = ${spValue}\n`;
                     } else {
-                        const dpValue = Number.isNaN(numValue) ? token.value : `${numValue}.dp`;
+                        const dpValue = formatNumericValue(token.value, (n) => `${n}.dp`);
                         result += `${indent}    val ${propName} = ${dpValue}\n`;
                     }
                 } else {
@@ -398,13 +398,11 @@ export const androidDimens = {
                 output += `  <string name="${name}">${token.value}</string>\n`;
             } else if (token.type === 'fontSize') {
                 // Font sizes use sp (scale-independent pixels) for accessibility
-                const numValue = parseFloat(token.value);
-                const spValue = Number.isNaN(numValue) ? token.value : `${numValue.toFixed(2)}sp`;
+                const spValue = formatNumericValue(token.value, (n) => `${n.toFixed(2)}sp`);
                 output += `  <dimen name="${name}">${spValue}</dimen>\n`;
             } else {
                 // Dimensions use dp (density-independent pixels)
-                const numValue = parseFloat(token.value);
-                const dpValue = Number.isNaN(numValue) ? token.value : `${numValue.toFixed(2)}dp`;
+                const dpValue = formatNumericValue(token.value, (n) => `${n.toFixed(2)}dp`);
                 output += `  <dimen name="${name}">${dpValue}</dimen>\n`;
             }
         });

@@ -1,5 +1,6 @@
 import type { Format } from 'style-dictionary/types';
 import { genFormatter } from 'src/builder/utils/gen-formatter';
+import { classModeConfig, mediaModeConfig } from './shared-formatter-configs';
 
 /**
  * SCSS file format with CSS custom property dark mode via .dark selector.
@@ -9,15 +10,7 @@ import { genFormatter } from 'src/builder/utils/gen-formatter';
  */
 export const scssVariablesClassMode = {
     name: 'scss/variables-class-mode',
-    format: genFormatter({
-        darkFormatting: { indentation: '  ' },
-        darkWrapPrefix: '.dark {\n',
-        darkWrapSuffix: '\n}',
-        format: 'css',
-        lightFormatting: { indentation: '  ' },
-        lightWrapPrefix: ':root {\n',
-        lightWrapSuffix: '\n}\n\n',
-    }),
+    format: genFormatter(classModeConfig),
 } satisfies Format;
 
 /**
@@ -28,13 +21,5 @@ export const scssVariablesClassMode = {
  */
 export const scssVariablesMediaMode = {
     name: 'scss/variables-media-mode',
-    format: genFormatter({
-        darkFormatting: { indentation: '    ' },
-        darkWrapPrefix: '@media (prefers-color-scheme: dark) {\n  :root {\n',
-        darkWrapSuffix: '\n  }\n}\n',
-        format: 'css',
-        lightFormatting: { indentation: '  ' },
-        lightWrapPrefix: ':root {\n',
-        lightWrapSuffix: '\n}\n\n',
-    }),
+    format: genFormatter(mediaModeConfig),
 } satisfies Format;

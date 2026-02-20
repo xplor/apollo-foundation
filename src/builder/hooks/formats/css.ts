@@ -1,20 +1,13 @@
 import type { Format } from 'style-dictionary/types';
 import { genFormatter } from 'src/builder/utils/gen-formatter';
+import { classModeConfig, mediaModeConfig } from './shared-formatter-configs';
 
 /**
  * CSS Variables format with class-based dark mode (.dark selector)
  */
 export const cssVariablesClassMode = {
     name: 'css/variables-class-mode',
-    format: genFormatter({
-        darkFormatting: { indentation: '  ' },
-        darkWrapPrefix: '.dark {\n',
-        darkWrapSuffix: '\n}',
-        format: 'css',
-        lightFormatting: { indentation: '  ' },
-        lightWrapPrefix: ':root {\n',
-        lightWrapSuffix: '\n}\n\n',
-    }),
+    format: genFormatter(classModeConfig),
 } satisfies Format;
 
 /**
@@ -22,13 +15,5 @@ export const cssVariablesClassMode = {
  */
 export const cssVariablesMediaMode = {
     name: 'css/variables-media-mode',
-    format: genFormatter({
-        darkFormatting: { indentation: '    ' },
-        darkWrapPrefix: '@media (prefers-color-scheme: dark) {\n  :root {\n',
-        darkWrapSuffix: '\n  }\n}\n',
-        format: 'css',
-        lightFormatting: { indentation: '  ' },
-        lightWrapPrefix: ':root {\n',
-        lightWrapSuffix: '\n}\n\n',
-    }),
+    format: genFormatter(mediaModeConfig),
 } satisfies Format;

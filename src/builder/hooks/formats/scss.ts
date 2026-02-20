@@ -26,6 +26,7 @@ export const scssVariablesMediaMode = {
         darkWrapPrefix: '@media (prefers-color-scheme: dark) {\n  :root {\n',
         darkWrapSuffix: '\n  }\n}\n',
         format: 'sass',
+        lightFormatting: { indentation: '  ' },
         lightWrapPrefix: '',
         lightWrapSuffix: '\n\n',
     }),

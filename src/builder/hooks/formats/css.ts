@@ -26,6 +26,7 @@ export const cssVariablesMediaMode = {
         darkWrapPrefix: '@media (prefers-color-scheme: dark) {\n  :root {\n',
         darkWrapSuffix: '\n  }\n}\n',
         format: 'css',
+        lightFormatting: { indentation: '  ' },
         lightWrapPrefix: ':root {\n',
         lightWrapSuffix: '\n}\n\n',
     }),

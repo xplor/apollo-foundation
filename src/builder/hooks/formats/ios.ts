@@ -2,7 +2,11 @@ import { Format, TransformedToken, Dictionary } from 'style-dictionary/types';
 import { fileHeader, usesReferences, getReferences } from 'style-dictionary/utils';
 import { commentStyles } from 'style-dictionary/enums';
 
-function getValue(token: TransformedToken, dictionary: Dictionary, outputReferences: boolean): string {
+function getValue(
+    token: TransformedToken,
+    dictionary: Dictionary,
+    outputReferences: boolean,
+): string {
     if (outputReferences && usesReferences(token.original.value)) {
         const refs = getReferences(token.original.value, dictionary.tokens);
 
@@ -76,16 +80,20 @@ function getSizeLegacyNames(name: string, prefix: string): string[] {
  */
 export const iosSwiftEnumWithModesLegacy = {
     name: 'ios-swift/enum-with-modes-legacy',
-    format: async ({ dictionary, file, options, platform }) => {
+    format: async ({
+        dictionary, file, options, platform,
+    }) => {
         const { outputReferences } = options;
         const header = await fileHeader({ file, commentStyle: commentStyles.short });
         const prefix = platform.prefix || 'xpl';
 
-        const tokensByPath = new Map<string, { light?: TransformedToken, dark?: TransformedToken }>();
+        const tokensByPath = new Map<
+            string, { light?: TransformedToken, dark?: TransformedToken }
+        >();
 
-        dictionary.allTokens.forEach(token => {
+        dictionary.allTokens.forEach((token) => {
             const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter(p => p !== 'dark');
+            const canonicalPath = token.path.filter((p) => p !== 'dark');
             const key = canonicalPath.join('.');
 
             if (!tokensByPath.has(key)) tokensByPath.set(key, {});
@@ -111,14 +119,13 @@ export const iosSwiftEnumWithModesLegacy = {
         // Track legacy aliases to generate at the end
         const legacyAliases: { legacyName: string; newName: string }[] = [];
 
-        sortedKeys.forEach(key => {
+        sortedKeys.forEach((key) => {
             const group = tokensByPath.get(key)!;
-            const light = group.light;
-            const dark = group.dark;
+            const { dark, light } = group;
             const primary = light || dark!;
-            const name = primary.name;
+            const { name } = primary;
             const deprecated = light?.deprecated || dark?.deprecated;
-            const deprecatedComment = light?.deprecated_comment || dark?.deprecated_comment || "This token is deprecated.";
+            const deprecatedComment = light?.deprecated_comment || dark?.deprecated_comment || 'This token is deprecated.';
 
             if (deprecated) {
                 output += `    @available(*, deprecated, message: "${deprecatedComment}")\n`;
@@ -129,8 +136,8 @@ export const iosSwiftEnumWithModesLegacy = {
                 const darkVal = getValue(dark, dictionary, !!outputReferences);
 
                 output += `    public static let ${name} = UIColor { traitCollection in\n`;
-                output += `        return traitCollection.userInterfaceStyle == .dark ? ${darkVal} : ${lightVal}\n`;
-                output += `    }\n`;
+                output += `        return traitCollection.userInterfaceStyle === .dark ? ${darkVal} : ${lightVal}\n`;
+                output += '    }\n';
             } else {
                 const val = getValue(primary, dictionary, !!outputReferences);
                 output += `    public static let ${name} = ${val}\n`;
@@ -140,7 +147,7 @@ export const iosSwiftEnumWithModesLegacy = {
             const legacyNames = isColorFile
                 ? getColorLegacyNames(name, prefix)
                 : getSizeLegacyNames(name, prefix);
-            legacyNames.forEach(legacyName => {
+            legacyNames.forEach((legacyName) => {
                 legacyAliases.push({ legacyName, newName: name });
             });
         });
@@ -162,12 +169,12 @@ export const iosSwiftEnumWithModesLegacy = {
         // Generate SwiftUI Color extension only for color files
         if (isColorFile) {
             output += 'extension Color {\n';
-            sortedKeys.forEach(key => {
+            sortedKeys.forEach((key) => {
                 const group = tokensByPath.get(key)!;
                 const primary = group.light || group.dark!;
-                const name = primary.name;
+                const { name } = primary;
                 const deprecated = group.light?.deprecated || group.dark?.deprecated;
-                const deprecatedComment = group.light?.deprecated_comment || group.dark?.deprecated_comment || "This token is deprecated.";
+                const deprecatedComment = group.light?.deprecated_comment || group.dark?.deprecated_comment || 'This token is deprecated.';
 
                 if (deprecated) {
                     output += `    @available(*, deprecated, message: "${deprecatedComment}")\n`;
@@ -189,7 +196,7 @@ export const iosSwiftEnumWithModesLegacy = {
         }
 
         return output;
-    }
+    },
 } satisfies Format;
 
 /**
@@ -220,13 +227,13 @@ interface NestedNode {
 function buildNestedStructure(tokens: TransformedToken[]): NestedNode {
     const root: NestedNode = { tokens: [], children: new Map() };
 
-    tokens.forEach(token => {
+    tokens.forEach((token) => {
         // Skip 'dark' from path for canonical structure
-        const path = token.path.filter(p => p !== 'dark');
+        const path = token.path.filter((p) => p !== 'dark');
 
         let current = root;
         // Navigate to the parent node (all but last segment)
-        for (let i = 0; i < path.length - 1; i++) {
+        for (let i = 0; i < path.length - 1; i += 1) {
             const segment = path[i];
             if (!current.children.has(segment)) {
                 current.children.set(segment, { tokens: [], children: new Map() });
@@ -248,17 +255,20 @@ function buildNestedStructure(tokens: TransformedToken[]): NestedNode {
  */
 export const iosSwiftEnumWithModes = {
     name: 'ios-swift/enum-with-modes',
-    format: async ({ dictionary, file, options, platform }) => {
+    format: async ({
+        dictionary, file, options,
+    }) => {
         const { outputReferences } = options;
         const header = await fileHeader({ file, commentStyle: commentStyles.short });
-        const prefix = platform.prefix || 'xpl';
 
         // Group tokens by light/dark mode
-        const tokensByPath = new Map<string, { light?: TransformedToken, dark?: TransformedToken }>();
+        const tokensByPath = new Map<
+            string, { light?: TransformedToken, dark?: TransformedToken }
+        >();
 
-        dictionary.allTokens.forEach(token => {
+        dictionary.allTokens.forEach((token) => {
             const isDark = token.path.includes('dark');
-            const canonicalPath = token.path.filter(p => p !== 'dark');
+            const canonicalPath = token.path.filter((p) => p !== 'dark');
             const key = canonicalPath.join('.');
 
             if (!tokensByPath.has(key)) tokensByPath.set(key, {});
@@ -273,14 +283,17 @@ export const iosSwiftEnumWithModes = {
 
         // Build nested structure from the grouped tokens
         const mergedTokens: TransformedToken[] = [];
-        tokensByPath.forEach((group, key) => {
+        tokensByPath.forEach((group) => {
             const primary = group.light || group.dark!;
             // Create a virtual merged token for structure building
             mergedTokens.push({
                 ...primary,
                 _lightToken: group.light,
                 _darkToken: group.dark,
-            } as TransformedToken & { _lightToken?: TransformedToken, _darkToken?: TransformedToken });
+            } as TransformedToken & {
+                _lightToken?: TransformedToken,
+                _darkToken?: TransformedToken,
+            });
         });
 
         const nestedRoot = buildNestedStructure(mergedTokens);
@@ -296,26 +309,33 @@ export const iosSwiftEnumWithModes = {
             let result = `${indent}public enum ${enumName} {\n`;
 
             // Generate child enums first
-            const sortedChildren = Array.from(node.children.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+            const sortedChildren = Array
+                .from(node.children.entries())
+                .sort((a, b) => a[0].localeCompare(b[0]));
             sortedChildren.forEach(([childName, childNode]) => {
-                result += generateNestedEnum(childNode, toPascalCase(childName), indent + '    ');
+                result += generateNestedEnum(childNode, toPascalCase(childName), `${indent}    `);
             });
 
             // Generate token properties
             const sortedTokens = [...node.tokens].sort((a, b) => a.name.localeCompare(b.name));
-            sortedTokens.forEach(token => {
-                const extToken = token as TransformedToken & { _lightToken?: TransformedToken, _darkToken?: TransformedToken };
+            sortedTokens.forEach((token) => {
+                const extToken = token as TransformedToken & {
+                    _lightToken?: TransformedToken,
+                    _darkToken?: TransformedToken,
+                };
+                // eslint-disable-next-line no-underscore-dangle
                 const light = extToken._lightToken;
+                // eslint-disable-next-line no-underscore-dangle
                 const dark = extToken._darkToken;
                 const primary = light || dark!;
 
                 // Use the last path segment as the property name
-                const path = primary.path.filter(p => p !== 'dark');
+                const path = primary.path.filter((p) => p !== 'dark');
                 const propName = toCamelCase(path[path.length - 1]);
 
                 const deprecated = light?.deprecated || dark?.deprecated;
-                const deprecatedComment = light?.deprecated_comment || dark?.deprecated_comment || "This token is deprecated.";
-                const comment = primary.comment;
+                const deprecatedComment = light?.deprecated_comment || dark?.deprecated_comment || 'This token is deprecated.';
+                const { comment } = primary;
 
                 if (deprecated) {
                     result += `${indent}    @available(*, deprecated, message: "${deprecatedComment}")\n`;
@@ -328,7 +348,7 @@ export const iosSwiftEnumWithModes = {
                     const darkVal = getValue(dark, dictionary, !!outputReferences);
 
                     result += `${indent}    public static let ${propName} = UIColor { traitCollection in\n`;
-                    result += `${indent}        return traitCollection.userInterfaceStyle == .dark ? ${darkVal} : ${lightVal}\n`;
+                    result += `${indent}        return traitCollection.userInterfaceStyle === .dark ? ${darkVal} : ${lightVal}\n`;
                     result += `${indent}    }`;
                 } else {
                     const val = getValue(primary, dictionary, !!outputReferences);
@@ -348,5 +368,5 @@ export const iosSwiftEnumWithModes = {
         output += generateNestedEnum(nestedRoot, className, '');
 
         return output;
-    }
+    },
 } satisfies Format;

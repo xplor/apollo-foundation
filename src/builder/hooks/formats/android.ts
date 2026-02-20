@@ -354,7 +354,7 @@ export const androidKotlinTheme = {
                     }
                 } else {
                     // Generic value
-                    result += `${indent}    val ${propName} = ${JSON.stringify(token.value)}\n`;
+                    result += `${indent}    val ${propName} = "${escapeKotlinStringLiteral(token.value)}"\n`;
                 }
             });
 

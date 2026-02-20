@@ -148,7 +148,7 @@ export const iosSwiftEnumWithModesLegacy = {
                 const darkVal = getValue(dark, dictionary, !!outputReferences);
 
                 output += `    public static let ${name} = UIColor { traitCollection in\n`;
-                output += `        return traitCollection.userInterfaceStyle === .dark ? ${darkVal} : ${lightVal}\n`;
+                output += `        return traitCollection.userInterfaceStyle == .dark ? ${darkVal} : ${lightVal}\n`;
                 output += '    }\n';
             } else {
                 const val = getValue(primary, dictionary, !!outputReferences);
@@ -360,7 +360,7 @@ export const iosSwiftEnumWithModes = {
                     const darkVal = getValue(dark, dictionary, !!outputReferences, nestedRef);
 
                     result += `${indent}    public static let ${propName} = UIColor { traitCollection in\n`;
-                    result += `${indent}        return traitCollection.userInterfaceStyle === .dark ? ${darkVal} : ${lightVal}\n`;
+                    result += `${indent}        return traitCollection.userInterfaceStyle == .dark ? ${darkVal} : ${lightVal}\n`;
                     result += `${indent}    }`;
                 } else {
                     const val = getValue(primary, dictionary, !!outputReferences, nestedRef);

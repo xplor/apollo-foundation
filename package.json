@@ -9,6 +9,7 @@
     "build:new:debug": "tsx --inspect-brk ./src/builder/index.ts",
     "clean": "rm -rf ./build/",
     "dev:new": "tsx watch --include ./src/tokens ./src/builder/index.ts --debug",
+    "lint": "eslint .",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
@@ -23,12 +24,19 @@
   },
   "homepage": "https://github.com/xplor/Apollo-Foundation#readme",
   "devDependencies": {
+    "@eslint/compat": "^2.0.2",
+    "@eslint/eslintrc": "^3.3.3",
     "@tsconfig/node24": "^24.0.3",
     "@types/node": "^25.0.3",
     "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^10.0.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
     "style-dictionary": "^5.3.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.0",
     "vitest": "^4.0.18"
   },
   "files": [

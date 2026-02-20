@@ -362,11 +362,11 @@ export const androidKotlinTheme = {
 
             // Generate token properties
             const sortedTokens = [...node.tokens]
-                .sort(
-                    (a, b) => a.token.path[a.token.path.length - 1].localeCompare(
-                        b.token.path[b.token.path.length - 1],
-                    ),
-                );
+                .sort((a, b) => {
+                    const aLast = a.token.path[a.token.path.length - 1] ?? a.token.name ?? 'unknown';
+                    const bLast = b.token.path[b.token.path.length - 1] ?? b.token.name ?? 'unknown';
+                    return aLast.localeCompare(bLast);
+                });
 
             sortedTokens.forEach(({ token, light, dark }) => {
                 const path = token.path.filter((p) => p !== 'dark');

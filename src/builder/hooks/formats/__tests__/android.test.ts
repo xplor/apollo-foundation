@@ -120,6 +120,48 @@ describe('android formats', () => {
         }
     });
 
+    it('sanitizes runs of 3+ consecutive dashes in XML comments', async () => {
+        const formats = [
+            androidResourcesWithModes,
+            androidResourcesLight,
+            androidResourcesDark,
+            androidDimens,
+        ] as const;
+
+        const cases = [
+            { comment: 'triple---dash', expected: 'triple- - -dash' },
+            { comment: 'quad----dash', expected: 'quad- - - -dash' },
+        ];
+
+        for (const { comment, expected } of cases) {
+            const dict = {
+                allTokens: [{
+                    path: ['color', 'brand'],
+                    name: 'xpl_color_brand',
+                    value: '#ff0000',
+                    type: 'color',
+                    comment,
+                    original: { value: '#ff0000', key: 'xpl_color_brand' },
+                    attributes: { category: 'color' },
+                }],
+                tokens: {},
+                unfilteredTokens: [],
+            };
+
+            for (const format of formats) {
+                const result = await format.format!({
+                    // @ts-expect-error: no need for a complete object in test
+                    dictionary: dict,
+                    file,
+                    options: {},
+                    platform,
+                });
+                expect(result).not.toContain('---');
+                expect(result).toContain(expected);
+            }
+        }
+    });
+
     it('sanitizes "*/" in Kotlin doc comments to prevent premature block closure', async () => {
         const tokenWithClosingComment = [
             {
@@ -143,6 +185,32 @@ describe('android formats', () => {
         });
         expect(result).not.toContain('*/\n */');
         expect(result).toContain('* /');
+    });
+
+    it('escapes dollar signs in Kotlin color string literals to prevent template interpolation', async () => {
+        const dollarTokens = [
+            {
+                path: ['color', 'weird'],
+                name: 'xpl_color_weird',
+                value: '#$ff0000',
+                type: 'color',
+                original: { value: '#$ff0000', key: 'xpl_color_weird' },
+                attributes: { category: 'color' },
+            },
+        ];
+        const dict = { allTokens: dollarTokens, tokens: {}, unfilteredTokens: [] };
+
+        const result = await androidKotlinTheme.format!({
+            // @ts-expect-error: no need for a complete object in test
+            dictionary: dict,
+            file: { destination: 'Theme.kt' },
+            options: { className: 'Theme', packageName: 'com.xplor.design' },
+            platform,
+        });
+        // Unescaped "$" must not appear inside the string literal
+        expect(result).not.toMatch(/"#\$ff0000"/);
+        // Dollar sign must be escaped as \$
+        expect(result).toContain('\\$');
     });
 
     it('escapes double quotes and backslashes in Kotlin color string literals', async () => {

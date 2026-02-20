@@ -39,9 +39,11 @@ function toKotlinPropertyName(path: string[]): string {
     return path.map((segment, index) => {
         const cleaned = (segment ?? '').replace(/[^a-zA-Z0-9]/g, '') || 'unknown';
         if (index === 0) {
-            return cleaned.toLowerCase();
+            const lower = cleaned.toLowerCase();
+            return /^\d/.test(lower) ? `_${lower}` : lower;
         }
-        return cleaned.charAt(0).toUpperCase() + cleaned.slice(1).toLowerCase();
+        const titled = cleaned.charAt(0).toUpperCase() + cleaned.slice(1).toLowerCase();
+        return /^\d/.test(titled) ? `_${titled}` : titled;
     }).join('');
 }
 
@@ -108,7 +110,8 @@ function groupTokensByCanonicalPath(
  */
 function toKotlinObjectName(segment: string): string {
     const cleaned = segment.replace(/[^a-zA-Z0-9]/g, '') || 'Unknown';
-    return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+    const titled = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+    return /^\d/.test(titled) ? `_${titled}` : titled;
 }
 
 /**

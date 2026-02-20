@@ -262,6 +262,44 @@ describe('android formats', () => {
         })).resolves.not.toThrow();
     });
 
+    it('androidKotlinTheme prefixes digit-leading identifiers with _ to produce valid Kotlin', async () => {
+        const numericTokens = [
+            {
+                path: ['color', 'gray', '0'],
+                name: 'xpl_color_gray_0',
+                value: '#ffffff',
+                type: 'color',
+                original: { value: '#ffffff', key: 'xpl_color_gray_0' },
+                attributes: { category: 'color' },
+            },
+            {
+                path: ['color', 'gray', '50'],
+                name: 'xpl_color_gray_50',
+                value: '#f8f9fa',
+                type: 'color',
+                original: { value: '#f8f9fa', key: 'xpl_color_gray_50' },
+                attributes: { category: 'color' },
+            },
+        ];
+        const dict = { allTokens: numericTokens, tokens: {}, unfilteredTokens: [] };
+
+        const result = await androidKotlinTheme.format!({
+            // @ts-expect-error: no need for a complete object in test
+            dictionary: dict,
+            file: { destination: 'Theme.kt' },
+            options: { className: 'Theme', packageName: 'com.xplor.design' },
+            platform,
+        });
+        // Must not contain bare digit-leading identifiers
+        expect(result).not.toMatch(/val 0\b/);
+        expect(result).not.toMatch(/val 50\b/);
+        expect(result).not.toMatch(/object 0\b/);
+        expect(result).not.toMatch(/object 50\b/);
+        // Must contain underscore-prefixed variants instead
+        expect(result).toContain('val _0');
+        expect(result).toContain('val _50');
+    });
+
     it('androidKotlinTheme outputs Kotlin object with nested structure', async () => {
         const result = await androidKotlinTheme.format!({
             // @ts-expect-error: no need for a complete object in test

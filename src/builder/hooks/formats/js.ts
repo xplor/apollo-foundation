@@ -168,8 +168,14 @@ export const javascriptUmdWithModes = {
  */
 function getTsType(value: unknown): string {
     if (value !== null && typeof value === 'object') {
-        if ('light' in value || 'dark' in value) {
-            return '{ light?: string; dark?: string }';
+        const hasLight = 'light' in value;
+        const hasDark = 'dark' in value;
+        if (hasLight || hasDark) {
+            const parts = [
+                hasLight ? 'light: string' : null,
+                hasDark ? 'dark: string' : null,
+            ].filter((p): p is string => p !== null);
+            return `{ ${parts.join('; ')} }`;
         }
     }
     return 'string';

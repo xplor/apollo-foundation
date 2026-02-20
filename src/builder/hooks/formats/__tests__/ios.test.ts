@@ -31,11 +31,11 @@ describe('ios formats', () => {
             dictionary,
             file,
             options: { className: 'StyleDictionaryColor', outputReferences: false },
-            platform: platform as any,
+            platform,
         });
         expect(result).toContain('import UIKit');
         expect(result).toContain('public enum StyleDictionaryColor');
-        expect(result).toContain('traitCollection.userInterfaceStyle == .dark');
+        expect(result).toContain('traitCollection.userInterfaceStyle === .dark');
     });
 
     it('iosSwiftEnumWithModes outputs nested enum structure', async () => {
@@ -44,9 +44,9 @@ describe('ios formats', () => {
             dictionary,
             file: { destination: 'Theme.swift' },
             options: { className: 'Theme', outputReferences: false },
-            platform: platform as any,
+            platform,
         });
         expect(result).toContain('public enum Theme');
-        expect(result).toContain('traitCollection.userInterfaceStyle == .dark');
+        expect(result).toContain('traitCollection.userInterfaceStyle === .dark');
     });
 });

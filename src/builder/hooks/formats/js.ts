@@ -2,10 +2,19 @@ import type { Format, TransformedToken } from 'style-dictionary/types';
 import { fileHeader } from 'style-dictionary/utils';
 import { commentStyles } from 'style-dictionary/enums';
 
+interface TokenLike {
+    comment?: string;
+    deprecated?: boolean | string;
+    deprecated_comment?: string;
+    value?: unknown;
+    $value?: unknown;
+    type?: string;
+}
+
 /**
  * Helper to generate JSDoc comment for a token
  */
-function generateJsDoc(token: any): string {
+function generateJsDoc(token: TokenLike): string {
     const lines = [];
 
     if (token.comment) lines.push(token.comment);
@@ -18,25 +27,25 @@ function generateJsDoc(token: any): string {
         lines.push(depLine);
     }
 
-    switch(lines.length) {
+    switch (lines.length) {
         case 0:
-            return ''
+            return '';
         case 1:
             return `/** ${lines[0]} */\n`;
         default:
-            return `/**\n${lines.map(line => ` * ${line}`).join('\n')}\n */\n`
+            return `/**\n${lines.map((line) => ` * ${line}`).join('\n')}\n */\n`;
     }
 }
 
 /**
  * Helper to stringify nested tokens with JSDoc
  */
-function stringifyNested(obj: any, indent: string = ''): string {
-    const nextIndent = indent + '  ';
+function stringifyNested(obj: Record<string, unknown>, indent: string = ''): string {
+    const nextIndent = `${indent}  `;
 
     // Check if it's a token
-    if (obj && typeof obj === 'object' && (obj.hasOwnProperty('value') || obj.hasOwnProperty('$value'))) {
-        return JSON.stringify(obj, null, 2).replace(/\n/g, '\n' + indent);
+    if ('value' in obj || '$value' in obj) {
+        return JSON.stringify(obj, null, 2).replace(/\n/g, `\n${indent}`);
     }
 
     // Otherwise it's a nesting level
@@ -44,15 +53,15 @@ function stringifyNested(obj: any, indent: string = ''): string {
     if (entries.length === 0) return '{}';
 
     const parts = entries.map(([key, value]) => {
-        const isToken = value && typeof value === 'object'
-            && (value.hasOwnProperty('value') || value.hasOwnProperty('$value'));
-        const jsDoc = isToken ? generateJsDoc(value) : '';
-        const indentedJsDoc = jsDoc ? jsDoc.split('\n')
-            .filter(l => l.length > 0)
-            .map(l => `${nextIndent}${l}`)
-            .join('\n') + '\n' : '';
+        const isToken = value !== null && typeof value === 'object'
+            && ('value' in value || '$value' in value);
+        const jsDoc = isToken ? generateJsDoc(value as TokenLike) : '';
+        const indentedJsDoc = jsDoc ? `${jsDoc.split('\n')
+            .filter((l) => l.length > 0)
+            .map((l) => `${nextIndent}${l}`)
+            .join('\n')}\n` : '';
 
-        return `${indentedJsDoc}${nextIndent}${JSON.stringify(key)}: ${stringifyNested(value, nextIndent)}`;
+        return `${indentedJsDoc}${nextIndent}${JSON.stringify(key)}: ${stringifyNested(value as Record<string, unknown>, nextIndent)}`;
     });
 
     return `{\n${parts.join(',\n')}\n${indent}}`;
@@ -62,15 +71,15 @@ function stringifyNested(obj: any, indent: string = ''): string {
  * Helper to build nested token structure with mode support
  * For tokens with both light/dark modes, creates { value: { light: value, dark: value }, ... }
  */
-function buildTokenTreeWithModes(tokens: TransformedToken[]): any {
-    const tree: any = {};
+function buildTokenTreeWithModes(tokens: TransformedToken[]): Record<string, unknown> {
+    const tree: Record<string, unknown> = {};
     const tokensByPath = new Map<string, { light?: TransformedToken, dark?: TransformedToken }>();
 
     // First, organize tokens by canonical path (removing 'dark' segment)
-    tokens.forEach(token => {
+    tokens.forEach((token) => {
         const isDark = token.path.includes('dark');
         // Canonical path removes 'dark' segment
-        const canonicalPath = token.path.filter(part => part !== 'dark');
+        const canonicalPath = token.path.filter((part) => part !== 'dark');
         const pathKey = canonicalPath.join('.');
 
         const entry = tokensByPath.get(pathKey) || {};
@@ -85,14 +94,14 @@ function buildTokenTreeWithModes(tokens: TransformedToken[]): any {
     // Build the tree structure
     tokensByPath.forEach((entries, pathKey) => {
         const path = pathKey.split('.');
-        let current = tree;
+        let current: Record<string, unknown> = tree;
 
         // Navigate to the correct nesting level
-        for (let i = 0; i < path.length - 1; i++) {
+        for (let i = 0; i < path.length - 1; i += 1) {
             if (!current[path[i]]) {
                 current[path[i]] = {};
             }
-            current = current[path[i]];
+            current = current[path[i]] as Record<string, unknown>;
         }
 
         const key = path[path.length - 1];
@@ -104,8 +113,8 @@ function buildTokenTreeWithModes(tokens: TransformedToken[]): any {
                 ...entries.light,
                 value: {
                     light: entries.light.value,
-                    dark: entries.dark.value
-                }
+                    dark: entries.dark.value,
+                },
             };
         } else if (entries.light) {
             // Only light (or default)
@@ -115,8 +124,8 @@ function buildTokenTreeWithModes(tokens: TransformedToken[]): any {
             current[key] = {
                 ...entries.dark,
                 value: {
-                    dark: entries.dark.value
-                }
+                    dark: entries.dark.value,
+                },
             };
         }
     });
@@ -157,9 +166,9 @@ export const javascriptUmdWithModes = {
 /**
  * Helper to generate TypeScript type for a value
  */
-function getTsType(value: any): string {
-    if (value && typeof value === 'object') {
-        if (value.light !== undefined || value.dark !== undefined) {
+function getTsType(value: unknown): string {
+    if (value !== null && typeof value === 'object') {
+        if ('light' in value || 'dark' in value) {
             return '{ light?: string; dark?: string }';
         }
     }
@@ -169,19 +178,19 @@ function getTsType(value: any): string {
 /**
  * Helper to build TypeScript declaration from nested structure
  */
-function buildTypeDeclaration(obj: any, indent: string = ''): string {
-    const nextIndent = indent + '  ';
+function buildTypeDeclaration(obj: Record<string, unknown>, indent: string = ''): string {
+    const nextIndent = `${indent}  `;
     const lines: string[] = [];
 
     for (const [key, value] of Object.entries(obj)) {
         const safeKey = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(key) ? key : JSON.stringify(key);
 
         // Check if this is a token (has value property)
-        const isToken = value && typeof value === 'object'
-            && (value.hasOwnProperty('value') || value.hasOwnProperty('$value'));
+        const isToken = value !== null && typeof value === 'object'
+            && ('value' in value || '$value' in value);
 
         if (isToken) {
-            const token = value as any;
+            const token = value as TokenLike;
             const valueType = getTsType(token.value);
 
             // Add JSDoc comment if available
@@ -203,10 +212,10 @@ function buildTypeDeclaration(obj: any, indent: string = ''): string {
                 lines.push(`${nextIndent}  readonly type: ${JSON.stringify(token.type)};`);
             }
             lines.push(`${nextIndent}};`);
-        } else if (value && typeof value === 'object') {
+        } else if (value !== null && typeof value === 'object') {
             // Nested namespace
             lines.push(`${nextIndent}readonly ${safeKey}: {`);
-            lines.push(buildTypeDeclaration(value, nextIndent));
+            lines.push(buildTypeDeclaration(value as Record<string, unknown>, nextIndent));
             lines.push(`${nextIndent}};`);
         }
     }

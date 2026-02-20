@@ -17,6 +17,12 @@ export default defineConfig(
     ...fixupConfigRules(compat.extends('airbnb-base')),
     // TypeScript rules on top, scoped to .ts files
     {
+        languageOptions: {
+            parser: tseslint.parser,
+            parserOptions: {
+                project: './tsconfig.json',
+            },
+        },
         files: ['**/*.ts'],
         extends: ['@typescript-eslint/recommended'],
         settings: {

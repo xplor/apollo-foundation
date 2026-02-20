@@ -1,6 +1,5 @@
 import type { Format } from 'style-dictionary/types';
-import { genFormatter } from 'src/builder/utils/gen-formatter';
-import { classModeConfig, mediaModeConfig } from './shared-formatter-configs';
+import { cssVariablesClassMode, cssVariablesMediaMode } from './css';
 
 /**
  * SCSS file format with CSS custom property dark mode via .dark selector.
@@ -10,7 +9,7 @@ import { classModeConfig, mediaModeConfig } from './shared-formatter-configs';
  */
 export const scssVariablesClassMode = {
     name: 'scss/variables-class-mode',
-    format: genFormatter(classModeConfig),
+    format: cssVariablesClassMode.format,
 } satisfies Format;
 
 /**
@@ -21,5 +20,5 @@ export const scssVariablesClassMode = {
  */
 export const scssVariablesMediaMode = {
     name: 'scss/variables-media-mode',
-    format: genFormatter(mediaModeConfig),
+    format: cssVariablesMediaMode.format,
 } satisfies Format;

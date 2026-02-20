@@ -286,18 +286,20 @@ export const androidKotlinTheme = {
         output += `package ${packageName}\n\n`;
         output += 'import androidx.compose.foundation.isSystemInDarkTheme\n';
         output += 'import androidx.compose.runtime.Composable\n';
-        output += 'import androidx.compose.ui.graphics.Color\n';
+        // Aliased to avoid being shadowed by a generated nested `object Color`
+        // when token paths contain a "color" segment (which is the common case).
+        output += 'import androidx.compose.ui.graphics.Color as ComposeColor\n';
         output += 'import androidx.compose.ui.unit.dp\n';
         output += 'import androidx.compose.ui.unit.sp\n\n';
 
         // Helper function to parse hex color to Kotlin Color
         output += '/** Converts hex string to Compose Color */\n';
-        output += 'private fun String.toColor(): Color {\n';
+        output += 'private fun String.toColor(): ComposeColor {\n';
         output += '    val hex = this.removePrefix("#").removePrefix("0x")\n';
         output += '    return when (hex.length) {\n';
-        output += '        6 -> Color(android.graphics.Color.parseColor("#$hex"))\n';
-        output += '        8 -> Color(android.graphics.Color.parseColor("#$hex"))\n';
-        output += '        else -> Color.Unspecified\n';
+        output += '        6 -> ComposeColor(android.graphics.Color.parseColor("#$hex"))\n';
+        output += '        8 -> ComposeColor(android.graphics.Color.parseColor("#$hex"))\n';
+        output += '        else -> ComposeColor.Unspecified\n';
         output += '    }\n';
         output += '}\n\n';
 
@@ -337,11 +339,11 @@ export const androidKotlinTheme = {
                 if (isColor) {
                     if (light && dark) {
                         // Dynamic color based on theme
-                        result += `${indent}    val ${propName}: Color\n`;
+                        result += `${indent}    val ${propName}: ComposeColor\n`;
                         result += `${indent}        @Composable get() = if (isSystemInDarkTheme()) "${escapeKotlinStringLiteral(dark.value)}".toColor() else "${escapeKotlinStringLiteral(light.value)}".toColor()\n`;
                     } else {
                         // Static color
-                        result += `${indent}    val ${propName}: Color = "${escapeKotlinStringLiteral(token.value)}".toColor()\n`;
+                        result += `${indent}    val ${propName}: ComposeColor = "${escapeKotlinStringLiteral(token.value)}".toColor()\n`;
                     }
                 } else if (isDimension) {
                     const numValue = parseFloat(token.value);

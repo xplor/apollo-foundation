@@ -1,24 +1,29 @@
-import { defineConfig } from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
 import { FlatCompat } from '@eslint/eslintrc';
 import { fixupConfigRules } from '@eslint/compat';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import tseslint from 'typescript-eslint';
+
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
 export default defineConfig(
-    { ignores: ['build/**', 'coverage/**', 'eslint.config.js'] },
-
+    {
+        ignores: ['build/**', 'coverage/**', 'eslint.config.js'],
+    },
     // AirBnB base JS rules via compat shim
     ...fixupConfigRules(compat.extends('airbnb-base')),
-
     // TypeScript rules on top, scoped to .ts files
     {
         files: ['**/*.ts'],
         extends: ['@typescript-eslint/recommended'],
         settings: {
             'import/resolver': { typescript: true, node: true },
+        },
+        plugins: {
+            '@typescript-eslint': tseslint.plugin,
         },
         rules: {
             '@typescript-eslint/no-explicit-any': 'error',

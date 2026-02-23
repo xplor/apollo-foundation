@@ -12,8 +12,12 @@ function getValue(
         const refs = getReferences(token.original.value, dictionary.tokens);
 
         if (refs.length > 0) {
-            const ref = refs[0];
-            return referenceFormatter ? referenceFormatter(ref) : ref.name;
+            let result: string = token.original.value;
+            refs.forEach((ref) => {
+                const formatted = referenceFormatter ? referenceFormatter(ref) : ref.name;
+                result = result.replace(`{${ref.path.join('.')}}`, formatted);
+            });
+            return result;
         }
     }
 

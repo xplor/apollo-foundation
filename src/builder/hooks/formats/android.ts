@@ -200,13 +200,13 @@ async function formatAndroidResourcesForMode(
         if (canonicalPath.length === 0) return;
 
         const name = toAndroidResourceName(canonicalPath, prefix);
-        const value = getAndroidColorValue(token, dictionary, !!outputReferences, prefix);
 
         if (token.comment) {
             output += `  <!-- ${sanitizeXmlComment(token.comment)} -->\n`;
         }
 
         if (token.type === 'color' || token.attributes?.category === 'color') {
+            const value = getAndroidColorValue(token, dictionary, !!outputReferences, prefix);
             output += `  <color name="${name}">${value}</color>\n`;
         } else if (token.type === 'dimension' || token.attributes?.category === 'size') {
             output += `  <dimen name="${name}">${token.value}</dimen>\n`;

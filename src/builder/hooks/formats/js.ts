@@ -76,11 +76,20 @@ function buildTokenTreeWithModes(tokens: TransformedToken[]): Record<string, unk
     type PathEntry = { path: string[], light?: TransformedToken, dark?: TransformedToken };
     const tokensByPath = new Map<string, PathEntry>();
 
-    // First, organize tokens by canonical path (removing 'dark' segment)
+    // First, organize tokens by canonical path (removing the mode 'dark' segment)
+    // The dark-mode convention places 'dark' at the penultimate path position:
+    //   light: ['color', 'primary']
+    //   dark:  ['color', 'dark', 'primary']
+    // We only recognize the segment as a mode marker when it sits at index (length - 2),
+    // so a token whose path ends in 'dark' (e.g. ['color', 'dark']) or has 'dark' deeper
+    // in the hierarchy is left untouched rather than being silently merged/discarded.
     tokens.forEach((token) => {
-        const isDark = token.path.includes('dark');
-        // Canonical path removes 'dark' segment
-        const canonicalPath = token.path.filter((part) => part !== 'dark');
+        const darkIdx = token.path.length - 2;
+        const isDark = darkIdx >= 0 && token.path[darkIdx] === 'dark';
+        // Remove only the specific penultimate 'dark' segment, not all occurrences
+        const canonicalPath = isDark
+            ? [...token.path.slice(0, darkIdx), ...token.path.slice(darkIdx + 1)]
+            : token.path;
         // Use JSON.stringify as the Map key to avoid lossy join/split round-trips
         // when path segments contain literal dots (e.g. '1.5rem', '2.5xl')
         const pathKey = JSON.stringify(canonicalPath);

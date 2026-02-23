@@ -92,4 +92,79 @@ describe('js formats', () => {
         // There should be only two levels of nesting: size -> 1.5rem, not size -> 1 -> 5rem
         expect(result).not.toContain('"5rem"');
     });
+
+    it('does not treat a leaf segment named "dark" as a mode variant', async () => {
+        // ['color', 'dark'] — 'dark' is the token name, not a mode indicator.
+        // It must NOT be merged with a ['color'] namespace token and must appear
+        // as its own entry with a plain string value.
+        const leafDarkTokens = [
+            {
+                path: ['color', 'primary'],
+                name: 'primary',
+                value: '#333',
+                type: 'color',
+                original: { value: '#333', key: 'primary' },
+                filePath: '',
+                isSource: true,
+            },
+            {
+                path: ['color', 'dark'],
+                name: 'dark',
+                value: '#111',
+                type: 'color',
+                original: { value: '#111', key: 'dark' },
+                filePath: '',
+                isSource: true,
+            },
+        ];
+        const leafDarkDict = makeTestDict(leafDarkTokens, {}, { unfilteredTokens: [] });
+
+        const result = await javascriptUmdWithModes.format!({
+            dictionary: leafDarkDict,
+            file,
+            options: {},
+            platform,
+        });
+
+        // Both tokens must be present as distinct entries
+        expect(result).toContain('"primary"');
+        expect(result).toContain('"dark"');
+        // '#111' is the value of the leaf 'dark' token — it must not be discarded
+        expect(result).toContain('#111');
+        // A leaf 'dark' token has no counterpart, so no light/dark mode shape should appear
+        expect(result).not.toContain('"light"');
+    });
+
+    it('does not strip "dark" from non-penultimate positions in the path', async () => {
+        // ['theme', 'dark', 'background', 'base'] — 'dark' is at index 1 (not penultimate),
+        // so the whole path should be preserved verbatim and not treated as a mode variant.
+        const deepDarkTokens = [
+            {
+                path: ['theme', 'dark', 'background', 'base'],
+                name: 'themeBase',
+                value: '#000',
+                type: 'color',
+                original: { value: '#000', key: 'base' },
+                filePath: '',
+                isSource: true,
+            },
+        ];
+        const deepDarkDict = makeTestDict(deepDarkTokens, {}, { unfilteredTokens: [] });
+
+        const result = await javascriptUmdWithModes.format!({
+            dictionary: deepDarkDict,
+            file,
+            options: {},
+            platform,
+        });
+
+        // The full structure should be intact: theme -> dark -> background -> base
+        expect(result).toContain('"theme"');
+        expect(result).toContain('"dark"');
+        expect(result).toContain('"background"');
+        expect(result).toContain('"base"');
+        expect(result).toContain('#000');
+        // No mode merging should have occurred
+        expect(result).not.toContain('"light"');
+    });
 });

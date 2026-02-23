@@ -8,7 +8,7 @@ function getValue(
     outputReferences: boolean,
     referenceFormatter?: (ref: TransformedToken) => string,
 ): string {
-    if (outputReferences && usesReferences(token.original.value)) {
+    if (outputReferences && typeof token.original.value === 'string' && usesReferences(token.original.value)) {
         const refs = getReferences(token.original.value, dictionary.tokens);
 
         if (refs.length > 0) {

@@ -15,7 +15,9 @@ function getValue(
             let result: string = token.original.value;
             refs.forEach((ref) => {
                 const formatted = referenceFormatter ? referenceFormatter(ref) : ref.name;
-                result = result.replace(`{${ref.path.join('.')}}`, formatted);
+                const escapedPath = ref.path.map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('\\.');
+                const pattern = new RegExp(`\\{${escapedPath}\\}`, 'g');
+                result = result.replace(pattern, formatted);
             });
             return result;
         }

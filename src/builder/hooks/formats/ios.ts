@@ -327,7 +327,7 @@ function buildNestedStructure(tokens: TransformedToken[]): NestedNode {
 function buildNestedRef(ref: TransformedToken, className: string): string {
     const path = canonicalPath(ref);
     const enumSegments = path.slice(0, -1).map(toPascalCase);
-    const prop = toCamelCase(path[path.length - 1]);
+    const prop = toCamelCase(path[path.length - 1] ?? ref.name ?? 'unknown');
     return [className, ...enumSegments, prop].join('.');
 }
 
@@ -396,7 +396,7 @@ export const iosSwiftEnumWithModes = {
 
                 // Use the last segment of the canonical path as the property name
                 const path = canonicalPath(primary);
-                const propName = toCamelCase(path[path.length - 1]);
+                const propName = toCamelCase(path[path.length - 1] ?? primary.name ?? 'unknown');
 
                 const deprecated = light?.deprecated || dark?.deprecated;
                 const deprecatedComment = light?.deprecated_comment || dark?.deprecated_comment || 'This token is deprecated.';

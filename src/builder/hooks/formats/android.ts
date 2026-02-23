@@ -210,6 +210,8 @@ async function formatAndroidResourcesForMode(
             output += `  <color name="${name}">${value}</color>\n`;
         } else if (token.type === 'dimension' || token.attributes?.category === 'size') {
             output += `  <dimen name="${name}">${token.value}</dimen>\n`;
+        } else {
+            output += `  <item name="${name}" type="string">${token.value}</item>\n`;
         }
     });
 

@@ -71,6 +71,32 @@ describe('android formats', () => {
         expect(result).toContain('#111111');
     });
 
+    it('androidResourcesLight and androidResourcesDark emit string items for non-color/dimension tokens', async () => {
+        const mixedTokens: TransformedToken[] = [
+            {
+                path: ['motion', 'duration', 'fast'],
+                name: 'xpl_motion_duration_fast',
+                value: '150ms',
+                type: 'other',
+                original: { value: '150ms' },
+                attributes: {},
+                filePath: '',
+                isSource: true,
+            },
+        ];
+        const dict = makeTestDict(mixedTokens);
+
+        for (const format of [androidResourcesLight, androidResourcesDark]) {
+            const result = await format.format!({
+                dictionary: dict,
+                file,
+                options: { outputReferences: false },
+                platform,
+            });
+            expect(result).toContain('<item name="xpl_motion_duration_fast" type="string">150ms</item>');
+        }
+    });
+
     it('androidDimens outputs dp/sp/string by type', async () => {
         const dimTokens: TransformedToken[] = [
             {

@@ -107,15 +107,38 @@ function escapeSwiftBlockComment(s: string): string {
 type TokenModeGroup = { light?: TransformedToken; dark?: TransformedToken };
 
 /**
- * Groups a flat token list into light/dark pairs keyed by canonical path
- * (i.e., the token path with any "dark" segment removed).
+ * Returns true when the token is a dark-mode variant.
+ *
+ * The dark-mode marker is only recognised when it appears as the *second*
+ * path segment (index 1), immediately after the top-level category.  A token
+ * such as ['color', 'background', 'dark'] uses 'dark' as a semantic colour
+ * name and must not be mistaken for a dark-mode counterpart.
+ */
+function isDarkModeToken(token: TransformedToken): boolean {
+    return token.path[1] === 'dark';
+}
+
+/**
+ * Returns the canonical (mode-stripped) path for a token.
+ * For dark-mode tokens the 'dark' segment at index 1 is removed;
+ * every other path is returned as-is.
+ */
+function canonicalPath(token: TransformedToken): string[] {
+    if (isDarkModeToken(token)) {
+        return [token.path[0], ...token.path.slice(2)];
+    }
+    return token.path;
+}
+
+/**
+ * Groups a flat token list into light/dark pairs keyed by canonical path.
  */
 function groupTokensByMode(tokens: TransformedToken[]): Map<string, TokenModeGroup> {
     const map = new Map<string, TokenModeGroup>();
 
     tokens.forEach((token) => {
-        const isDark = token.path.includes('dark');
-        const key = token.path.filter((p) => p !== 'dark').join('.');
+        const isDark = isDarkModeToken(token);
+        const key = canonicalPath(token).join('.');
 
         if (!map.has(key)) map.set(key, {});
 
@@ -274,8 +297,7 @@ function buildNestedStructure(tokens: TransformedToken[]): NestedNode {
     const root: NestedNode = { tokens: [], children: new Map() };
 
     tokens.forEach((token) => {
-        // Skip 'dark' from path for canonical structure
-        const path = token.path.filter((p) => p !== 'dark');
+        const path = canonicalPath(token);
 
         let current = root;
         // Navigate to the parent node (all but last segment)
@@ -300,7 +322,7 @@ function buildNestedStructure(tokens: TransformedToken[]): NestedNode {
  * named 'Theme' becomes 'Theme.Color.Background.primary'.
  */
 function buildNestedRef(ref: TransformedToken, className: string): string {
-    const path = ref.path.filter((p) => p !== 'dark');
+    const path = canonicalPath(ref);
     const enumSegments = path.slice(0, -1).map(toPascalCase);
     const prop = toCamelCase(path[path.length - 1]);
     return [className, ...enumSegments, prop].join('.');
@@ -369,8 +391,8 @@ export const iosSwiftEnumWithModes = {
                 const dark = extToken._darkToken;
                 const primary = light || dark!;
 
-                // Use the last path segment as the property name
-                const path = primary.path.filter((p) => p !== 'dark');
+                // Use the last segment of the canonical path as the property name
+                const path = canonicalPath(primary);
                 const propName = toCamelCase(path[path.length - 1]);
 
                 const deprecated = light?.deprecated || dark?.deprecated;

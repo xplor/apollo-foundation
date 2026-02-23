@@ -236,4 +236,63 @@ describe('ios formats', () => {
         expect(result).not.toContain('public static let 0 ');
         expect(result).toContain('public static let _0 ');
     });
+
+    it('tokens with "dark" as a non-mode semantic segment are not treated as dark-mode variants', async () => {
+        // ['color', 'background', 'dark'] — "dark" is at index 2, not index 1,
+        // so it must be kept as a standalone light token and must never be
+        // paired with ['color', 'background', 'primary'] or any other token.
+        const semanticDarkToken = {
+            path: ['color', 'background', 'dark'],
+            name: 'xplColorBackgroundDark',
+            value: '.init(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)',
+            type: 'color',
+            original: { value: '#1a1a1a', key: 'xplColorBackgroundDark' },
+            attributes: { category: 'color' },
+            filePath: '',
+            isSource: true,
+        };
+        const lightToken = {
+            path: ['color', 'background', 'primary'],
+            name: 'xplColorBackgroundPrimary',
+            value: '.init(red: 1, green: 1, blue: 1, alpha: 1)',
+            type: 'color',
+            original: { value: '#ffffff', key: 'xplColorBackgroundPrimary' },
+            attributes: { category: 'color' },
+            filePath: '',
+            isSource: true,
+        };
+        const dict = makeTestDict([semanticDarkToken, lightToken]);
+
+        // --- Legacy format: properties use the full flat token name ---
+        const legacyResult = await iosSwiftEnumWithModesLegacy.format!({
+            dictionary: dict,
+            file,
+            options: { className: 'StyleDictionaryColor', outputReferences: false },
+            platform,
+        });
+        // Both tokens must appear as independent static properties.
+        expect(legacyResult).toContain('xplColorBackgroundDark');
+        expect(legacyResult).toContain('xplColorBackgroundPrimary');
+        // The semantic-dark token has no dark-mode counterpart, so it must
+        // not be wrapped in a traitCollection closure.
+        const legacyLines = legacyResult.split('\n');
+        const legacyDarkLine = legacyLines.find((l) => l.includes('xplColorBackgroundDark') && !l.includes('renamed:') && !l.includes('Color('));
+        expect(legacyDarkLine, 'legacy: xplColorBackgroundDark incorrectly uses traitCollection').not.toContain('traitCollection');
+
+        // --- Modern format: properties use the camelCase last path segment ---
+        const modernResult = await iosSwiftEnumWithModes.format!({
+            dictionary: dict,
+            file: { destination: 'Theme.swift' },
+            options: { className: 'Theme', outputReferences: false },
+            platform,
+        });
+        // Both tokens must appear. 'dark' is the last segment of
+        // ['color','background','dark'], emitted as `public static let dark`.
+        expect(modernResult).toContain('public static let dark ');
+        expect(modernResult).toContain('public static let primary ');
+        // No traitCollection closure because 'dark' here is not a mode variant.
+        const modernLines = modernResult.split('\n');
+        const modernDarkLine = modernLines.find((l) => l.includes('public static let dark '));
+        expect(modernDarkLine, 'modern: dark incorrectly uses traitCollection').not.toContain('traitCollection');
+    });
 });

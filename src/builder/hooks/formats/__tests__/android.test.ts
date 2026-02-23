@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import type { Dictionary, TransformedToken } from 'style-dictionary/types';
+import type { TransformedToken } from 'style-dictionary/types';
+import { makeTestDict } from 'src/builder/utils/make-test-dict';
 import {
     androidResourcesWithModes,
     androidResourcesLight,
@@ -7,14 +8,6 @@ import {
     androidDimens,
     androidKotlinTheme,
 } from '../android';
-
-function makeDict(allTokens: TransformedToken[]): Dictionary {
-    return {
-        allTokens,
-        tokens: {},
-        tokenMap: new Map(allTokens.map((t) => [t.name, t])),
-    };
-}
 
 const colorTokens: TransformedToken[] = [
     {
@@ -39,7 +32,7 @@ const colorTokens: TransformedToken[] = [
     },
 ];
 
-const dictionary = makeDict(colorTokens);
+const dictionary = makeTestDict(colorTokens);
 const file = { destination: 'colors.xml' };
 const platform = { prefix: 'xpl' };
 
@@ -88,7 +81,7 @@ describe('android formats', () => {
             },
         ];
         const result = await androidDimens.format!({
-            dictionary: makeDict(dimTokens),
+            dictionary: makeTestDict(dimTokens),
             file,
             options: {},
             platform,
@@ -111,7 +104,7 @@ describe('android formats', () => {
                 isSource: true,
             },
         ];
-        const dict = makeDict(tokenWithDashComment);
+        const dict = makeTestDict(tokenWithDashComment);
 
         for (
             const format of [
@@ -146,7 +139,7 @@ describe('android formats', () => {
         ];
 
         for (const { comment, expected } of cases) {
-            const dict = makeDict([{
+            const dict = makeTestDict([{
                 path: ['color', 'brand'],
                 name: 'xpl_color_brand',
                 value: '#ff0000',
@@ -185,7 +178,7 @@ describe('android formats', () => {
                 isSource: true,
             },
         ];
-        const dict = makeDict(tokenWithClosingComment);
+        const dict = makeTestDict(tokenWithClosingComment);
 
         const result = await androidKotlinTheme.format!({
             dictionary: dict,
@@ -210,7 +203,7 @@ describe('android formats', () => {
                 isSource: true,
             },
         ];
-        const dict = makeDict(dollarTokens);
+        const dict = makeTestDict(dollarTokens);
 
         const result = await androidKotlinTheme.format!({
             dictionary: dict,
@@ -237,7 +230,7 @@ describe('android formats', () => {
                 isSource: true,
             },
         ];
-        const dict = makeDict(malformedTokens);
+        const dict = makeTestDict(malformedTokens);
 
         const result = await androidKotlinTheme.format!({
             dictionary: dict,
@@ -265,7 +258,7 @@ describe('android formats', () => {
                 isSource: true,
             },
         ];
-        const dict = makeDict(darkOnlyToken);
+        const dict = makeTestDict(darkOnlyToken);
 
         await expect(androidKotlinTheme.format!({
             dictionary: dict,
@@ -298,7 +291,7 @@ describe('android formats', () => {
                 isSource: true,
             },
         ];
-        const dict = makeDict(numericTokens);
+        const dict = makeTestDict(numericTokens);
 
         const result = await androidKotlinTheme.format!({
             dictionary: dict,

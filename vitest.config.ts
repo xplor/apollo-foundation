@@ -14,7 +14,7 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            'src/builder/utils/gen-formater': resolve(__dirname, 'src/builder/utils/gen-formater.ts'),
+            src: resolve(__dirname, 'src'),
         },
     },
 });

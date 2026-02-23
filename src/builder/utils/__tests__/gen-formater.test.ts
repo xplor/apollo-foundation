@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import type { TransformedToken } from 'style-dictionary/types';
-import { genFormatter } from '../gen-formater';
+import { genFormatter } from '../gen-formatter';
 
 const FIXTURE_PATH = resolve(__dirname, '../../__tests__/fixtures/tokens-formatter.json');
 

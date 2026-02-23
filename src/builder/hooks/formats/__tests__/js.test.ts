@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { makeTestDict } from 'src/builder/utils/make-test-dict';
 import { javascriptUmdWithModes, typescriptDeclarations } from '../js';
 
 const tokensWithModes = [
@@ -8,6 +9,8 @@ const tokensWithModes = [
         value: '#333',
         type: 'color',
         original: { value: '#333', key: 'primary' },
+        filePath: '',
+        isSource: true,
     },
     {
         path: ['color', 'dark', 'primary'],
@@ -15,19 +18,22 @@ const tokensWithModes = [
         value: '#eee',
         type: 'color',
         original: { value: '#eee', key: 'primaryDark' },
+        filePath: '',
+        isSource: true,
     },
 ];
 
-const dictionary = { allTokens: tokensWithModes, tokens: {}, unfilteredTokens: [] };
+const dictionary = makeTestDict(tokensWithModes, {}, { unfilteredTokens: [] });
 const file = { destination: 'colors.js' };
+const platform = { prefix: 'xpl' };
 
 describe('js formats', () => {
     it('javascriptUmdWithModes outputs UMD with light/dark value shape', async () => {
         const result = await javascriptUmdWithModes.format!({
-            // @ts-expect-error: Typescript is overzealous in this instance
             dictionary,
             file,
             options: {},
+            platform,
         });
         expect(result).toContain('(function (root, factory)');
         expect(result).toContain('module.exports');
@@ -38,10 +44,10 @@ describe('js formats', () => {
 
     it('typescriptDeclarations outputs .d.ts with readonly value', async () => {
         const result = await typescriptDeclarations.format!({
-            // @ts-expect-error: Typescript is overzealous in this instance
             dictionary,
             file,
             options: {},
+            platform,
         });
         expect(result).toContain('declare const _styleDictionary');
         expect(result).toContain('readonly value:');
@@ -56,6 +62,8 @@ describe('js formats', () => {
                 value: '24px',
                 type: 'dimension',
                 original: { value: '24px', key: '1.5rem' },
+                filePath: '',
+                isSource: true,
             },
             {
                 path: ['size', 'dark', '1.5rem'],
@@ -63,15 +71,17 @@ describe('js formats', () => {
                 value: '20px',
                 type: 'dimension',
                 original: { value: '20px', key: '1.5remDark' },
+                filePath: '',
+                isSource: true,
             },
         ];
-        const dottedDictionary = { allTokens: dottedTokens, tokens: {}, unfilteredTokens: [] };
+        const dottedDictionary = makeTestDict(dottedTokens, {}, { unfilteredTokens: [] });
 
         const result = await javascriptUmdWithModes.format!({
-            // @ts-expect-error: Typescript is overzealous in this instance
             dictionary: dottedDictionary,
             file,
             options: {},
+            platform,
         });
 
         // The dotted segment should appear as a single key, not be split into nested objects

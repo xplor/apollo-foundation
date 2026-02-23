@@ -80,6 +80,28 @@ function getSizeLegacyNames(name: string, prefix: string): string[] {
     return legacyNames;
 }
 
+/**
+ * Escapes a string for safe embedding inside a Swift double-quoted string literal.
+ * Handles backslashes, double-quotes, and ASCII control characters that would
+ * otherwise produce invalid Swift source or silently alter the string value.
+ */
+function escapeSwiftString(s: string): string {
+    return s
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r')
+        .replace(/\t/g, '\\t');
+}
+
+/**
+ * Escapes a string for safe embedding inside a Swift block comment (/** … *‌/).
+ * Replaces the comment-terminator sequence so it cannot break out of the comment.
+ */
+function escapeSwiftBlockComment(s: string): string {
+    return s.replace(/\*\//g, '* /');
+}
+
 type TokenModeGroup = { light?: TransformedToken; dark?: TransformedToken };
 
 /**
@@ -144,7 +166,7 @@ export const iosSwiftEnumWithModesLegacy = {
             const deprecatedComment = light?.deprecated_comment || dark?.deprecated_comment || 'This token is deprecated.';
 
             if (deprecated) {
-                output += `    @available(*, deprecated, message: "${deprecatedComment}")\n`;
+                output += `    @available(*, deprecated, message: "${escapeSwiftString(deprecatedComment)}")\n`;
             }
 
             const isColor = primary.type === 'color';
@@ -195,7 +217,7 @@ export const iosSwiftEnumWithModesLegacy = {
                 const deprecatedComment = group.light?.deprecated_comment || group.dark?.deprecated_comment || 'This token is deprecated.';
 
                 if (deprecated) {
-                    output += `    @available(*, deprecated, message: "${deprecatedComment}")\n`;
+                    output += `    @available(*, deprecated, message: "${escapeSwiftString(deprecatedComment)}")\n`;
                 }
                 output += `    public static let ${name} = Color(${className}.${name})\n`;
             });
@@ -354,7 +376,7 @@ export const iosSwiftEnumWithModes = {
                 const { comment } = primary;
 
                 if (deprecated) {
-                    result += `${indent}    @available(*, deprecated, message: "${deprecatedComment}")\n`;
+                    result += `${indent}    @available(*, deprecated, message: "${escapeSwiftString(deprecatedComment)}")\n`;
                 }
 
                 const isColor = primary.type === 'color';
@@ -374,7 +396,7 @@ export const iosSwiftEnumWithModes = {
                 }
 
                 if (comment) {
-                    result += ` /** ${comment} */`;
+                    result += ` /** ${escapeSwiftBlockComment(comment)} */`;
                 }
                 result += '\n';
             });

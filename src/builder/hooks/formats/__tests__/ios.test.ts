@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import type { TransformedToken } from 'style-dictionary/types';
 import { makeTestDict } from 'src/builder/utils/make-test-dict';
 import { iosSwiftEnumWithModesLegacy, iosSwiftEnumWithModes } from '../ios';
 
@@ -130,6 +131,83 @@ describe('ios formats', () => {
         // Must emit a nested Swift path, not the flat SD token name (which is out of scope)
         expect(result).not.toContain('= xplColorRed500');
         expect(result).toContain('Theme.Color.Red._500');
+    });
+
+    it('escapes double-quotes and newlines in deprecated_comment for both formats', async () => {
+        const deprecatedToken = {
+            path: ['color', 'background', 'primary'],
+            name: 'xplColorBackgroundPrimary',
+            value: '.init(red: 1, green: 1, blue: 1, alpha: 1)',
+            type: 'color',
+            original: { value: '#ffffff' },
+            attributes: { category: 'color' },
+            filePath: '',
+            isSource: true,
+            deprecated: true,
+            deprecated_comment: 'Use "newToken" instead.\nSee docs.',
+        } as TransformedToken;
+
+        const dict = makeTestDict([deprecatedToken]);
+
+        const legacyResult = await iosSwiftEnumWithModesLegacy.format!({
+            dictionary: dict,
+            file,
+            options: { className: 'StyleDictionaryColor', outputReferences: false },
+            platform,
+        });
+        // Quotes must be escaped as \" and newlines as \n (two-char sequence) inside Swift strings.
+        // \\"newToken\\" in JS source = \"newToken\" in the generated file.
+        expect(legacyResult).toContain('\\"newToken\\"');
+        // '\\n' in JS = backslash + n, the two-character Swift escape sequence.
+        expect(legacyResult).toContain('\\n');
+        // No raw newline character should appear inside an @available(...) attribute.
+        legacyResult.split('\n').forEach((line) => {
+            if (line.includes('@available') && line.includes('message:')) {
+                expect(line.endsWith(')')).toBe(true);
+            }
+        });
+
+        const modernResult = await iosSwiftEnumWithModes.format!({
+            dictionary: dict,
+            file: { destination: 'Theme.swift' },
+            options: { className: 'Theme', outputReferences: false },
+            platform,
+        });
+        expect(modernResult).toContain('\\"newToken\\"');
+        expect(modernResult).toContain('\\n');
+        modernResult.split('\n').forEach((line) => {
+            if (line.includes('@available') && line.includes('message:')) {
+                expect(line.endsWith(')')).toBe(true);
+            }
+        });
+    });
+
+    it('escapes block-comment terminator in token comment for iosSwiftEnumWithModes', async () => {
+        const commentToken = {
+            path: ['color', 'background', 'primary'],
+            name: 'xplColorBackgroundPrimary',
+            value: '.init(red: 1, green: 1, blue: 1, alpha: 1)',
+            type: 'color',
+            original: { value: '#ffffff' },
+            attributes: { category: 'color' },
+            filePath: '',
+            isSource: true,
+            comment: 'Closes comment early */ and injects code',
+        } as TransformedToken;
+
+        const dict = makeTestDict([commentToken]);
+
+        const result = await iosSwiftEnumWithModes.format!({
+            dictionary: dict,
+            file: { destination: 'Theme.swift' },
+            options: { className: 'Theme', outputReferences: false },
+            platform,
+        });
+        // The raw terminator from the token comment must be escaped to "* /".
+        // The closing delimiter of the block comment itself (*/) is fine; we target the specific
+        // sequence that came from the token's comment field.
+        expect(result).not.toContain('early */');
+        expect(result).toContain('early * /');
     });
 
     it('iosSwiftEnumWithModes produces valid Swift identifiers for numeric path segments', async () => {

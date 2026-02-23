@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { makeTestDict } from 'src/builder/utils/make-test-dict';
 import { iosSwiftEnumWithModesLegacy, iosSwiftEnumWithModes } from '../ios';
 
 const colorTokens = [
@@ -9,6 +10,8 @@ const colorTokens = [
         type: 'color',
         original: { value: '#ffffff', key: 'xplColorBackgroundPrimary' },
         attributes: { category: 'color' },
+        filePath: '',
+        isSource: true,
     },
     {
         path: ['color', 'dark', 'background', 'primary'],
@@ -17,17 +20,18 @@ const colorTokens = [
         type: 'color',
         original: { value: '#000000', key: 'xplColorBackgroundPrimaryDark' },
         attributes: { category: 'color' },
+        filePath: '',
+        isSource: true,
     },
 ];
 
-const dictionary = { allTokens: colorTokens, tokens: {}, unfilteredTokens: [] };
+const dictionary = makeTestDict(colorTokens);
 const file = { destination: 'StyleDictionaryColor.swift' };
 const platform = { prefix: 'xpl' };
 
 describe('ios formats', () => {
     it('iosSwiftEnumWithModesLegacy outputs UIColor with traitCollection', async () => {
         const result = await iosSwiftEnumWithModesLegacy.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary,
             file,
             options: { className: 'StyleDictionaryColor', outputReferences: false },
@@ -40,7 +44,6 @@ describe('ios formats', () => {
 
     it('iosSwiftEnumWithModes outputs nested enum structure', async () => {
         const result = await iosSwiftEnumWithModes.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary,
             file: { destination: 'Theme.swift' },
             options: { className: 'Theme', outputReferences: false },
@@ -58,6 +61,8 @@ describe('ios formats', () => {
             type: 'color',
             original: { value: '#ff0000' },
             attributes: { category: 'color' },
+            filePath: '',
+            isSource: true,
         };
         const semanticToken = {
             path: ['color', 'background', 'primary'],
@@ -66,15 +71,17 @@ describe('ios formats', () => {
             type: 'color',
             original: { value: '{color.red.500}' },
             attributes: { category: 'color' },
+            filePath: '',
+            isSource: true,
         };
-        const refDictionary = {
-            allTokens: [baseToken, semanticToken],
-            tokens: { color: { red: { 500: baseToken } } },
-            unfilteredTokens: [],
-        };
+        const allTokens = [baseToken, semanticToken];
+        const refDictionary = makeTestDict(
+            allTokens,
+            { color: { red: { 500: baseToken } } },
+            { unfilteredTokens: [] },
+        );
 
         const result = await iosSwiftEnumWithModesLegacy.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary: refDictionary,
             file,
             options: { className: 'StyleDictionaryColor', outputReferences: true },
@@ -93,6 +100,8 @@ describe('ios formats', () => {
             type: 'color',
             original: { value: '#ff0000' },
             attributes: { category: 'color' },
+            filePath: '',
+            isSource: true,
         };
         const semanticToken = {
             path: ['color', 'background', 'primary'],
@@ -101,15 +110,17 @@ describe('ios formats', () => {
             type: 'color',
             original: { value: '{color.red.500}' },
             attributes: { category: 'color' },
+            filePath: '',
+            isSource: true,
         };
-        const refDictionary = {
-            allTokens: [baseToken, semanticToken],
-            tokens: { color: { red: { 500: baseToken } } },
-            unfilteredTokens: [],
-        };
+        const allTokens = [baseToken, semanticToken];
+        const refDictionary = makeTestDict(
+            allTokens,
+            { color: { red: { 500: baseToken } } },
+            { unfilteredTokens: [] },
+        );
 
         const result = await iosSwiftEnumWithModes.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary: refDictionary,
             file: { destination: 'Theme.swift' },
             options: { className: 'Theme', outputReferences: true },
@@ -130,12 +141,13 @@ describe('ios formats', () => {
                 type: 'color',
                 original: { value: 'rgba(0,0,0,0)', key: 'xplColorBackgroundTransparent0' },
                 attributes: { category: 'color' },
+                filePath: '',
+                isSource: true,
             },
         ];
-        const numericDictionary = { allTokens: numericTokens, tokens: {}, unfilteredTokens: [] };
+        const numericDictionary = makeTestDict(numericTokens, {}, { unfilteredTokens: [] });
 
         const result = await iosSwiftEnumWithModes.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary: numericDictionary,
             file: { destination: 'Theme.swift' },
             options: { className: 'Theme', outputReferences: false },

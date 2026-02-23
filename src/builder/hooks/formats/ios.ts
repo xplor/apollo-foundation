@@ -97,11 +97,14 @@ function escapeSwiftString(s: string): string {
 }
 
 /**
- * Escapes a string for safe embedding inside a Swift block comment (/** … *‌/).
- * Replaces the comment-terminator sequence so it cannot break out of the comment.
+ * Escapes a string for safe embedding inside a Swift block comment (/** … * /).
+ * Swift supports nested block comments, so both the opener and closer must be
+ * neutralized: an unescaped slash-star opens a new nesting level, causing the
+ * outer wrapper's star-slash to close the inner level instead, leaving the
+ * outer block comment unclosed and consuming all subsequent generated code.
  */
 function escapeSwiftBlockComment(s: string): string {
-    return s.replace(/\*\//g, '* /');
+    return s.replace(/\/\*/g, '/ *').replace(/\*\//g, '* /');
 }
 
 type TokenModeGroup = { light?: TransformedToken; dark?: TransformedToken };

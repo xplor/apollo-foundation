@@ -210,6 +210,35 @@ describe('ios formats', () => {
         expect(result).toContain('early * /');
     });
 
+    it('escapes block-comment opener in token comment for iosSwiftEnumWithModes', async () => {
+        // Swift supports nested block comments. A raw `/*` inside /** … */ opens a new
+        // nesting level; the outer wrapper's `*/` then closes the inner level instead,
+        // leaving the outer block comment unclosed and consuming all subsequent code.
+        const commentToken = {
+            path: ['color', 'background', 'primary'],
+            name: 'xplColorBackgroundPrimary',
+            value: '.init(red: 1, green: 1, blue: 1, alpha: 1)',
+            type: 'color',
+            original: { value: '#ffffff' },
+            attributes: { category: 'color' },
+            filePath: '',
+            isSource: true,
+            comment: 'Opens nested comment /* which breaks the outer block',
+        } as TransformedToken;
+
+        const dict = makeTestDict([commentToken]);
+
+        const result = await iosSwiftEnumWithModes.format!({
+            dictionary: dict,
+            file: { destination: 'Theme.swift' },
+            options: { className: 'Theme', outputReferences: false },
+            platform,
+        });
+        // The raw opener must be neutralised to "/ *".
+        expect(result).not.toContain('comment /*');
+        expect(result).toContain('comment / *');
+    });
+
     it('iosSwiftEnumWithModes produces valid Swift identifiers for numeric path segments', async () => {
         const numericTokens = [
             {

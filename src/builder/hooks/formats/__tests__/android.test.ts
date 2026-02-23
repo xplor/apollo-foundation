@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import type { Dictionary, TransformedToken } from 'style-dictionary/types';
 import {
     androidResourcesWithModes,
     androidResourcesLight,
@@ -7,7 +8,15 @@ import {
     androidKotlinTheme,
 } from '../android';
 
-const colorTokens = [
+function makeDict(allTokens: TransformedToken[]): Dictionary {
+    return {
+        allTokens,
+        tokens: {},
+        tokenMap: new Map(allTokens.map((t) => [t.name, t])),
+    };
+}
+
+const colorTokens: TransformedToken[] = [
     {
         path: ['color', 'background', 'primary'],
         name: 'xpl_color_background_primary',
@@ -15,6 +24,8 @@ const colorTokens = [
         type: 'color',
         original: { value: '#ffffff', key: 'xpl_color_background_primary' },
         attributes: { category: 'color' },
+        filePath: '',
+        isSource: true,
     },
     {
         path: ['color', 'dark', 'background', 'primary'],
@@ -23,20 +34,22 @@ const colorTokens = [
         type: 'color',
         original: { value: '#111111', key: 'xpl_color_background_primary_dark' },
         attributes: { category: 'color' },
+        filePath: '',
+        isSource: true,
     },
 ];
 
-const dictionary = { allTokens: colorTokens, tokens: {}, unfilteredTokens: [] };
+const dictionary = makeDict(colorTokens);
 const file = { destination: 'colors.xml' };
 const platform = { prefix: 'xpl' };
 
 describe('android formats', () => {
     it('androidResourcesWithModes outputs XML with light/dark suffixes', async () => {
         const result = await androidResourcesWithModes.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary,
             file,
             options: { prefix: 'xpl' },
+            platform,
         });
         expect(result).toContain('<resources>');
         expect(result).toContain('<color name="xpl_color_background_primary">#ffffff</color>');
@@ -46,7 +59,6 @@ describe('android formats', () => {
 
     it('androidResourcesLight outputs light values only', async () => {
         const result = await androidResourcesLight.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary,
             file,
             options: { outputReferences: false },
@@ -57,7 +69,6 @@ describe('android formats', () => {
 
     it('androidResourcesDark outputs dark values', async () => {
         const result = await androidResourcesDark.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary,
             file,
             options: { outputReferences: false },
@@ -68,18 +79,18 @@ describe('android formats', () => {
     });
 
     it('androidDimens outputs dp/sp/string by type', async () => {
-        const dimTokens = [
+        const dimTokens: TransformedToken[] = [
             {
-                path: ['size', 'spacing', 'm'], name: 'xpl_size_spacing_m', value: '16.00dp', type: 'dimension', original: {}, attributes: { category: 'size' },
+                path: ['size', 'spacing', 'm'], name: 'xpl_size_spacing_m', value: '16.00dp', type: 'dimension', original: {}, attributes: { category: 'size' }, filePath: '', isSource: true,
             },
             {
-                path: ['font', 'size', 'body'], name: 'xpl_font_size_body', value: '14', type: 'fontSize', original: {}, attributes: {},
+                path: ['font', 'size', 'body'], name: 'xpl_font_size_body', value: '14', type: 'fontSize', original: {}, attributes: {}, filePath: '', isSource: true,
             },
         ];
         const result = await androidDimens.format!({
-            // @ts-expect-error: no need for a complete object in test
-            dictionary: { allTokens: dimTokens, tokens: {}, unfilteredTokens: [] },
+            dictionary: makeDict(dimTokens),
             file,
+            options: {},
             platform,
         });
         expect(result).toContain('<dimen name="xpl_size_spacing_m">16.00dp</dimen>');
@@ -87,7 +98,7 @@ describe('android formats', () => {
     });
 
     it('sanitizes "--" in token comments to prevent invalid XML', async () => {
-        const tokenWithDashComment = [
+        const tokenWithDashComment: TransformedToken[] = [
             {
                 path: ['color', 'brand'],
                 name: 'xpl_color_brand',
@@ -96,9 +107,11 @@ describe('android formats', () => {
                 comment: 'Updated for version 2.0--latest',
                 original: { value: '#ff0000', key: 'xpl_color_brand' },
                 attributes: { category: 'color' },
+                filePath: '',
+                isSource: true,
             },
         ];
-        const dict = { allTokens: tokenWithDashComment, tokens: {}, unfilteredTokens: [] };
+        const dict = makeDict(tokenWithDashComment);
 
         for (
             const format of [
@@ -109,7 +122,6 @@ describe('android formats', () => {
             ]
         ) {
             const result = await format.format!({
-                // @ts-expect-error: no need for a complete object in test
                 dictionary: dict,
                 file,
                 options: {},
@@ -134,23 +146,20 @@ describe('android formats', () => {
         ];
 
         for (const { comment, expected } of cases) {
-            const dict = {
-                allTokens: [{
-                    path: ['color', 'brand'],
-                    name: 'xpl_color_brand',
-                    value: '#ff0000',
-                    type: 'color',
-                    comment,
-                    original: { value: '#ff0000', key: 'xpl_color_brand' },
-                    attributes: { category: 'color' },
-                }],
-                tokens: {},
-                unfilteredTokens: [],
-            };
+            const dict = makeDict([{
+                path: ['color', 'brand'],
+                name: 'xpl_color_brand',
+                value: '#ff0000',
+                type: 'color',
+                comment,
+                original: { value: '#ff0000', key: 'xpl_color_brand' },
+                attributes: { category: 'color' },
+                filePath: '',
+                isSource: true,
+            }]);
 
             for (const format of formats) {
                 const result = await format.format!({
-                    // @ts-expect-error: no need for a complete object in test
                     dictionary: dict,
                     file,
                     options: {},
@@ -163,7 +172,7 @@ describe('android formats', () => {
     });
 
     it('sanitizes "*/" in Kotlin doc comments to prevent premature block closure', async () => {
-        const tokenWithClosingComment = [
+        const tokenWithClosingComment: TransformedToken[] = [
             {
                 path: ['color', 'brand'],
                 name: 'xpl_color_brand',
@@ -172,12 +181,13 @@ describe('android formats', () => {
                 comment: 'Note: close with */',
                 original: { value: '#ff0000', key: 'xpl_color_brand' },
                 attributes: { category: 'color' },
+                filePath: '',
+                isSource: true,
             },
         ];
-        const dict = { allTokens: tokenWithClosingComment, tokens: {}, unfilteredTokens: [] };
+        const dict = makeDict(tokenWithClosingComment);
 
         const result = await androidKotlinTheme.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary: dict,
             file: { destination: 'Theme.kt' },
             options: { className: 'Theme', packageName: 'com.xplor.design' },
@@ -188,7 +198,7 @@ describe('android formats', () => {
     });
 
     it('escapes dollar signs in Kotlin color string literals to prevent template interpolation', async () => {
-        const dollarTokens = [
+        const dollarTokens: TransformedToken[] = [
             {
                 path: ['color', 'weird'],
                 name: 'xpl_color_weird',
@@ -196,12 +206,13 @@ describe('android formats', () => {
                 type: 'color',
                 original: { value: '#$ff0000', key: 'xpl_color_weird' },
                 attributes: { category: 'color' },
+                filePath: '',
+                isSource: true,
             },
         ];
-        const dict = { allTokens: dollarTokens, tokens: {}, unfilteredTokens: [] };
+        const dict = makeDict(dollarTokens);
 
         const result = await androidKotlinTheme.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary: dict,
             file: { destination: 'Theme.kt' },
             options: { className: 'Theme', packageName: 'com.xplor.design' },
@@ -214,7 +225,7 @@ describe('android formats', () => {
     });
 
     it('escapes double quotes and backslashes in Kotlin color string literals', async () => {
-        const malformedTokens = [
+        const malformedTokens: TransformedToken[] = [
             {
                 path: ['color', 'weird'],
                 name: 'xpl_color_weird',
@@ -222,12 +233,13 @@ describe('android formats', () => {
                 type: 'color',
                 original: { value: '#ff"00\\00', key: 'xpl_color_weird' },
                 attributes: { category: 'color' },
+                filePath: '',
+                isSource: true,
             },
         ];
-        const dict = { allTokens: malformedTokens, tokens: {}, unfilteredTokens: [] };
+        const dict = makeDict(malformedTokens);
 
         const result = await androidKotlinTheme.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary: dict,
             file: { destination: 'Theme.kt' },
             options: { className: 'Theme', packageName: 'com.xplor.design' },
@@ -241,7 +253,7 @@ describe('android formats', () => {
     });
 
     it('androidKotlinTheme does not crash for tokens whose path is only "dark"', async () => {
-        const darkOnlyToken = [
+        const darkOnlyToken: TransformedToken[] = [
             {
                 path: ['dark'],
                 name: 'xpl_dark',
@@ -249,12 +261,13 @@ describe('android formats', () => {
                 type: 'color',
                 original: { value: '#000000', key: 'xpl_dark' },
                 attributes: { category: 'color' },
+                filePath: '',
+                isSource: true,
             },
         ];
-        const dict = { allTokens: darkOnlyToken, tokens: {}, unfilteredTokens: [] };
+        const dict = makeDict(darkOnlyToken);
 
         await expect(androidKotlinTheme.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary: dict,
             file: { destination: 'Theme.kt' },
             options: { className: 'Theme', packageName: 'com.xplor.design' },
@@ -263,7 +276,7 @@ describe('android formats', () => {
     });
 
     it('androidKotlinTheme prefixes digit-leading identifiers with _ to produce valid Kotlin', async () => {
-        const numericTokens = [
+        const numericTokens: TransformedToken[] = [
             {
                 path: ['color', 'gray', '0'],
                 name: 'xpl_color_gray_0',
@@ -271,6 +284,8 @@ describe('android formats', () => {
                 type: 'color',
                 original: { value: '#ffffff', key: 'xpl_color_gray_0' },
                 attributes: { category: 'color' },
+                filePath: '',
+                isSource: true,
             },
             {
                 path: ['color', 'gray', '50'],
@@ -279,12 +294,13 @@ describe('android formats', () => {
                 type: 'color',
                 original: { value: '#f8f9fa', key: 'xpl_color_gray_50' },
                 attributes: { category: 'color' },
+                filePath: '',
+                isSource: true,
             },
         ];
-        const dict = { allTokens: numericTokens, tokens: {}, unfilteredTokens: [] };
+        const dict = makeDict(numericTokens);
 
         const result = await androidKotlinTheme.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary: dict,
             file: { destination: 'Theme.kt' },
             options: { className: 'Theme', packageName: 'com.xplor.design' },
@@ -302,7 +318,6 @@ describe('android formats', () => {
 
     it('androidKotlinTheme outputs Kotlin object with nested structure', async () => {
         const result = await androidKotlinTheme.format!({
-            // @ts-expect-error: no need for a complete object in test
             dictionary,
             file: { destination: 'Theme.kt' },
             options: { className: 'Theme', packageName: 'com.xplor.design' },

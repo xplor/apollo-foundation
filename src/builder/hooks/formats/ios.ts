@@ -143,7 +143,9 @@ export const iosSwiftEnumWithModesLegacy = {
                 output += `    @available(*, deprecated, message: "${deprecatedComment}")\n`;
             }
 
-            if (light && dark) {
+            const isColor = primary.type === 'color';
+
+            if (light && dark && isColor) {
                 const lightVal = getValue(light, dictionary, !!outputReferences);
                 const darkVal = getValue(dark, dictionary, !!outputReferences);
 

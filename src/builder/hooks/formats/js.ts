@@ -175,21 +175,47 @@ export const javascriptUmdWithModes = {
 } satisfies Format;
 
 /**
- * Helper to generate TypeScript type for a value
+ * Helper to generate TypeScript type for a value.
+ *
+ * Handles primitives, the synthetic { light, dark } mode shape (members are
+ * resolved recursively), arrays, and generic composite objects so that the
+ * emitted .d.ts accurately reflects the runtime token value shape.
  */
 function getTsType(value: unknown): string {
-    if (value !== null && typeof value === 'object') {
-        const hasLight = 'light' in value;
-        const hasDark = 'dark' in value;
-        if (hasLight || hasDark) {
-            const parts = [
-                hasLight ? 'light: string' : null,
-                hasDark ? 'dark: string' : null,
-            ].filter((p): p is string => p !== null);
+    if (value === null) return 'null';
+
+    switch (typeof value) {
+        case 'string': return 'string';
+        case 'number': return 'number';
+        case 'boolean': return 'boolean';
+        case 'object': {
+            if (Array.isArray(value)) {
+                if (value.length === 0) return 'unknown[]';
+                return `${getTsType(value[0])}[]`;
+            }
+
+            const obj = value as Record<string, unknown>;
+            const hasLight = 'light' in obj;
+            const hasDark = 'dark' in obj;
+
+            // Synthetic mode shape produced by buildTokenTreeWithModes
+            if (hasLight || hasDark) {
+                const parts = [
+                    hasLight ? `light: ${getTsType(obj.light)}` : null,
+                    hasDark ? `dark: ${getTsType(obj.dark)}` : null,
+                ].filter((p): p is string => p !== null);
+                return `{ ${parts.join('; ')} }`;
+            }
+
+            // Generic composite token value (e.g. shadow, typography)
+            const entries = Object.entries(obj);
+            if (entries.length === 0) return 'Record<string, never>';
+            const parts = entries.map(([k, v]) => `${JSON.stringify(k)}: ${getTsType(v)}`);
             return `{ ${parts.join('; ')} }`;
         }
+        default:
+            return 'unknown';
     }
-    return 'string';
 }
 
 /**

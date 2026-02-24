@@ -109,6 +109,11 @@ function js({ brand, buildPath, modeConfig }: PlatformsConfig): PlatformConfig {
             {
                 destination: 'colors.js',
                 format: hasModes ? 'javascript/umd-with-modes' : 'javascript/umd',
+                filter: {
+                    attributes: {
+                        category: 'color',
+                    },
+                },
                 options: {
                     outputReferences: true,
                 },
@@ -117,6 +122,11 @@ function js({ brand, buildPath, modeConfig }: PlatformsConfig): PlatformConfig {
             {
                 destination: 'colors.d.ts',
                 format: 'typescript/declarations',
+                filter: {
+                    attributes: {
+                        category: 'color',
+                    },
+                },
                 options: {
                     outputReferences: true,
                 },

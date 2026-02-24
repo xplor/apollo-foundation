@@ -39,7 +39,7 @@ export default function ios({ brand, buildPath, modeConfig }: PlatformsConfig): 
     // Modern nested structure (for all brands)
     files.push({
         destination: 'Theme.swift',
-        format: 'ios-swift/enum-with-modes',
+        format: hasModes ? 'ios-swift/enum-with-modes' : 'ios-swift/enum.swift',
         options: {
             className: 'Theme',
             outputReferences: true,

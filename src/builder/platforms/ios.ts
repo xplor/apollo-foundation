@@ -12,40 +12,40 @@ export default function ios({ brand, buildPath, modeConfig }: PlatformsConfig): 
         files.push(
             // Legacy Color file
             {
-                destination: "StyleDictionaryColor.swift",
-                format: hasModes ? "ios-swift/enum-with-modes-legacy" : "ios-swift/enum.swift",
+                destination: 'StyleDictionaryColor.swift',
+                format: hasModes ? 'ios-swift/enum-with-modes-legacy' : 'ios-swift/enum.swift',
                 options: {
-                    className: "StyleDictionaryColor",
-                    outputReferences: true
+                    className: 'StyleDictionaryColor',
+                    outputReferences: true,
                 },
                 filter: {
-                    type: "color"
-                }
+                    type: 'color',
+                },
             },
             // Legacy Size/Font file
             // Includes: fontSize, dimension (spacing, radii, borders), fontWeight
             {
-                destination: "StyleDictionaryFont.swift",
-                format: "ios-swift/enum-with-modes-legacy",
+                destination: 'StyleDictionaryFont.swift',
+                format: 'ios-swift/enum-with-modes-legacy',
                 options: {
-                    className: "StyleDictionarySize",
-                    outputReferences: true
+                    className: 'StyleDictionarySize',
+                    outputReferences: true,
                 },
-                filter: (token) => ['fontSize', 'dimension', 'fontWeight'].includes(token.type || '')
-            }
+                filter: (token) => ['fontSize', 'dimension', 'fontWeight'].includes(token.type || ''),
+            },
         );
     }
 
     // Modern nested structure (for all brands)
     files.push({
-        destination: "Theme.swift",
-        format: "ios-swift/enum-with-modes",
+        destination: 'Theme.swift',
+        format: 'ios-swift/enum-with-modes',
         options: {
-            className: "Theme",
-            outputReferences: true
+            className: 'Theme',
+            outputReferences: true,
         },
         // Include all tokens
-        filter: () => true
+        filter: () => true,
     });
 
     return {
@@ -61,6 +61,6 @@ export default function ios({ brand, buildPath, modeConfig }: PlatformsConfig): 
         ],
         buildPath: `${buildPath}/${brand}/ios/`,
         prefix,
-        files
+        files,
     };
 }

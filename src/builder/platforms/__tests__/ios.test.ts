@@ -38,8 +38,7 @@ describe('ios platform', () => {
         const config = ios({
             brand: 'apollo',
             buildPath: '/build',
-            // @ts-expect-error: Typescript is overzealous in this instance
-            modeConfig: {},
+            modeConfig: { hasModes: true },
         });
         expect(config.buildPath).toBe('/build/apollo/ios/');
     });

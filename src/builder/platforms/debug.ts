@@ -8,7 +8,7 @@ export default function debug({ brand, buildPath }: PlatformsConfig): PlatformCo
             {
                 destination: 'tokens.json',
                 format: 'json/debug',
-            }
-        ]
+            },
+        ],
     };
-};
+}

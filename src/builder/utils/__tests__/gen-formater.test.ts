@@ -3,6 +3,7 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import type { TransformedToken } from 'style-dictionary/types';
 import { genFormatter } from '../gen-formatter';
+import { makeTestDict } from '../make-test-dict';
 
 const FIXTURE_PATH = resolve(__dirname, '../../__tests__/fixtures/tokens-formatter.json');
 
@@ -11,17 +12,22 @@ type FixtureItem = { path: string[]; name: string; value: string; comment?: stri
 function loadFixtureTokens(): TransformedToken[] {
     const raw = readFileSync(FIXTURE_PATH, 'utf-8');
     const items = JSON.parse(raw) as Array<FixtureItem>;
-    return items.map((item) => ({
+
+    return items.map<TransformedToken>((item) => ({
         path: item.path,
         name: item.name,
         value: item.value,
         original: { value: item.value, key: item.name },
         attributes: { category: 'color' },
         comment: item.comment,
-    })) as unknown as TransformedToken[];
+        filePath: '',
+        isSource: false,
+    }));
 }
 
 describe('genFormatter', () => {
+    const platform = { prefix: 'xpl' };
+
     it('produces :root and .dark blocks with real fixture file', async () => {
         const allTokens = loadFixtureTokens();
         const formatFn = genFormatter({
@@ -34,10 +40,10 @@ describe('genFormatter', () => {
         });
 
         const result = await formatFn({
-            // @ts-expect-error: test fixture doesn't fully satisfy the formatFn dictionary shape
-            dictionary: { allTokens, tokens: {}, unfilteredTokens: [] },
+            dictionary: makeTestDict(allTokens, {}, { unfilteredTokens: [] }),
             file: { destination: 'variables.css' },
             options: { outputReferences: false },
+            platform,
         });
 
         expect(result).toContain(':root {');
@@ -61,14 +67,10 @@ describe('genFormatter', () => {
         });
 
         const result = await formatFn({
-            dictionary: {
-                allTokens,
-                tokens: {},
-                // @ts-expect-error: Typescript is a little overzealous in this instance
-                unfilteredTokens: [],
-            },
+            dictionary: makeTestDict(allTokens, {}, { unfilteredTokens: [] }),
             file: { destination: 'variables-media.css' },
             options: { outputReferences: false },
+            platform,
         });
 
         expect(result).toContain('@media (prefers-color-scheme: dark)');

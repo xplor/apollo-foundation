@@ -1,8 +1,6 @@
 import type { PlatformConfig } from 'style-dictionary/types';
 import { type PlatformsConfig, prefix } from '../globals';
 
-const webDir = 'web';
-
 function css({ brand, buildPath, modeConfig }: PlatformsConfig): PlatformConfig {
     const hasModes = modeConfig?.hasModes || false;
 
@@ -13,37 +11,37 @@ function css({ brand, buildPath, modeConfig }: PlatformsConfig): PlatformConfig 
             'time/seconds',
             'html/icon',
             'size/pxToRem',
-            'color/hex6'
+            'color/hex6',
         ],
         buildPath: `${buildPath}/${brand}/css/`,
         prefix,
         files: hasModes ? [
             {
-                destination: "variables.css",
-                format: "css/variables-class-mode",
+                destination: 'variables.css',
+                format: 'css/variables-class-mode',
                 options: {
                     showFileHeader: false,
-                    outputReferences: true
-                }
+                    outputReferences: true,
+                },
             },
             {
-                destination: "variables-media.css",
-                format: "css/variables-media-mode",
+                destination: 'variables-media.css',
+                format: 'css/variables-media-mode',
                 options: {
                     showFileHeader: false,
-                    outputReferences: true
-                }
-            }
+                    outputReferences: true,
+                },
+            },
         ] : [{
-            destination: "variables.css",
-            format: "css/variables",
+            destination: 'variables.css',
+            format: 'css/variables',
             options: {
                 showFileHeader: false,
-                outputReferences: true
-            }
-        }]
+                outputReferences: true,
+            },
+        }],
     };
-};
+}
 
 function scss({ brand, buildPath, modeConfig }: PlatformsConfig): PlatformConfig {
     const hasModes = modeConfig?.hasModes || false;
@@ -66,34 +64,34 @@ function scss({ brand, buildPath, modeConfig }: PlatformsConfig): PlatformConfig
             'shadow/css/shorthand',
         ],
         buildPath: `${buildPath}/${brand}/scss/`,
-        prefix: "xpl",
+        prefix: 'xpl',
         files: hasModes ? [
             {
-                destination: "_variables.scss",
-                format: "scss/variables-class-mode",
+                destination: '_variables.scss',
+                format: 'scss/variables-class-mode',
                 options: {
                     showFileHeader: true,
-                    outputReferences: true
-                }
+                    outputReferences: true,
+                },
             },
             {
-                destination: "_variables-media.scss",
-                format: "scss/variables-media-mode",
+                destination: '_variables-media.scss',
+                format: 'scss/variables-media-mode',
                 options: {
                     showFileHeader: true,
-                    outputReferences: true
-                }
-            }
+                    outputReferences: true,
+                },
+            },
         ] : [{
-            destination: "_variables.scss",
-            format: "scss/variables",
+            destination: '_variables.scss',
+            format: 'scss/variables',
             options: {
                 showFileHeader: true,
-                outputReferences: true
-            }
-        }]
-    }
-};
+                outputReferences: true,
+            },
+        }],
+    };
+}
 
 function js({ brand, buildPath, modeConfig }: PlatformsConfig): PlatformConfig {
     const hasModes = modeConfig?.hasModes || false;
@@ -109,49 +107,49 @@ function js({ brand, buildPath, modeConfig }: PlatformsConfig): PlatformConfig {
         files: [
             // Main tokens file with mode support
             {
-                destination: "colors.js",
-                format: hasModes ? "javascript/umd-with-modes" : "javascript/umd",
+                destination: 'colors.js',
+                format: hasModes ? 'javascript/umd-with-modes' : 'javascript/umd',
                 options: {
-                    outputReferences: true
-                }
+                    outputReferences: true,
+                },
             },
             // TypeScript declarations for colors
             {
-                destination: "colors.d.ts",
-                format: "typescript/declarations",
+                destination: 'colors.d.ts',
+                format: 'typescript/declarations',
                 options: {
-                    outputReferences: true
-                }
+                    outputReferences: true,
+                },
             },
             // Font tokens
             {
-                destination: "font.js",
-                format: "javascript/umd",
+                destination: 'font.js',
+                format: 'javascript/umd',
                 filter: {
                     attributes: {
-                        category: "font"
-                    }
+                        category: 'font',
+                    },
                 },
                 options: {
-                    outputReferences: true
-                }
+                    outputReferences: true,
+                },
             },
             // TypeScript declarations for font
             {
-                destination: "font.d.ts",
-                format: "typescript/declarations",
+                destination: 'font.d.ts',
+                format: 'typescript/declarations',
                 filter: {
                     attributes: {
-                        category: "font"
-                    }
+                        category: 'font',
+                    },
                 },
                 options: {
-                    outputReferences: true
-                }
-            }
-        ]
+                    outputReferences: true,
+                },
+            },
+        ],
     };
-};
+}
 
 export default function web(config: PlatformsConfig): Record<string, PlatformConfig> {
     return {

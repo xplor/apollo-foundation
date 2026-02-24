@@ -5,12 +5,12 @@
   "type": "module",
   "exports": {
     ".": null,
-    "./apollo/css": "./build/apollo/css/",
-    "./apollo/scss": "./build/apollo/scss/",
-    "./apollo/js": "./build/apollo/js/",
-    "./field-edge/css": "./build/field-edge/css/",
-    "./field-edge/scss": "./build/field-edge/scss/",
-    "./field-edge/js": "./build/field-edge/js/"
+    "./apollo/css/*": "./build/apollo/css/*",
+    "./apollo/scss/*": "./build/apollo/scss/*",
+    "./apollo/js/*": "./build/apollo/js/*",
+    "./field-edge/css/*": "./build/field-edge/css/*",
+    "./field-edge/scss/*": "./build/field-edge/scss/*",
+    "./field-edge/js/*": "./build/field-edge/js/*"
   },
   "scripts": {
     "build": "tsx ./build.ts",

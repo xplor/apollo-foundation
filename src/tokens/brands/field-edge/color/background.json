@@ -426,7 +426,7 @@
         "comment": "Green badge surface"
       },
       "positive_bold": {
-        "value": "{background.surface.positive_bold}",
+        "value": "{background.accent.positive_bold}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Red Badge surface"
@@ -438,7 +438,7 @@
         "comment": "Grey Badge surface"
       },
       "negative_bold": {
-        "value": "{background.surface.negative_bold}",
+        "value": "{background.accent.negative_bold}",
         "type": "color",
         "scope": "Frame Fill, Shape Fill",
         "comment": "Blue badge surface"

@@ -1,23 +1,15 @@
 import type { FormatFn, FormattingOptions, TransformedToken } from 'style-dictionary/types';
 import { formattedVariables } from 'style-dictionary/utils';
+import { LEGACY_ALIASES } from './legacy-aliases';
 
 /**
  * Generates backwards-compatible alias declarations for legacy token names.
  * Returns a string of alias variable declarations.
  */
 function generateLegacyAliases(format: 'css' | 'sass', indentation: string = '  '): string {
-    // Map of legacy name -> new name (reference)
-    const legacyAliases: Array<{ legacy: string; current: string; comment?: string }> = [
-        {
-            legacy: 'xpl-color-transparent',
-            current: 'xpl-color-transparent-0',
-            comment: 'Backwards-compatible alias. Use --xpl-color-transparent-0 instead.',
-        },
-    ];
+    if (LEGACY_ALIASES.length === 0) return '';
 
-    if (legacyAliases.length === 0) return '';
-
-    const lines = legacyAliases.map(({ legacy, current, comment }) => {
+    const lines = LEGACY_ALIASES.map(({ legacy, current, comment }) => {
         if (format === 'css') {
             const commentStr = comment ? ` /** ${comment} */` : '';
             return `${indentation}--${legacy}: var(--${current});${commentStr}`;

@@ -64,7 +64,7 @@ function scss({ brand, buildPath, modeConfig }: PlatformsConfig): PlatformConfig
             'shadow/css/shorthand',
         ],
         buildPath: `${buildPath}/${brand}/scss/`,
-        prefix: 'xpl',
+        prefix,
         files: hasModes ? [
             {
                 destination: '_variables.scss',

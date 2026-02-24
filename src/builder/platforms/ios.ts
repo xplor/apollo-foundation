@@ -26,7 +26,7 @@ export default function ios({ brand, buildPath, modeConfig }: PlatformsConfig): 
             // Includes: fontSize, dimension (spacing, radii, borders), fontWeight
             {
                 destination: 'StyleDictionaryFont.swift',
-                format: 'ios-swift/enum-with-modes-legacy',
+                format: hasModes ? 'ios-swift/enum-with-modes-legacy' : 'ios-swift/enum.swift',
                 options: {
                     className: 'StyleDictionarySize',
                     outputReferences: true,

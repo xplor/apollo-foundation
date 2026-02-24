@@ -15,13 +15,14 @@ describe('ios platform', () => {
         expect(config.files!.find((f) => f.destination === 'StyleDictionaryColor.swift')?.format).toBe('ios-swift/enum-with-modes-legacy');
     });
 
-    it('apollo without hasModes uses ios-swift/enum.swift for colors', () => {
+    it('apollo without hasModes uses ios-swift/enum.swift for colors and fonts', () => {
         const config = ios({
             brand: 'apollo',
             buildPath: '/build',
             modeConfig: { hasModes: false },
         });
         expect(config.files!.find((f) => f.destination === 'StyleDictionaryColor.swift')?.format).toBe('ios-swift/enum.swift');
+        expect(config.files!.find((f) => f.destination === 'StyleDictionaryFont.swift')?.format).toBe('ios-swift/enum.swift');
     });
 
     it('all brands get Theme.swift', () => {

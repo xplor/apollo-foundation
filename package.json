@@ -13,11 +13,11 @@
     "./field-edge/js/*": "./build/field-edge/js/*"
   },
   "scripts": {
-    "build": "tsx ./build.ts",
-    "build:new": "tsx ./src/builder/index.ts",
-    "build:new:debug": "tsx --inspect-brk ./src/builder/index.ts",
+    "prebuild": "npm run clean",
+    "build": "tsx ./src/builder/index.ts",
+    "build:debug": "tsx --inspect-brk ./src/builder/index.ts",
     "clean": "rm -rf ./build/",
-    "dev:new": "tsx watch --include ./src/tokens ./src/builder/index.ts --debug",
+    "dev": "tsx watch --include ./src/tokens ./src/builder/index.ts --debug",
     "lint": "eslint .",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"

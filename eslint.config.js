@@ -57,8 +57,6 @@ export default defineConfig(
                 devDependencies: [
                     '**/*.test.ts',
                     'vitest.config.ts',
-                    'build.ts',
-                    'config.ts',
                     'src/builder/**/*.ts',
                 ],
             }],

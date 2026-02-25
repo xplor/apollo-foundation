@@ -1,19 +1,19 @@
 {
-"icon": {
+  "icon": {
     "default": {
-      "value": "{color.neutral.0}",
+      "value": "{color.neutral.1000}",
       "type": "color",
       "scope": "Frame Fill, Shape Fill, Stroke Color",
-      "comment": "Default icon color and when paired with default or strong text"
+      "comment": "Default icon color and when paired with default or strong text."
     },
     "subtle": {
       "value": "{color.neutral.500}",
       "type": "color",
       "scope": "Frame Fill, Shape Fill, Stroke Color",
-      "comment": "Use when paired with subtle text colors or inactive actions"
+      "comment": "Use when paired with subtle text colors or inactive actions."
     },
     "inverse": {
-      "value": "{color.neutral.1000}",
+      "value": "{color.neutral.0}",
       "type": "color",
       "scope": "Frame Fill, Shape Fill, Stroke Color",
       "comment": "Inverse color icons (white on dark surfaces, dark on light surfaces)"
@@ -22,46 +22,46 @@
       "value": "{color.neutral.1000}",
       "type": "color",
       "scope": "Frame Fill, Shape Fill, Stroke Color",
-      "comment": "Dark icons on light backgrounds that do not mode switch"
+      "comment": "Dark icons on light backgrounds that do not mode switch."
     },
     "inverse_on_dark": {
       "value": "{color.neutral.0}",
       "type": "color",
       "scope": "Frame Fill, Shape Fill, Stroke Color",
-      "comment": "White icons on dark backgrounds that do not mode switch"
+      "comment": "White icons on dark backgrounds that do not mode switch."
     },
     "disabled": {
-      "value": "{color.neutral.500}",
+      "value": "{color.neutral.600}",
       "type": "color",
       "scope": "Frame Fill, Shape Fill, Stroke Color",
-      "comment": "Use for icons paired with disabled text or actions"
+      "comment": "Use for icons paired with disabled text or actions."
     },
     "brand": {
-      "value": "{color.orange.300}",
+      "value": "{color.brand.primary.xplorange}",
       "type": "color",
       "scope": "Frame Fill, Shape Fill, Stroke Color",
-      "comment": "Use for brand logos and icons paired with primary brand color"
+      "comment": "Use for brand logos and icons paired with primary brand color."
     },
     "negative": {
-      "value": "{color.red.300}",
+      "value": "{color.red.700}",
       "type": "color",
       "scope": "Frame Fill, Shape Fill, Stroke Color",
-      "comment": "Use for icons with negative sentiment, or paired with negative text"
+      "comment": "Use for icons with negative sentiment, or paired with negative text."
     },
     "warning": {
-      "value": "{color.yellow.200}",
+      "value": "{color.yellow.600}",
       "type": "color",
       "scope": "Stroke Color",
-      "comment": "Highlight accented borders"
+      "comment": "Highlight accented borders."
     },
     "positive": {
-      "value": "{color.green.300}",
+      "value": "{color.green.700}",
       "type": "color",
       "scope": "Frame Fill, Shape Fill, Stroke Color",
-      "comment": "Use for icons in a positive sentiment or paired with positive text"
+      "comment": "Use for icons in a positive sentiment or paired with positive text."
     },
     "information": {
-      "value": "{color.purple.300}",
+      "value": "{color.purple.700}",
       "type": "color",
       "scope": "Frame Fill, Shape Fill, Stroke Color",
       "comment": "Use for icons communicating information"

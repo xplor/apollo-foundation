@@ -2,25 +2,25 @@
   "dark": {
     "text": {
       "strong": {
-        "value": "{color.neutral.1100}",
+        "value": "{color.neutral.0}",
         "type": "color",
         "scope": "Text Fill",
         "comment": "Bold text color, use for display text styles, page headings"
       },
       "default": {
-        "value": "{color.neutral.900}",
+        "value": "{color.neutral.50}",
         "type": "color",
         "scope": "Text Fill",
         "comment": "Use for primary text color such as body or titles in sentence case"
       },
       "subdued": {
-        "value": "{color.neutral.600}",
+        "value": "{color.neutral.500}",
         "type": "color",
         "scope": "Text Fill",
         "comment": "Use for subdued text such as descriptions and details"
       },
       "inverse": {
-        "value": "{color.neutral.0}",
+        "value": "{color.neutral.1000}",
         "type": "color",
         "scope": "Text Fill",
         "comment": "Use on inverse surfaces (light on dark surface, dark on light surface)"
@@ -38,13 +38,13 @@
         "comment": "Use on text on a dark surface that does not mode switch"
       },
       "positive": {
-        "value": "{color.green.700}",
+        "value": "{color.green.300}",
         "type": "color",
         "scope": "Text Fill",
         "comment": "Use on positive sentiment text"
       },
       "negative": {
-        "value": "{color.red.700}",
+        "value": "{color.red.300}",
         "type": "color",
         "scope": "Text Fill",
         "comment": "Use on negative sentiment text"
@@ -57,19 +57,19 @@
       },
       "link": {
         "default": {
-          "value": "{color.purple.700}",
+          "value": "{color.purple.300}",
           "type": "color",
           "scope": "Text Fill",
           "comment": "Use for link text"
         },
         "hovered": {
-          "value": "{color.purple.800}",
+          "value": "{color.purple.400}",
           "type": "color",
           "scope": "Text Fill",
           "comment": "Use for default badge text"
         },
         "visited": {
-          "value": "{color.pink.800}",
+          "value": "{color.pink.300}",
           "type": "color",
           "scope": "Text Fill",
           "comment": "Use for yellow badge text"

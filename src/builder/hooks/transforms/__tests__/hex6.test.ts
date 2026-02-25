@@ -15,10 +15,15 @@ describe('hex6 transform', () => {
         expect(hex6.filter!({} as TransformedToken)).toBe(false);
     });
 
-    it('strips alpha from 8-digit hex', () => {
-        expect(hex6.transform({ value: '#aabbccdd' } as TransformedToken)).toBe('#aabbcc');
+    it('converts 8-digit hex with non-opaque alpha to rgba', () => {
+        expect(hex6.transform({ value: '#aabbccdd' } as TransformedToken)).toBe('rgba(170, 187, 204, 0.87)');
+        expect(hex6.transform({ value: '#FFFFFF0D' } as TransformedToken)).toBe('rgba(255, 255, 255, 0.05)');
+        expect(hex6.transform({ value: '#302D3B80' } as TransformedToken)).toBe('rgba(48, 45, 59, 0.5)');
+    });
+
+    it('converts 8-digit hex with opaque alpha to 6-digit hex', () => {
         expect(hex6.transform({ value: '#000000ff' } as TransformedToken)).toBe('#000000');
-        expect(hex6.transform({ value: '#ABCDEF99' } as TransformedToken)).toBe('#ABCDEF');
+        expect(hex6.transform({ value: '#ABCDEFff' } as TransformedToken)).toBe('#ABCDEF');
     });
 
     it('leaves 6-digit hex unchanged', () => {
